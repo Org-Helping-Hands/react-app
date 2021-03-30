@@ -1,6 +1,8 @@
-body{
-  background-color: grey;
+.c-login {
+  background: gray;
+  height:100vh;
 }
+
 .circle1{
   width:90%;
   border-radius:50%;

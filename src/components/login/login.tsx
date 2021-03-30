@@ -3,7 +3,7 @@ import "./login.css";
 export class Login extends React.Component {
   render() {
     return (
-      <>
+      <div className="c-login">
         <div className="circle1">
           <p>
             Join <br /> Us
@@ -28,7 +28,7 @@ export class Login extends React.Component {
           </p>
         </div>
         <button className="btn-get-started">Get Started</button>
-      </>
+      </div>
     );
   }
 }

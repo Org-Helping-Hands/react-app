@@ -1,0 +1,49 @@
+.center {
+    color: #6200D1;
+    margin-top: 20%;
+    margin-bottom: 200px;
+    text-align: center;
+    font-size: 100px;
+    font-family: "koulen";
+
+}
+
+.getting {
+    color: green;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 100px;
+    font-family: "koulen";
+}
+
+.form {
+
+
+    position: relative;
+    z-index: 1;
+    opacity: 99%;
+    max-width: 400px;
+    margin: 20px auto 10px;
+    padding: 10px 45px 30px 45px;
+    text-align: left;
+    border: rgb(147, 0, 163);
+    border-style: solid;
+    font-size: 50px;
+    color: darkorchid;
+    border-radius: 20px;
+
+}
+
+.form input {
+    font-size: 50px
+}
+
+.form button {
+    text-align: right;
+    size: 10px 10px;
+    font-size: 30px;
+    background: rgb(224, 0, 105);
+    border-radius: 10px;
+
+}
