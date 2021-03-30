@@ -1,0 +1,128 @@
+.container1{
+    padding: 5px 0px 0px 0px;
+}
+.container2{
+    margin-left: 15px;
+}
+h1{
+    margin-top: 50px;
+    overflow: visible;
+    letter-spacing: 0px;
+    line-height: 1.2;
+    font-weight: 550;
+    font-family: "Inter-Medium", "Inter", sans-serif;
+    font-size: 37px;
+    color: #000000;
+    text-align: center;
+}
+#right{
+    /* background-color: skyblue; */
+    width: 50%;
+    float: right;
+    overflow: visible;
+border-radius: 12px;
+}
+#left{
+    /* background-color: lightcoral; */
+    width: 50%;
+    overflow: visible;
+    border-radius: 13px;
+}
+p{
+    width: auto;
+    height: auto;
+    overflow: visible;
+    letter-spacing: 0px;
+    line-height: 1.2;
+    text-align: center;
+    font-weight: 500;
+    font-family: "Inter-Medium", "Inter", sans-serif;
+    font-size: 23px;
+    color: #000000;
+}
+h2{
+    width: auto;
+    height: auto;
+    overflow: visible;
+    font-size: 30px;
+    letter-spacing: 0px;
+    line-height: 1.2;
+    font-weight: 540;
+    font-family: "Inter-Medium", "Inter", sans-serif;
+    color: #000000;
+    margin-left: 25px;
+    margin-top: 50px;
+}
+#name{
+    /* background-color: rgb(212, 129, 129); */
+    float: right;
+}
+#nameImg{
+    /* background-color: gray; */
+    width: 25%;
+}
+#email{
+    /* background-color:lightblue; */
+    float: right;
+}
+#emailImg{
+    /* background-color: blue; */
+    width: 25%;
+}
+#noti{
+    /* background-color: lightgreen; */
+    float: right;
+}
+#notiImg{
+    /* background-color: green; */
+    width: 25%;
+}
+#cont2text{
+    margin-top: 2px;
+    width: 250px;
+    height: 0px;
+    overflow: visible;
+    letter-spacing: 0px;
+    font-family: "Inter", sans-serif;
+    font-size: 20px;
+    color: #000000;
+    padding: 0px 0px 10px 0px;
+    text-align: left;
+    padding-left: 20px;
+}
+#cont2text2{
+    width: 250;
+    height: 2px;
+    overflow: visible;
+    letter-spacing: 0px;
+    font-weight: 600;
+    font-family: "Inter-SemiBold", "Inter", sans-serif;
+    font-size: 17px;
+    color: #82BCE4;
+    text-align: left;
+    padding-left: 20px;
+}
+.line1{
+    width: auto;
+    height: auto;
+    overflow: visible;
+    letter-spacing: 0px;
+    line-height: 1.2;
+    text-align: center;
+    font-weight: 500;
+    font-family: "Inter-Medium", "Inter", sans-serif;
+    font-size: 24px;
+    color: #000000;
+}
+#t1{
+    width: auto;
+height: auto;
+overflow: visible;
+letter-spacing: 0px;
+line-height: 1.2;
+text-align: center;
+font-weight: 500;
+font-family: "Inter-Medium", "Inter", sans-serif;
+font-size: 24px;
+color: #000000;
+}
