@@ -1,9 +1,9 @@
 import React from "react";
-import "./login.css";
-export class Login extends React.Component {
+import "./landing.css";
+export class Landing extends React.Component {
   render() {
     return (
-      <div className="c-login">
+      <div className="c-landing">
         <div className="circle1">
           <p>
             Join <br /> Us
