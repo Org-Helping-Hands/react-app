@@ -1,19 +1,34 @@
 import React from "react";
 import "./enterOtp.css";
-export class EnterOtp extends React.Component{
-    render(){
+import { Link } from "react-router-dom"
+export class EnterOtp extends React.Component {
+    render() {
         return (
             <>
-            <h1 className="center">Helping Hands </h1>
-                <p className="getting">getting Started</p>
-                <div className="form">
-                    <p>PHOBE NUMBER</p>
-                    <input type="text" name="mobno" placeholder="+91" size={10}/>
-                    <p>OTP</p>
-                    <input type="text" name="OTP" placeholder="ENTER OTP" size={10}/>
-                    <button>NEXT</button>
-                </div>
+                <html>
+                    <head>
+                        <meta charSet="UTF-8"></meta> <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+                        <link rel="stylesheet" href="enterOtp.css"></link>
+                        <title>sign in</title>
+                    </head>
+
+                    <body className="background">
+
+                        <div className="get">
+                            <p>Get Started</p>
+                        </div>
+                        <div className="form">
+                            <input type="text" placeholder="OTP"></input>
+                        </div>
+                        <Link to="home">
+                            <button className="next">NEXT</button>
+                        </Link>
+                        <p className="makeSure">Make sure you are in proper network coverage</p>
+                    </body>
+                </html>
             </>
+
         );
     }
 }

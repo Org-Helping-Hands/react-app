@@ -1,18 +1,39 @@
 import React from "react";
 import "./signin.css";
-export class Signin extends React.Component{
-    render(){
+import { Link } from "react-router-dom"
+export class Signin extends React.Component {
+    render() {
         return (
             <>
-            <h1 className="center">Helping Hands </h1>
-    <p className="getting">getting Started</p>
-    <div className="form">
-        <p>NAME</p>
-        <input type="text" name="username" placeholder="Name" size={10}/>
-        <p>PHONE NUMBER</p>
-        <input type="text" name="mobno" placeholder="+91" size={10}/>
-        <button>NEXT</button>
-    </div>
+                <html lang="en">
+                    <head>
+                        <meta charSet="UTF-8"></meta>
+                        <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+                        <link rel="stylesheet" href="signin.css"></link>
+                        <title>sign in</title>
+                    </head>
+
+
+                    <body>
+                        <div className="get">
+                            <p>Get Started</p>
+                        </div>
+
+
+
+                        <div className="form">
+                            <input type="text" placeholder="Name"></input>
+                            <input type="text" placeholder="Phone Number"></input>
+                        </div>
+                        <Link to="enterotp">
+                            <button className="next">NEXT</button>
+                        </Link>
+
+                        <p className="makeSure">Make sure you are in proper network coverage</p>
+                    </body>
+                </html>
+
             </>
         );
     }
