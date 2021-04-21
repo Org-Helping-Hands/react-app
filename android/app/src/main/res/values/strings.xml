@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">helping-hands</string>
+    <string name="title_activity_main">helping-hands</string>
+    <string name="package_name">hh.frontEnd</string>
+    <string name="custom_url_scheme">hh.frontEnd</string>
+</resources>

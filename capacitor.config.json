@@ -1,0 +1,17 @@
+{
+  "appId": "hh.frontEnd",
+  "appName": "helping-hands",
+  "bundledWebRuntime": false,
+  "npmClient": "yarn",
+  "webDir": "build",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {},
+  "server": {
+    "url": "http://192.168.56.1:3001",
+    "cleartext": true
+  }
+}
