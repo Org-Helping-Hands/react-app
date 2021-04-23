@@ -9,7 +9,7 @@ export class Home extends React.Component {
       <div id="right">
         <p>
           <img
-            src="assets/request-message.png"
+            src="assets/home/request-message.png"
             alt=""
             height="100px"
             width="100px"
@@ -18,7 +18,7 @@ export class Home extends React.Component {
         <p>Request for needy</p>
       </div>
       <div id="left">
-        <p><img src="assets/map.png" alt="" height="100px" width="100px" /></p>
+        <p><img src="assets/home/map.png" alt="" height="100px" width="100px" /></p>
         <p id="t1">Find needy near me</p>
       </div>
     </div>
@@ -33,7 +33,7 @@ export class Home extends React.Component {
                 <p id="cont2text2">9/11 posts 14 helps</p>
               </div>
               <div id="nameImg">
-                <p><img src="assets/user.png" alt="" height="50px" width="50px" /></p>
+                <p><img src="assets/home/user.png" alt="" height="50px" width="50px" /></p>
               </div>
         </div>
         <div className="line2">
@@ -42,7 +42,7 @@ export class Home extends React.Component {
                 <p id="cont2text2">ommore501@gmail.com</p>
               </div>
               <div id="emailImg">
-                <p><img src="assets/email.png" alt="" height="50px" width="50px" /></p>
+                <p><img src="assets/home/email.png" alt="" height="50px" width="50px" /></p>
               </div>
         </div>
         <div className="line3">
@@ -52,7 +52,7 @@ export class Home extends React.Component {
               </div>
               <div id="notiImg">
                 <p>
-                  <img src="assets/notification.png" alt="" height="50px" width="50px" />
+                  <img src="assets/home/notification.png" alt="" height="50px" width="50px" />
                 </p>
               </div>
         </div>
