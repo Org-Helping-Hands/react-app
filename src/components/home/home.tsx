@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { getUserData } from "../../common/api";
 import "./home.css";
 export class Home extends React.Component {
@@ -32,17 +33,19 @@ export class Home extends React.Component {
       <>
         <h1>Helping Hands</h1>
         <div className="container1">
-          <div id="right">
-            <p>
-              <img
-                src="assets/home/request-message.png"
-                alt=""
-                height="100px"
-                width="100px"
-              />
-            </p>
-            <p>Request for needy</p>
-          </div>
+          <Link to="/do-post">
+            <div id="right">
+              <p>
+                <img
+                  src="assets/home/request-message.png"
+                  alt=""
+                  height="100px"
+                  width="100px"
+                />
+              </p>
+              <p>Request for needy</p>
+            </div>
+          </Link>
           <div id="left">
             <p>
               <img

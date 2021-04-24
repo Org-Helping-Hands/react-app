@@ -12,6 +12,7 @@ import { EnterOtp } from "./components/enterOtp/enterOtp";
 import { Signin } from "./components/signin/signin";
 import { getToken } from "./common/user";
 import GuardedRoute from "./components/guardedRoute";
+import { DoPost } from "./components/do-post/do-post";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <GuardedRoute path="/home" component={Home} />
         <Route path="/enterOtp" component={EnterOtp} />
         <Route path="/signin" component={Signin} />
+        <Route path="/do-post" component={DoPost} />
       </Switch>
     </Router>
   );
