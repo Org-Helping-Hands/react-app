@@ -1,0 +1,13 @@
+{
+  "appId": "com.helpinghands.user",
+  "appName": "react-app",
+  "bundledWebRuntime": false,
+  "npmClient": "yarn",
+  "webDir": "build",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}
