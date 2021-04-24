@@ -80,15 +80,16 @@ font-family: "Inter-SemiBold", "Inter", sans-serif;
 }
 .btn-get-started{
   position: absolute;
-  bottom: 0;
+  text-align: center;   
+bottom: 0;
   width: 600px;
   height: 62px;
   margin-bottom: 45px;
-  margin-left: 38px;
+  margin-left: 23%;
   background-color: #470138;
   border-radius: 12px;
 
-  width: 220px;
+  width: 50%;
   height: 47px;
   font-family: "Inter", sans-serif;
   font-size: 16px;
