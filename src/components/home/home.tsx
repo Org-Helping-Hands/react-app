@@ -4,7 +4,7 @@ import { getUserData } from "../../common/api";
 import "./home.css";
 export class Home extends React.Component {
   componentDidMount() {
-    getUserData().then((data) => {
+    getUserData().then(({ data }) => {
       let {
         name,
         emailId,

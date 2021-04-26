@@ -1,3 +1,4 @@
+import axios from "axios";
 import { getPhoneNumber, getToken, getUserId } from "./user";
 
 const baseUrl = "http://localhost:3001";
@@ -25,21 +26,6 @@ interface userDataResponse {
   emailId: string;
 }
 
-async function doFetch<T>(
-  endPoint: string,
-  body = {},
-  method: "GET" | "POST" | "PUT" = "POST"
-) {
-  let res = await fetch(`${baseUrl}/${endPoint}`, {
-    method,
-    body: JSON.stringify({ ...authReqBody, ...body }),
-    headers: {
-      "content-type": "application/json",
-    },
-  });
-  return res.json() as Promise<T>;
-}
-
 export function getUserData() {
-  return doFetch<userDataResponse>("user/get-data");
+  return axios.post<userDataResponse>(`${baseUrl}/user/get-data`, authReqBody);
 }
