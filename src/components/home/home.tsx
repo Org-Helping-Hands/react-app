@@ -4,7 +4,7 @@ import { getUserData } from "../../common/api";
 import "./home.css";
 export class Home extends React.Component {
   componentDidMount() {
-    getUserData().then((data) => {
+    getUserData().then(({ data }) => {
       let {
         name,
         emailId,
@@ -46,17 +46,19 @@ export class Home extends React.Component {
               <p>Request for needy</p>
             </div>
           </Link>
-          <div id="left">
-            <p>
-              <img
-                src="assets/home/map.png"
-                alt=""
-                height="100px"
-                width="100px"
-              />
-            </p>
-            <p id="t1">Find needy near me</p>
-          </div>
+          <Link to="/find-needy">
+            <div id="left">
+              <p>
+                <img
+                  src="assets/home/map.png"
+                  alt=""
+                  height="100px"
+                  width="100px"
+                />
+              </p>
+              <p id="t1">Find needy near me</p>
+            </div>
+          </Link>
         </div>
         <h2>Account</h2>
 

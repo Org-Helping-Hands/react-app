@@ -2,6 +2,7 @@ import React from "react";
 import "./signin.css";
 import { auth } from "../../Services/Firebase";
 import { setPhoneNumber, setToken, setUserId } from "../../common/user";
+import axios from "axios";
 
 export class Signin extends React.Component {
   recaptcha: any;
@@ -54,24 +55,20 @@ export class Signin extends React.Component {
         if (_auth.currentUser) {
           _auth.currentUser.getIdToken(true).then((idToken) => {
             let url = "http://localhost:3001/user/signin";
-            fetch(url, {
-              method: "POST",
-              body: JSON.stringify({ idToken, name: this.state.name }),
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }).then(async (res) => {
-              if (_auth.currentUser) {
-                setUserId(_auth.currentUser.uid);
-              } else {
-                new Error("Failed to get userId, please try again later");
-              }
+            axios
+              .post(url, { idToken, name: this.state.name })
+              .then(async (_) => {
+                if (_auth.currentUser) {
+                  setUserId(_auth.currentUser.uid);
+                } else {
+                  new Error("Failed to get userId, please try again later");
+                }
 
-              setToken(idToken);
-              setPhoneNumber(this.state.phoneNumber);
-              // TODO: Not use any
-              (this.props as any).history.push("/home");
-            });
+                setToken(idToken);
+                setPhoneNumber(this.state.phoneNumber);
+                // TODO: Not use any
+                (this.props as any).history.push("/home");
+              });
           });
         }
       });
