@@ -1,12 +1,12 @@
 import React from "react";
-import "./signin.css";
+import styles from "./signin.module.css";
 export class Signin extends React.Component{
     render(){
         return (
             <>
-            <h1 className="center">Helping Hands </h1>
-    <p className="getting">getting Started</p>
-    <div className="form">
+            <h1 className={styles.center}>Helping Hands </h1>
+    <p className={styles.getting}>getting Started</p>
+    <div className={styles.form}>
         <p>NAME</p>
         <input type="text" name="username" placeholder="Name" size={10}/>
         <p>PHONE NUMBER</p>

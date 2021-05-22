@@ -1,15 +1,15 @@
 import React from "react";
-import "./landing.css";
+import styles from "./landing.module.css";
 export class Landing extends React.Component {
   render() {
     return (
-      <div className="c-landing">
-        <div className="circle1">
+      <div className={'${landing}${c}'}>
+        <div className={styles.circle1}>
           <p>
             Join <br /> Us
           </p>
         </div>
-        <div className="circle2">
+        <div className={styles.circle2}>
           <p>
             World
             <br />
@@ -20,14 +20,14 @@ export class Landing extends React.Component {
             Help
           </p>
         </div>
-        <div className="circle3">
+        <div className={styles.circle3}>
           <p>
             Helping
             <br />
             Hands
           </p>
         </div>
-        <button className="btn-get-started">Get Started</button>
+        <button className= {'${started}${get}${btn}'}>Get Started</button>
       </div>
     );
   }
