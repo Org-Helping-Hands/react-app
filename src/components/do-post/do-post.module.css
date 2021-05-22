@@ -1,9 +1,9 @@
 body{
 
     background-color: #ffffff;
-    
-    
     };
+
+
     label.filebutton {
         width:120px;
         height:40px;
@@ -47,20 +47,24 @@ body{
             color: #ffff;
     }
     
-    #description{
+    .description{
         border-radius: 7px; 
         padding: 15px; 
         background-color: #E6E6E6;
          width: 100%;
+        
          margin-bottom: 30px;
     }
     
     .navtitle{
-        margin-left:1%;
+        margin-left:5%;
         
     }
     .maintitle{
         margin-left: 2.5%;
+        margin-top: 20px;
+        font-size: 40px;
+        margin-bottom: 20px;
     }
     
     .title{
@@ -74,7 +78,7 @@ body{
     font-size: 24px;
     color: #c60649;
     }
-    #upload_frame{
+    .upload_frame{
         width: 70px;
         height: 70px;
         box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.25);
@@ -83,40 +87,49 @@ body{
         border-radius: 11px;
         margin: 5px;
     }
-    #upload_image{
+    .upload_image{
     width: 50px;
     height: 50px;
     margin: 10px 10px;
     }
-    #tags_selected{
+    .tags_selected{
         width: 100%;
         border-radius: 5px;
         border: 1px solid black;
         padding:15px 15px;
     }
-    #donebutton{ 
+    .donebutton{ 
      width: auto;
      height: auto;
      margin: auto;
     }
     
-    #postbtn{
+    .postbtn{
         width: 100px;
         margin: auto;
     
     
     }
     
-    
+ 
     .reqpost{
         margin-left: 2.5%;
         margin-right: 2.5%;
     }
     
-    #notice{
+    .notice{
         color: red;
     }
     
+    @media screen and (max-width:575px){
+    
+        .title{
+            text-align: start;
+        }
+        .maintitle{
+            text-align: start;
+        }
+    }
     @media screen and (min-width:575px){
     
         .reqpost{
@@ -149,7 +162,7 @@ body{
             margin-bottom: 5%;
             padding: 20px;
         }
-        #upload_frame{
+        .upload_frame{
             width: 100px;
             height: 100px;
             box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.25);
@@ -158,7 +171,7 @@ body{
             border-radius: 11px;
             margin: 10px;
         }
-        #upload_image{
+        .upload_image{
             width: 80px;
             height: 80px;
             margin: 10px 10px;
