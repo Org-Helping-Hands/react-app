@@ -1,6 +1,6 @@
 import React from "react";
 import mapboxgl from "mapbox-gl";
-import "./findNeedy.css";
+import styles from "./findNeedy.module.css";
 export class FindNeedy extends React.Component {
   componentDidMount() {
     this.initializeMap();
@@ -31,7 +31,7 @@ export class FindNeedy extends React.Component {
   render() {
     return (
       <>
-        <div id="arrow">
+        <div className={styles.arrow}>
           <img
             src="/assets/find-needy/arrow.jpg"
             alt=""
@@ -41,17 +41,17 @@ export class FindNeedy extends React.Component {
         </div>
         <h1>Needy people near you</h1>
 
-        <div id="rect"></div>
-        <div id="postersList">
-          <div id="horizontalLine"></div>
+        <div className={styles.rect}></div>
+        <div className={styles.postersList}>
+          <div className={styles.horizontalLine}></div>
           {[1, 2, 4, 5].map((_, i) => (
-            <div className="line1" key={i}>
-              <div id="name">
-                <p id="cont2text1">Posted by siddhesh</p>
-                <p id="cont2text2">Food, Water</p>
+            <div className={styles.line1} key={i}>
+              <div className={styles.name}>
+                <p className={styles.cont2text1}>Posted by siddhesh</p>
+                <p className={styles.cont2text2}>Food, Water</p>
               </div>
-              <div id="nameImg1">
-                <p id="userImg1">
+              <div className={styles.nameImg1}>
+                <p className={styles.userImg1}>
                   <img
                     src="/assets/find-needy/user.png"
                     alt=""

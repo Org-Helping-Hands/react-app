@@ -33,7 +33,7 @@ export class Home extends React.Component {
         <>
     <h1>Helping Hands</h1>
     <div className={styles.container1}>
-      <div id="right">
+      <div className={styles.right}>
         <p>
           <img
             src="assets/home/request-message.png"
@@ -44,9 +44,9 @@ export class Home extends React.Component {
         </p>
         <p>Request for needy</p>
       </div>
-      <div id="left">
+      <div className={styles.left}>
         <p><img src="assets/home/map.png" alt="" height="100px" width="100px" /></p>
-        <p id="t1">Find needy near me</p>
+        <p className={styles.t1}>Find needy near me</p>
       </div>
     </div>
     
@@ -55,32 +55,32 @@ export class Home extends React.Component {
 
      <div className={styles.container2}>
         <div className={styles.line1}>
-            <div id="name">
-            <p id="cont2text">{this.state.name}</p>
-              <p id="cont2text2">
+            <div className={styles.name}>
+            <p className={styles.cont2text}>{this.state.name}</p>
+              <p className={styles.cont2text2}>
                 {this.state.totalPostCompletedByOthers}/{this.state.totalPosts}{" "}
                 posts {this.state.totalHelps} helps
               </p>
               </div>
-              <div id="nameImg">
+              <div className={styles.nameImg}>
                 <p><img src="assets/home/user.png" alt="" height="50px" width="50px" /></p>
               </div>
         </div>
         <div className={styles.line2}>
-            <div id="email">
-            <p id="cont2text">Email</p>
-              <p id="cont2text2">{this.state.emailId}</p>
+            <div className={styles.email}>
+            <p className={styles.cont2text}>Email</p>
+              <p className={styles.cont2text2}>{this.state.emailId}</p>
               </div>
-              <div id="emailImg">
+              <div className={styles.emailImg}>
                 <p><img src="assets/home/email.png" alt="" height="50px" width="50px" /></p>
               </div>
         </div>
         <div className={styles.line3}>
-            <div id="noti">
-              <p id="cont2text">Notification</p>
-              <p id="cont2text2">Notifications are on</p>
+            <div className={styles.noti}>
+              <p className={styles.cont2text}>Notification</p>
+              <p className={styles.cont2text2}>Notifications are on</p>
             </div>
-            <div id="notiImg">
+            <div className={styles.notiImg}>
               <p>
                 <img
                   src="assets/home/notification.png"
