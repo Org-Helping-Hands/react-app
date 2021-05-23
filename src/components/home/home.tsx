@@ -33,7 +33,8 @@ export class Home extends React.Component {
         <>
     <h1>Helping Hands</h1>
     <div className={styles.container1}>
-      <div className={styles.right}>
+    <Link to="/do-post">
+    <div className={styles.right}>
         <p>
           <img
             src="assets/home/request-message.png"
@@ -42,24 +43,16 @@ export class Home extends React.Component {
             width="100px"
           />
         </p>
-        <Link to="/do-post">
-        <p>
-        
-        Request for needy</p>
-                        
-        </Link>
-        
-        
-      </div>
+        <p>Request for needy</p>
+       </div>
+    </Link>
+
+    <Link to="/find-needy">
       <div className={styles.left}>
         <p><img src="assets/home/map.png" alt="" height="100px" width="100px" /></p>
-        <Link to="/find-needy">
-        <p className={styles.t1}>
-        
-        Find needy near me</p>
-       </Link>
-       
-      </div>
+        <p className={styles.t1}>Find needy near me</p>
+        </div>
+    </Link>
     </div>
     
 
