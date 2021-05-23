@@ -42,20 +42,22 @@ export class Home extends React.Component {
             width="100px"
           />
         </p>
-        <p>
         <Link to="/do-post">
+        <p>
+        
+        Request for needy</p>
                         
         </Link>
-          Request for needy</p>
+        
         
       </div>
       <div className={styles.left}>
         <p><img src="assets/home/map.png" alt="" height="100px" width="100px" /></p>
-        <p className={styles.t1}>
         <Link to="/find-needy">
-                        
-        </Link>
+        <p className={styles.t1}>
+        
         Find needy near me</p>
+       </Link>
        
       </div>
     </div>
