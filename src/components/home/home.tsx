@@ -1,6 +1,33 @@
 import React from "react";
 import styles from "./home.module.css";
+import { Link } from "react-router-dom";
+import { getUserData } from "../../common/api";
 export class Home extends React.Component {
+  state = {
+    name: "",
+    emailId: "",
+    totalHelps: 0,
+    totalPosts: 0,
+    totalPostCompletedByOthers: 0,
+  };
+  componentDidMount() {
+    getUserData().then(({ data }) => {
+      let {
+        name,
+        emailId,
+        totalHelps,
+        totalPosts,
+        totalPostCompletedByOthers,
+      } = data;
+      this.setState({
+        name,
+        emailId,
+        totalHelps,
+        totalPosts,
+        totalPostCompletedByOthers,
+      });
+    });
+  }
     render() {
       return (
         <>
@@ -29,8 +56,11 @@ export class Home extends React.Component {
      <div className={styles.container2}>
         <div className={styles.line1}>
             <div id="name">
-                <p id="cont2text">Om more</p>
-                <p id="cont2text2">9/11 posts 14 helps</p>
+            <p id="cont2text">{this.state.name}</p>
+              <p id="cont2text2">
+                {this.state.totalPostCompletedByOthers}/{this.state.totalPosts}{" "}
+                posts {this.state.totalHelps} helps
+              </p>
               </div>
               <div id="nameImg">
                 <p><img src="assets/home/user.png" alt="" height="50px" width="50px" /></p>
@@ -38,8 +68,8 @@ export class Home extends React.Component {
         </div>
         <div className={styles.line2}>
             <div id="email">
-                <p id="cont2text">Email</p>
-                <p id="cont2text2">ommore501@gmail.com</p>
+            <p id="cont2text">Email</p>
+              <p id="cont2text2">{this.state.emailId}</p>
               </div>
               <div id="emailImg">
                 <p><img src="assets/home/email.png" alt="" height="50px" width="50px" /></p>
@@ -47,19 +77,22 @@ export class Home extends React.Component {
         </div>
         <div className={styles.line3}>
             <div id="noti">
-                <p id="cont2text">Notification</p>
-                <p id="cont2text2">Notifications are on</p>
-              </div>
-              <div id="notiImg">
-                <p>
-                  <img src="assets/home/notification.png" alt="" height="50px" width="50px" />
-                </p>
-              </div>
+              <p id="cont2text">Notification</p>
+              <p id="cont2text2">Notifications are on</p>
+            </div>
+            <div id="notiImg">
+              <p>
+                <img
+                  src="assets/home/notification.png"
+                  alt=""
+                  height="50px"
+                  width="50px"
+                />
+              </p>
+            </div>
+          </div>
         </div>
-
-    </div> 
-        </>
-      );
-    }
+      </>
+    );
   }
-  
+}

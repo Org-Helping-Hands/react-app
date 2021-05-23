@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./enterOtp.module.css";
+import { Link } from "react-router-dom";
 export class EnterOtp extends React.Component{
     render(){
         return (
@@ -12,6 +13,9 @@ export class EnterOtp extends React.Component{
                     <p>OTP</p>
                     <input type="text" name="OTP" placeholder="ENTER OTP" size={10}/>
                     <button>NEXT</button>
+                    <Link to="home">
+                        <button className="next">NEXT</button>
+                    </Link>
                 </div>
             </>
         );

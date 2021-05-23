@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styles from "./landing.module.css";
 export class Landing extends React.Component {
   render() {
@@ -27,7 +28,9 @@ export class Landing extends React.Component {
             Hands
           </p>
         </div>
-        <button className= {'${started}${get}${btn}'}>Get Started</button>
+        <Link to="/signin">
+        <button className={styles["btn-get-started"]} >Get Started</button>
+        </Link>
       </div>
     );
   }

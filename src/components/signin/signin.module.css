@@ -1,50 +1,60 @@
-
-    .center {
-        color: #6200D1;
-        margin-top: 20%;
-        margin-bottom: 200px;
-        text-align: center;
-        font-size: 100px;
-        font-family: "koulen";
-
+    .get {
+        margin: -8px;
+        border: 100px;
+        background: rgb(1, 1, 53);
+        padding: 40px 20px 1px;
+        font-size: 42px;
+        font-family: Arial, Helvetica, sans-serif;
+        background-size: contain;
+        border-color: gray;
+        margin-bottom: 100px;
     }
-
-    .getting {
-        color: green;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        text-align: center;
-        font-size: 100px;
-        font-family: "koulen";
+    .get p{
+        color: white;
+        font-size: 42px;
     }
-
+    
     .form {
-
-
-        position: relative;
-        z-index: 1;
-        opacity: 99%;
-        max-width: 400px;
-        margin: 20px auto 10px;
-        padding: 10px 45px 30px 45px;
-        text-align: left;
-        border: rgb(147, 0, 163);
-        border-style: solid;
-        font-size: 50px;
-        color: darkorchid;
-        border-radius: 20px;
-
+        padding-left: 30px;
+        font-family: Arial, Helvetica, sans-serif;
+        border: none;
     }
-
+    
     .form input {
-        font-size: 50px
+        border-radius: 5px;
+        margin-bottom: 10%;
+        font-size: 25px;
+        color: black;
+        padding: 5px;
+        border-color: black;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-width: 4px;
     }
-
-    .form button {
-        text-align: right;
-        size: 10px 10px;
+    
+    ::placeholder {
+        color: black;
         font-size: 30px;
-        background: rgb(224, 0, 105);
-        border-radius: 10px;
-
+    }
+    
+    .next {
+        background-color: green;
+        color: honeydew;
+        font-size: 20px;
+        padding-right: 15px;
+        padding-left: 15px;
+        padding-top: 7px;
+        padding-bottom: 7px;
+        border: none;
+        border-radius: 20px;
+        margin-left: 255px;
+    }
+    
+    .makeSure {
+        margin-top: 250px;
+        margin-left: 20px;
+        font-size: 25px;
+        font-family: Arial, Helvetica, sans-serif;
+        color: gray;
     }
