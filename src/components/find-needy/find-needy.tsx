@@ -41,7 +41,7 @@ export class FindNeedy extends React.Component {
         </div>
         <h1>Needy people near you</h1>
 
-        <div className={styles.rect}></div>
+        <div id="rect" className={styles.rect}></div>
         <div className={styles.postersList}>
           <div className={styles.horizontalLine}></div>
           {[1, 2, 4, 5].map((_, i) => (
