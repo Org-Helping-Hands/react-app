@@ -15,7 +15,7 @@ import GuardedRoute from "./components/guardedRoute";
 import { DoPost } from "./components/do-post/do-post";
 import { FindNeedy } from "./components/find-needy/find-needy";
 import { DetailedPost } from "./components/detailed-post/detailed-post";
-
+import { help} from "./components/help/help"
 function App() {
   return (
     <Router>
@@ -30,6 +30,7 @@ function App() {
         <Route path="/find-needy" component={FindNeedy} />
         <Route path="/do-post" component={DoPost} />
         <Route path="/detailed-post" component={DetailedPost} />
+        <Route path="/help" component={help} />
       </Switch>
     </Router>
   );

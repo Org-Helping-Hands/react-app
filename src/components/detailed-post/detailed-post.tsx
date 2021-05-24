@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styles from "./detailed-post.module.css";
 
 export class DetailedPost extends React.Component{
@@ -105,7 +106,10 @@ render() {
   <div className={styles.mapbox}></div>        
       <div className={`row  ${styles.buttons}`}>
       <a className={styles.share} ><img src="assets/detailed-post/shareIcon.png"  className={styles.shareImg} alt="" /></a>
+      <Link to="/help">
       <button className={`btn btn-success ml-auto mr-3  ${styles.help_btn}`}> Help</button>
+     </Link>
+      
 
       </div>
 </div>
