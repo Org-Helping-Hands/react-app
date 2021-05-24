@@ -12,6 +12,7 @@ export class DoPost extends React.Component {
       { name: "Shelter", selected: false },
     ],
   };
+  
 
   onTagClick(index: number) {
     let updatedTags = this.state.tags.map((ele, i) => {
@@ -46,7 +47,7 @@ export class DoPost extends React.Component {
               <span className={"navbar-toggler-icon"}></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-              <div className={`navbar-nav ${styles.navitems}`}>
+              <div className={`navbar-nav ml-auto ${styles.navitems}`}>
                 <a className="nav-item nav-link" href="#">
                   Settings
                 </a>

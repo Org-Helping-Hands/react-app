@@ -14,6 +14,7 @@ import { getToken } from "./common/user";
 import GuardedRoute from "./components/guardedRoute";
 import { DoPost } from "./components/do-post/do-post";
 import { FindNeedy } from "./components/find-needy/find-needy";
+import { DetailedPost } from "./components/detailed-post/detailed-post";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/signin" component={Signin} />
         <Route path="/find-needy" component={FindNeedy} />
         <Route path="/do-post" component={DoPost} />
+        <Route path="/detailed-post" component={DetailedPost} />
       </Switch>
     </Router>
   );
