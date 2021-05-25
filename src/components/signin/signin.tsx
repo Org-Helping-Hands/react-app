@@ -3,7 +3,7 @@ import styles from "./signin.module.css";
 import { auth } from "../../Services/Firebase";
 import { setPhoneNumber, setToken, setUserId } from "../../common/user";
 import axios from "axios";
-export class Signin extends React.Component{
+export class Signin extends React.Component {
   state = {
     otpSend: false,
     verified: false,
@@ -21,7 +21,7 @@ export class Signin extends React.Component{
     );
   }
   recaptcha: any;
-  
+
   confirmationResult: any;
   onSendotp = () => {
     const phoneNumber = this.state.phoneNumber;
@@ -53,18 +53,19 @@ export class Signin extends React.Component{
         let _auth = auth();
         if (_auth.currentUser) {
           _auth.currentUser.getIdToken(true).then((idToken) => {
-            let url = "http://localhost:3001/user/signin";
+            let url = "http://localhost:3000/user/signin";
             axios
               .post(url, { idToken, name: this.state.name })
-              .then(async (_) => {
+              .then(async ({ data }) => {
                 if (_auth.currentUser) {
                   setUserId(_auth.currentUser.uid);
                 } else {
                   new Error("Failed to get userId, please try again later");
                 }
 
-                setToken(idToken);
+                setToken(data.newToken);
                 setPhoneNumber(this.state.phoneNumber);
+
                 // TODO: Not use any
                 (this.props as any).history.push("/home");
               });
@@ -73,26 +74,36 @@ export class Signin extends React.Component{
       });
   };
 
-    render(){
-        return (
-            <>
-            <div ref={(ref) => (this.recaptcha = ref)}></div>
-            <h1 className={styles.center}>Helping Hands </h1>
-    <p className={styles.getting}>getting Started</p>
-    <div className={styles.form}>
-        <p>NAME</p>
-        <input type="text" name="username" placeholder="Name" size={10}
-        value={this.state.name}
-        onChange={(event) => {
-          this.setState({ ...this.state, name: event.target.value });
-        }}/>
-        <p>PHONE NUMBER</p>
-        <input type="text" name="mobno" placeholder="+91" size={10}
-        value={this.state.phoneNumber}
-        onChange={(event) => {
-          this.setState({ ...this.state, phoneNumber: event.target.value });
-        }}/>
-        {this.state.otpSend && (
+  render() {
+    return (
+      <>
+        <div ref={(ref) => (this.recaptcha = ref)}></div>
+        <h1 className={styles.center}>Helping Hands </h1>
+        <p className={styles.getting}>getting Started</p>
+        <div className={styles.form}>
+          <p>NAME</p>
+          <input
+            type="text"
+            name="username"
+            placeholder="Name"
+            size={10}
+            value={this.state.name}
+            onChange={(event) => {
+              this.setState({ ...this.state, name: event.target.value });
+            }}
+          />
+          <p>PHONE NUMBER</p>
+          <input
+            type="text"
+            name="mobno"
+            placeholder="+91"
+            size={10}
+            value={this.state.phoneNumber}
+            onChange={(event) => {
+              this.setState({ ...this.state, phoneNumber: event.target.value });
+            }}
+          />
+          {this.state.otpSend && (
             <input
               className="form-control"
               type="text"
@@ -104,20 +115,22 @@ export class Signin extends React.Component{
             />
           )}
           {!this.state.otpSend && (
-          <button className="next" onClick={this.onSendotp}>
-            NEXT
-          </button>
-        )}
+            <button className="next" onClick={this.onSendotp}>
+              NEXT
+            </button>
+          )}
 
-        {this.state.otpSend && (
-          <button className="next" onClick={this.onConfirmOtp}>
-            Comfirm
-          </button>
-        )}
-        <button>NEXT</button>
-        <p className={styles.makeSure}>Make sure you are in proper network coverage</p>
-    </div>
-            </>
-        );
-    }
+          {this.state.otpSend && (
+            <button className="next" onClick={this.onConfirmOtp}>
+              Comfirm
+            </button>
+          )}
+          <button>NEXT</button>
+          <p className={styles.makeSure}>
+            Make sure you are in proper network coverage
+          </p>
+        </div>
+      </>
+    );
+  }
 }
