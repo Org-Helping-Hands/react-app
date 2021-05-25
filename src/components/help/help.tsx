@@ -5,7 +5,7 @@ export class help extends React.Component{
     render() {
         return (
           <>
-          <h1>ul;alalalal</h1>
+          
           </>
           )
     }
