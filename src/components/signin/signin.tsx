@@ -77,27 +77,39 @@ export class Signin extends React.Component {
   render() {
     return (
       <>
+        {/* <div className={${styles.get1}}>
+                    <p>Get Started</p>
+                </div>
+
+
+                <div className={${styles.form1}}>
+                    <input type="text" placeholder="Name"></input>
+                    <input type="text" placeholder="Phone Number"></input>
+                </div>
+                <Link to="enterotp">
+                    <button className={${styles.next1}}>NEXT</button>
+                </Link>
+
+                <p className={${styles.makeSure1}}>Make sure you are in proper network coverage</p> */}
         <div ref={(ref) => (this.recaptcha = ref)}></div>
-        <h1 className={styles.center}>Helping Hands </h1>
-        <p className={styles.getting}>getting Started</p>
-        <div className={styles.form}>
-          <p>NAME</p>
+        <div className={styles.get1}>
+          <p>Get Started</p>
+        </div>
+
+        <div className={styles.form1}>
           <input
             type="text"
             name="username"
             placeholder="Name"
-            size={10}
             value={this.state.name}
             onChange={(event) => {
               this.setState({ ...this.state, name: event.target.value });
             }}
           />
-          <p>PHONE NUMBER</p>
           <input
             type="text"
             name="mobno"
             placeholder="+91"
-            size={10}
             value={this.state.phoneNumber}
             onChange={(event) => {
               this.setState({ ...this.state, phoneNumber: event.target.value });
@@ -115,18 +127,17 @@ export class Signin extends React.Component {
             />
           )}
           {!this.state.otpSend && (
-            <button className="next" onClick={this.onSendotp}>
+            <button className={styles.next1} onClick={this.onSendotp}>
               NEXT
             </button>
           )}
 
           {this.state.otpSend && (
-            <button className="next" onClick={this.onConfirmOtp}>
+            <button className={styles.next1} onClick={this.onConfirmOtp}>
               Comfirm
             </button>
           )}
-          <button>NEXT</button>
-          <p className={styles.makeSure}>
+          <p className={styles.makeSure1}>
             Make sure you are in proper network coverage
           </p>
         </div>
