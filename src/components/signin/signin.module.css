@@ -46,8 +46,8 @@
   padding: 2% 4% 2% 4%;
   border: none;
   border-radius: 20px;
-  margin-left: 68%;
-  margin-top: 6%;
+  margin-left: 63%;
+  /* margin-top: 6%; */
 }
 
 .makeSure1 {
@@ -62,7 +62,7 @@
 {
     .next1{
         align-items: center;
-        margin-left: 40%;
+        margin-left: 39%;
         
     }
 }
