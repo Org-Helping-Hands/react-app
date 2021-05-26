@@ -1,8 +1,8 @@
 .get1 {
-  margin: -8px;
+  margin: -16px;
   border: 100px;
   background: rgb(1, 1, 53);
-  padding: 40px 20px 1px;
+  padding: 65px 35px 22px;
   font-size: 42px;
   font-family: Arial, Helvetica, sans-serif;
   background-size: contain;
@@ -26,6 +26,7 @@
   font-size: 25px;
   color: black;
   padding: 5px;
+  width:94%;
   border-color: black;
   border-top: none;
   border-left: none;
@@ -41,20 +42,27 @@
 .next1 {
   background-color: rgb(2, 95, 2);
   color: honeydew;
-  font-size: 20px;
-  padding-right: 15px;
-  padding-left: 15px;
-  padding-top: 7px;
-  padding-bottom: 7px;
+  font-size: 140%;
+  padding: 2% 4% 2% 4%;
   border: none;
   border-radius: 20px;
-  margin-left: 255px;
+  margin-left: 68%;
+  margin-top: 6%;
 }
 
 .makeSure1 {
-  margin-top: 250px;
-  margin-left: 20px;
-  font-size: 25px;
-  font-family: Arial, Helvetica, sans-serif;
-  color: gray;
+    align-items: center;
+    margin-top: 100px;
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: gray;
+}
+
+@media screen and (min-width:500px)
+{
+    .next1{
+        align-items: center;
+        margin-left: 40%;
+        
+    }
 }

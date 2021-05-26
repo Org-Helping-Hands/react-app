@@ -16,7 +16,7 @@ export class Signin extends React.Component {
       this.recaptcha,
       {
         size: "invisible",
-        callback: (response: any) => {},
+        callback: (response: any) => { },
       }
     );
   }
@@ -128,7 +128,7 @@ export class Signin extends React.Component {
           )}
           {!this.state.otpSend && (
             <button className={styles.next1} onClick={this.onSendotp}>
-              NEXT
+              Get OTP
             </button>
           )}
 
