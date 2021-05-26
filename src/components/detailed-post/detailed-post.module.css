@@ -58,11 +58,14 @@
      border-radius: 10px;
 }
 .help_btn{
-    width: 100px; 
-    margin-right: 5%;
-    
     border-radius: 10px;
+    width: 20%;
  
+}
+.share_btn{
+    margin-right: 20px;
+  background-color: transparent;
+  border: none;
 }
 .buttons{
     margin-top: 3%;

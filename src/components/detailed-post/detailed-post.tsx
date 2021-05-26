@@ -104,17 +104,13 @@ render() {
    </div>
 
   <div className={styles.mapbox}></div>        
-      <div className={`row  ${styles.buttons}`}>
-      <a className={styles.share} ><img src="assets/detailed-post/shareIcon.png"  className={styles.shareImg} alt="" /></a>
-
-      <Link to="/help">
-       
-      <button className={`btn btn-success ml-auto  ${styles.help_btn}`}> Help</button>
       
-     </Link>
       
-
-      </div>
+  <div className={`text-right ${styles.buttons}`}>
+            <button type="button"  className={styles.share_btn}><img src="assets/detailed-post/shareIcon.png" height="30px" width="30px"></img></button>
+            <button type="button"  className={`btn btn-success ${styles.help_btn}`}>help</button>
+        </div>
+      
 </div>
 
 
