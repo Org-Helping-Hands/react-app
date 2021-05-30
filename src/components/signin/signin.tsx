@@ -3,6 +3,7 @@ import styles from "./signin.module.css";
 import { auth } from "../../Services/Firebase";
 import { setPhoneNumber, setToken, setUserId } from "../../common/user";
 import axios from "axios";
+import { configs } from "../../configs";
 export class Signin extends React.Component {
   state = {
     otpSend: false,
@@ -53,7 +54,7 @@ export class Signin extends React.Component {
         let _auth = auth();
         if (_auth.currentUser) {
           _auth.currentUser.getIdToken(true).then((idToken) => {
-            let url = "http://localhost:3000/user/signin";
+            let url = configs.apiBaseUrl;
             axios
               .post(url, { idToken, name: this.state.name })
               .then(async ({ data }) => {
