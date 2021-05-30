@@ -78,20 +78,6 @@ export class Signin extends React.Component {
   render() {
     return (
       <>
-        {/* <div className={${styles.get1}}>
-                    <p>Get Started</p>
-                </div>
-
-
-                <div className={${styles.form1}}>
-                    <input type="text" placeholder="Name"></input>
-                    <input type="text" placeholder="Phone Number"></input>
-                </div>
-                <Link to="enterotp">
-                    <button className={${styles.next1}}>NEXT</button>
-                </Link>
-
-                <p className={${styles.makeSure1}}>Make sure you are in proper network coverage</p> */}
         <div ref={(ref) => (this.recaptcha = ref)}></div>
         <div className={styles.get1}>
           <p>Get Started</p>
