@@ -17,7 +17,7 @@ export class Signin extends React.Component {
       this.recaptcha,
       {
         size: "invisible",
-        callback: (response: any) => { },
+        callback: (response: any) => {},
       }
     );
   }
@@ -54,7 +54,7 @@ export class Signin extends React.Component {
         let _auth = auth();
         if (_auth.currentUser) {
           _auth.currentUser.getIdToken(true).then((idToken) => {
-            let url = configs.apiBaseUrl;
+            let url = configs.apiBaseUrl + "/user/signin";
             axios
               .post(url, { idToken, name: this.state.name })
               .then(async ({ data }) => {
