@@ -1,1 +1,3 @@
-export const configs = { apiBaseUrl: "http://localhost:3000" };
+export const configs = {
+  apiBaseUrl: "https://nodejs-service-thisisommore.cloud.okteto.net",
+};
