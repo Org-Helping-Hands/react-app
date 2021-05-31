@@ -43,7 +43,7 @@ jobs:
       - restore_cache:
           name: Restore Node Modules Cache
           keys:
-            - yarn-modules-{{ checksum "package-lock.json" }}
+            - node-modules-{{ checksum "package-lock.json" }}
       - restore_cache:
           key: jars-{{ checksum "android/build.gradle" }}-{{ checksum  "android/build.gradle" }}
       - run:
