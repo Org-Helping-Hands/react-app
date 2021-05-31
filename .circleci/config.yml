@@ -25,7 +25,7 @@ jobs:
           key: npm-modules-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
-      - run: npm run build
+      - run: CI=false npm run build
       - run: npx cap sync
       - persist_to_workspace:
           root: android
