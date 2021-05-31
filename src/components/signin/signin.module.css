@@ -7,11 +7,12 @@
   font-family: Arial, Helvetica, sans-serif;
   background-size: contain;
   border-color: gray;
-  margin-bottom: 15%;
+  margin-bottom: 100px;
 }
 .get1 p {
   color: white;
   font-size: 42px;
+  margin-left: 10%;
 }
 
 .form1 {
@@ -20,11 +21,9 @@
   border: none;
 }
 ::placeholder{
-  color: black;
+  color:black
 }
 .form1 input {
-  
-  
   margin-bottom: 10%;
   font-size: 25px;
   color: black;
@@ -47,7 +46,7 @@
   background-color: rgb(2, 95, 2);
   color: honeydew;
   font-size: 140%;
-  padding: 1% 4% 1% 4%;
+  padding: 2% 4% 2% 4%;
   border: none;
   border-radius: 20px;
   margin-left: 63%;
@@ -56,7 +55,7 @@
 
 .makeSure1 {
     align-items: center;
-    margin-top: 150px;
+    margin-top: 100px;
     font-size: 25px;
     font-family: Arial, Helvetica, sans-serif;
     color: gray;
@@ -73,7 +72,7 @@
 
 input[type=text]:focus, select:focus {
   transition: 700ms;
-  border-radius: 5px;
+  border-radius: 5%;
   outline: none;
   background-color: rgb(253, 253, 253);
   box-shadow: 2px 2px 3px 3px rgb(69, 69, 70);
