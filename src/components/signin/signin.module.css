@@ -32,6 +32,7 @@
   border-left: none;
   border-right: none;
   border-width: 4px;
+  outline-color: gray ;
 }
 
 ::placeholder1 {
@@ -65,4 +66,18 @@
         margin-left: 39%;
         
     }
+}
+
+input[type=text]:focus, select:focus {
+  transition: 700ms;
+  outline: none;
+  background-color: rgb(253, 253, 253);
+  box-shadow: 2px 2px 3px 3px rgb(69, 69, 70);
+}
+
+.next1:focus, select:focus {
+  transition: 200ms;
+  outline: none;
+  background-color: rgb(3, 133, 3);
+  box-shadow: 2px 2px 3px 3px rgb(69, 69, 70);
 }
