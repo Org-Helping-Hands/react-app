@@ -1,6 +1,6 @@
 {
-  "appId": "com.helpinghands.user",
-  "appName": "react-app",
+  "appId": "com.helpinghands.app",
+  "appName": "helpinghands",
   "bundledWebRuntime": false,
   "npmClient": "yarn",
   "webDir": "build",

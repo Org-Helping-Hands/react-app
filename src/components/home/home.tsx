@@ -31,11 +31,14 @@ export class Home extends React.Component {
     render() {
       return (
         <>
-    <h1>Helping Hands</h1>
+        <div className={styles.head1}>
+        <h1>Helping Hands</h1>
+        </div>
     <div className={styles.container1}>
     <Link to="/do-post">
     <div className={styles.right}>
-        <p>
+    <div className={styles.para1}>
+    <p>
           <img
             src="assets/home/request-message.png"
             alt=""
@@ -43,20 +46,30 @@ export class Home extends React.Component {
             width="100px"
           />
         </p>
-        <p>Request for needy</p>
+    </div>
+    <div className={styles.para2}>
+    <p>Request for needy</p>
+    </div>
+        
+        
        </div>
     </Link>
 
     <Link to="/find-needy">
       <div className={styles.left}>
-        <p><img src="assets/home/map.png" alt="" height="100px" width="100px" /></p>
+      <div className={styles.para3}>
+      <p><img src="assets/home/map.png" alt="" height="100px" width="100px" /></p>
+    </div>
+       
         <p className={styles.t1}>Find needy near me</p>
         </div>
     </Link>
     </div>
     
-
-    <h2>Account</h2>
+    <div className={styles.head2}>
+      <h2>Account</h2>
+    </div>
+    
 
      <div className={styles.container2}>
         <div className={styles.line1}>
@@ -73,11 +86,15 @@ export class Home extends React.Component {
         </div>
         <div className={styles.line2}>
             <div className={styles.email}>
+
             <p className={styles.cont2text}>Email</p>
               <p className={styles.cont2text2}>{this.state.emailId}</p>
               </div>
               <div className={styles.emailImg}>
-                <p><img src="assets/home/email.png" alt="" height="50px" width="50px" /></p>
+              <div className={styles.para5}>
+              <p><img src="assets/home/email.png" alt="" height="50px" width="50px" /></p>
+    </div>
+                
               </div>
         </div>
         <div className={styles.line3}>
@@ -86,7 +103,8 @@ export class Home extends React.Component {
               <p className={styles.cont2text2}>Notifications are on</p>
             </div>
             <div className={styles.notiImg}>
-              <p>
+            <div className={styles.para4}>
+            <p>
                 <img
                   src="assets/home/notification.png"
                   alt=""
@@ -94,6 +112,8 @@ export class Home extends React.Component {
                   width="50px"
                 />
               </p>
+    </div>
+             
             </div>
           </div>
         </div>

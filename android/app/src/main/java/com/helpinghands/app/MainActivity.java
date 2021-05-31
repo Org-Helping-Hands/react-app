@@ -1,4 +1,4 @@
-package hh.frontEnd;
+package com.helpinghands.app;
 
 import android.os.Bundle;
 

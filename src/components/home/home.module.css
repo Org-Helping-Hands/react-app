@@ -4,7 +4,7 @@
 .container2{
     margin-left: 15px;
 }
-h1{
+.head1{
     margin-top: 50px;
     overflow: visible;
     letter-spacing: 0px;
@@ -28,7 +28,7 @@ border-radius: 12px;
     overflow: visible;
     border-radius: 13px;
 }
-p{
+.para1,.para2,.para3,.para4,.para5 p{
     width: auto;
     height: auto;
     overflow: visible;
@@ -40,7 +40,7 @@ p{
     font-size: 23px;
     color: #000000;
 }
-h2{
+.head2{
     width: auto;
     height: auto;
     overflow: visible;

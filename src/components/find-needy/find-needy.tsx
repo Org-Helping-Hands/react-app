@@ -39,7 +39,10 @@ export class FindNeedy extends React.Component {
             width="31px"
           />
         </div>
+        <div className={styles.head1}>
         <h1>Needy people near you</h1>
+        </div>
+        
 
         <div id="rect" className={styles.rect}></div>
         <div className={styles.postersList}>
@@ -47,11 +50,17 @@ export class FindNeedy extends React.Component {
           {[1, 2, 4, 5].map((_, i) => (
             <div className={styles.line1} key={i}>
               <div className={styles.name}>
-                <p className={styles.cont2text1}>Posted by siddhesh</p>
-                <p className={styles.cont2text2}>Food, Water</p>
+              <div className={styles.para1}>
+              <p className={styles.cont2text1}>Posted by siddhesh</p>
+              </div>
+              <div className={styles.para2}>
+              <p className={styles.cont2text2}>Food, Water</p>
+              </div>
+               
               </div>
               <div className={styles.nameImg1}>
-                <p className={styles.userImg1}>
+              
+              <p className={styles.userImg1}>
                   <img
                     src="/assets/find-needy/user.png"
                     alt=""
@@ -59,6 +68,8 @@ export class FindNeedy extends React.Component {
                     width="46px"
                   />
                 </p>
+              
+                
               </div>
             </div>
           ))}

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.helpinghands.user">
+    package="com.helpinghands.app">
 
     <application
         android:allowBackup="true"
@@ -12,11 +12,7 @@
 
         <activity
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode"
-<<<<<<< HEAD
-            android:name="hh.frontEnd.MainActivity"
-=======
-            android:name="com.helpinghands.user.MainActivity"
->>>>>>> f380ee9ded7a5491eb6dec1028b3e2cc69c633cf
+            android:name="com.helpinghands.app.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBarLaunch"
             android:launchMode="singleTask">
