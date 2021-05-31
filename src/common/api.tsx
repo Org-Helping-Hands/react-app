@@ -1,8 +1,7 @@
 import axios from "axios";
 import { getPhoneNumber, getToken, getUserId } from "./user";
 
-const baseUrl = "http://localhost:3000";
-
+import { configs } from "../configs";
 interface IAuthReqBody {
   userId: string;
   phoneNumber: string;
@@ -31,7 +30,7 @@ var getAuthReqBody = () => {
 
 export function getUserData() {
   return axios.post<userDataResponse>(
-    `${baseUrl}/user/get-data`,
+    `${configs.apiBaseUrl}/user/get-data`,
     getAuthReqBody()
   );
 }

@@ -1,0 +1,75 @@
+# Based on https://github.com/efd1006/ionic-capacitor-circleci/blob/master/.circleci/config.yml
+version: 2
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build_web
+      - build_android:
+          requires:
+            - build_web
+
+jobs:
+  build_web:
+    docker:
+      - image: circleci/node:10-browsers
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore Node Modules Cache
+          keys:
+            - npm-modules-{{ checksum "package-lock.json" }}
+      - run: ls node_modules || npm install
+      - save_cache:
+          name: Save Node Modules Cache
+          key: npm-modules-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - run: CI=false npm run build
+      - run: npx cap sync
+      - persist_to_workspace:
+          root: android
+          paths:
+            - ./*
+  build_android:
+    docker:
+      - image: circleci/android:api-29-node
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - checkout
+      - attach_workspace:
+          at: android
+      - restore_cache:
+          name: Restore Node Modules Cache
+          keys:
+            - yarn-modules-{{ checksum "package-lock.json" }}
+      - restore_cache:
+          key: jars-{{ checksum "android/build.gradle" }}-{{ checksum  "android/build.gradle" }}
+      - run:
+          name: Chmod permissions #if permission for Gradlew Dependencies fail, use this.
+          command: sudo chmod +x ./android/gradlew
+      - run:
+          name: Download Dependencies
+          command: cd android && ./gradlew androidDependencies --debug
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: jars-{{ checksum "android/build.gradle" }}-{{ checksum  "android/build.gradle" }}
+      - run: 
+          name: Build debug APK and release APK
+          command: |
+            cd android
+            ./gradlew :app:assembleDebug
+            ./gradlew :app:assembleRelease
+            ./gradlew :app:assembleDebugAndroidTest
+      - run:
+          name: Run Tests
+          command: cd android && ./gradlew lint test
+      - store_artifacts:
+          path: android/app/build/outputs/apk
+
+      - persist_to_workspace:
+          root: android/app/build/outputs
+          paths:
+            - ./apk/*
