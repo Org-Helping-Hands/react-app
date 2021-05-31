@@ -7,7 +7,7 @@
   font-family: Arial, Helvetica, sans-serif;
   background-size: contain;
   border-color: gray;
-  margin-bottom: 100px;
+  margin-bottom: 15%;
 }
 .get1 p {
   color: white;
@@ -19,9 +19,12 @@
   font-family: Arial, Helvetica, sans-serif;
   border: none;
 }
-
+::placeholder{
+  color: black;
+}
 .form1 input {
-  border-radius: 5px;
+  
+  
   margin-bottom: 10%;
   font-size: 25px;
   color: black;
@@ -31,7 +34,7 @@
   border-top: none;
   border-left: none;
   border-right: none;
-  border-width: 4px;
+  border-width: 2px;
   outline-color: gray ;
 }
 
@@ -44,7 +47,7 @@
   background-color: rgb(2, 95, 2);
   color: honeydew;
   font-size: 140%;
-  padding: 2% 4% 2% 4%;
+  padding: 1% 4% 1% 4%;
   border: none;
   border-radius: 20px;
   margin-left: 63%;
@@ -53,7 +56,7 @@
 
 .makeSure1 {
     align-items: center;
-    margin-top: 100px;
+    margin-top: 150px;
     font-size: 25px;
     font-family: Arial, Helvetica, sans-serif;
     color: gray;
@@ -70,6 +73,7 @@
 
 input[type=text]:focus, select:focus {
   transition: 700ms;
+  border-radius: 5px;
   outline: none;
   background-color: rgb(253, 253, 253);
   box-shadow: 2px 2px 3px 3px rgb(69, 69, 70);

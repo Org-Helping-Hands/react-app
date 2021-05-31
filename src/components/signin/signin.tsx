@@ -17,7 +17,7 @@ export class Signin extends React.Component {
       this.recaptcha,
       {
         size: "invisible",
-        callback: (response: any) => {},
+        callback: (response: any) => { },
       }
     );
   }
@@ -96,7 +96,7 @@ export class Signin extends React.Component {
           <input
             type="text"
             name="mobno"
-            placeholder="+91"
+            placeholder="Phone number"
             value={this.state.phoneNumber}
             onChange={(event) => {
               this.setState({ ...this.state, phoneNumber: event.target.value });
