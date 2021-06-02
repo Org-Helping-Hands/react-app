@@ -1,8 +1,8 @@
 .get1 {
-  margin: -16px;
+  margin: 0px;
   border: 100px;
   background: rgb(1, 1, 53);
-  padding: 65px 35px 22px;
+  padding: 37px 0px 10px;
   font-size: 42px;
   font-family: Arial, Helvetica, sans-serif;
   background-size: contain;
@@ -13,6 +13,7 @@
   color: white;
   font-size: 42px;
   margin-left: 10%;
+  margin-top:5%;
 }
 
 .form1 {
@@ -72,7 +73,7 @@
 
 input[type=text]:focus, select:focus {
   transition: 700ms;
-  border-radius: 5%;
+  border-radius: 5px;
   outline: none;
   background-color: rgb(253, 253, 253);
   box-shadow: 2px 2px 3px 3px rgb(69, 69, 70);

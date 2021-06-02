@@ -79,9 +79,9 @@ export class Signin extends React.Component {
     return (
       <>
         <div ref={(ref) => (this.recaptcha = ref)}></div>
-        <div className={styles.get1}>
+        <nav className={styles.get1}>
           <p>Get Started</p>
-        </div>
+        </nav>
 
         <div className={styles.form1}>
           <input
