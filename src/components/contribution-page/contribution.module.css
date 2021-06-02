@@ -1,0 +1,89 @@
+
+.buttons_group button{
+    background-color: #CCD9DB;
+    color:#696969;
+    height: 60px;   
+    border: none;
+    display: inline-block;
+    outline: none;
+    font-style: bold;
+    font-size: 20px;
+    margin-top: 20px;
+    
+    text-align: center;
+    
+      
+}
+.contributionBox
+{
+    margin-bottom: 20px;
+    
+}
+.arrow {
+    margin-top: 17px;
+    margin-left: 15px;
+    width: 10%;
+  }
+
+.title{
+     
+    margin-left: 15px;
+    margin-top: 15px;
+}
+
+.postBox{
+    padding: 15px 0px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+    margin-top: 15px;
+    /* margin-left: 3px; */
+}
+.name{
+     color: #82BCE4;
+     font-size: 20px;
+}
+.tags{
+    color: #999999;
+    font-size:18px;
+}
+.buttons_group button:active{
+    background-color: #B0BDBF;
+    color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border: none;
+    transform: translateY(1px);
+    border-color: white;
+}
+.buttons_group button:focus{
+    background-color: #B0BDBF;
+    color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border: none;
+    transform: translateY(1px);
+}
+    @media screen and (min-width:600px){
+    .title{
+        text-align: center;
+        font-size: 35px;
+    }
+ 
+    .posts{
+        margin-left: 3%;
+        margin-right: 3%;
+    }
+    
+}
+
+
+  @media screen and (min-width:900px){
+    .contributionBox{
+        margin-left: 10%;
+        margin-right:10% ;   
+         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+         border-radius: 20px;
+    }
+    .buttons_group{
+         height: 80px;
+    }
+   
+  }
