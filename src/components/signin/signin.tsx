@@ -3,7 +3,6 @@ import styles from "./signin.module.css";
 import { auth } from "../../Services/Firebase";
 import { setPhoneNumber, setToken, setUserId } from "../../common/user";
 import axios from "axios";
-import { configs } from "../../configs";
 export class Signin extends React.Component {
   state = {
     otpSend: false,
@@ -17,7 +16,7 @@ export class Signin extends React.Component {
       this.recaptcha,
       {
         size: "invisible",
-        callback: (response: any) => { },
+        callback: (response: any) => {},
       }
     );
   }
@@ -54,7 +53,7 @@ export class Signin extends React.Component {
         let _auth = auth();
         if (_auth.currentUser) {
           _auth.currentUser.getIdToken(true).then((idToken) => {
-            let url = configs.apiBaseUrl + "/user/signin";
+            let url = process.env.REACT_APP_NODEJS_API + "/user/signin";
             axios
               .post(url, { idToken, name: this.state.name })
               .then(async ({ data }) => {

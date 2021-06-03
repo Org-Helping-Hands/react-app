@@ -1,7 +1,6 @@
 import axios from "axios";
 import { getPhoneNumber, getToken, getUserId } from "./user";
 
-import { configs } from "../configs";
 interface IAuthReqBody {
   userId: string;
   phoneNumber: string;
@@ -30,7 +29,7 @@ var getAuthReqBody = () => {
 
 export function getUserData() {
   return axios.post<userDataResponse>(
-    `${configs.apiBaseUrl}/user/get-data`,
+    `${process.env.REACT_APP_NODEJS_API}/user/get-data`,
     getAuthReqBody()
   );
 }
