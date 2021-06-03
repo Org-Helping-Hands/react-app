@@ -10,6 +10,16 @@ export class Landing extends React.Component {
             Join <br /> Us
           </p>
         </div>
+        <Link to="/signin">
+        <div className={styles.circleArrow}>
+          <div className={styles.arrowInCircle}>
+            <p> 
+              <i className={`${styles.arrow} ${styles.right}`}></i>
+            </p>
+          </div>
+        </div>
+        </Link>
+        
         <div className={styles.circle2}>
           <p>
             World
@@ -28,9 +38,7 @@ export class Landing extends React.Component {
             Hands
           </p>
         </div>
-        <Link to="/signin">
-        <button className={styles["btn-get-started"]} >Get Started</button>
-        </Link>
+        
       </div>
     );
   }
