@@ -19,10 +19,8 @@ interface userDataResponse {
   emailId: string;
 }
 
-var getAuthReqBody = () => {
+var getAuthReqHeader = () => {
   return {
-    userId: getUserId() ?? "",
-    phoneNumber: getPhoneNumber() ?? "",
     token: getToken() ?? "",
   };
 };
@@ -30,6 +28,7 @@ var getAuthReqBody = () => {
 export function getUserData() {
   return axios.post<userDataResponse>(
     `${process.env.REACT_APP_NODEJS_API}/user/get-data`,
-    getAuthReqBody()
+    {},
+    { headers: getAuthReqHeader() }
   );
 }
