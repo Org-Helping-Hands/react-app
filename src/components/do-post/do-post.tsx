@@ -1,6 +1,13 @@
+
 import React from "react";
 import styles from "./do-post.module.css";
+import axios from "axios";
 
+ const baseUrl=axios.create(
+   {
+      baseURL:'process.env.REACT_APP_NODEJS_API'
+   }
+ ) 
 type tags = {
   name: string;
   selected: boolean;
@@ -8,8 +15,9 @@ type tags = {
 export class DoPost extends React.Component {
   state = {
     tags: [
-      { name: "Food", selected: false },
-      { name: "Shelter", selected: false },
+      { name: "Food", selected: false ,tagicon:"emojione-monotone:pot-of-food" },
+      { name: "Shelter", selected: false , tagicon:"ant-design:home-outlined" },
+      { name: "water", selected: false,tagicon:"akar-icons:water" },
     ],
   };
   
@@ -30,96 +38,171 @@ export class DoPost extends React.Component {
   render() {
     return (
       <>
-        <div>
-          <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a className={`navbar-brand ${styles.navtitle}`} href="#">
-              Helping Hands
-            </a>
-            <button
-              className={"navbar-toggler"}
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarNavAltMarkup"
-              aria-controls="navbarNavAltMarkup"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className={"navbar-toggler-icon"}></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-              <div className={`navbar-nav ml-auto ${styles.navitems}`}>
-                <a className="nav-item nav-link" href="#">
-                  Settings
-                </a>
-                <a className="nav-item nav-link" href="#">
-                  About-Us
-                </a>
-                <a className="nav-item nav-link" href="#">
-                  Contact-Us
-                </a>
-              </div>
-            </div>
-          </nav>
+       
+             <div className={styles.arrow}>
+          <img
+            src="/assets/find-needy/arrow.jpg"
+            alt=""
+            height="31px"
+            width="31px"
+          />
         </div>
-
         <h1 className={`text-sm-center  ${styles.maintitle}`}>Request Help</h1>
         <div className={styles.reqpost}>
           <div>
             <p className={styles.title}>fill out all information</p>
 
             <div className={styles.upload_frame}>
-              <label className={styles.filebutton}>
-                <img
-                  className={styles.upload_image}
-                  src="assets/do-post/upload.png"
-                  height="75px"
-                  width="75px"
-                ></img>
+              <div className=" row">
+                <div className="col-1">
+                <label className={styles.filebutton}>
+              <span className={`iconify ${ styles.uploadSign}`} data-icon="akar-icons:plus" data-inline="false"></span>
                 <span>
                   <input type="file" id="myfile" name="myfile"></input>
                 </span>
               </label>
+                </div>
+                <div className="col-11">
+                   <p className={styles.uploadText}>click here to capture or upload image</p>
+                </div>
+
+              </div>
             </div>
           </div>
 
           <p className={styles.title}>select location</p>
-          <input
-            type="text"
-            placeholder="Enter address"
-            className={`form-control ${styles.needy_address}`}
-          />
-          <p className={styles.title}>select need tags</p>
+          <div className="input-group mb-3">
+  <input type="text" className={`${styles.addressInput}`} placeholder="Enter Address" aria-label="Enter address" aria-describedby="button-addon2"/><span className="iconify-wrapper"><i className="iconify" data-icon="bx:bxs-map"></i></span>
+ 
+</div>  
+
+<p className={styles.title}>select need tags</p>
           <div className={styles.tags_selected}>
             <p className={styles.notice}></p>
             <div className="row">
               {this.state.tags.map((ele, index) => (
-                <div className="col">
-                  <button
-                    className={
-                      ele.selected ? styles.tag_clicked : styles.tag_Unclicked
-                    }
-                    id="Food"
-                    onClick={() => this.onTagClick(index)}
-                  >
-                    {ele.name}
-                  </button>
-                </div>
-              ))}
-            </div>
+                <div className="col-6 col-sm-4 col-md-3">
+                 <button type="button" className={styles.tagbtn}
+                  onClick={() => this.onTagClick(index)}>
+                 <span className="iconify-wrapper"><i className="iconify" data-icon={ele.tagicon}></i></span>
+                  <span className={styles.tagname}>{ele.name}</span>                 
+                    <span className="iconify-wrapper"><i className="iconify" data-icon="akar-icons:cross"></i></span>
+                </button>
 
-            <div className="row">
-              <button className={`btn btn-primary ${styles.donebutton}`}>
-                Done
-              </button>
+                 </div>
+                  
+              
+              ))}
+
+            <button type="button" className={styles.Addtagbtn} data-toggle="modal" data-target="#exampleModalCenter">
+                 <span className="iconify-wrapper"><i className="iconify" data-icon="akar-icons:plus"></i></span>
+                  <span className={styles.tagname}>Add Tags</span>                 
+                    
+                </button>
+
             </div>
+  <div className="modal fade" id="exampleModalCenter" tabIndex={-1} role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+  <div className="modal-dialog modal-dialog-centered" role="document">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title" id="exampleModalLongTitle">Select more Tags</h5>
+        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div className="modal-body">
+          <div className={`row`}>
+                <div className={`col-6`}>
+                <button type="button" className={styles.Modaltagbtn} data-toggle="modal" data-target="#exampleModalCenter" >
+                 <span className="iconify-wrapper"><i className="iconify" data-icon="akar-icons:water"></i></span>
+                  <span className={styles.tagname}>Water</span>                   
+                </button>
+                </div>
+                <div className={`col-6`}>
+                <button type="button" className={styles.Modaltagbtn} data-toggle="modal" data-target="#exampleModalCenter">
+                 <span className="iconify-wrapper"><i className="iconify" data-icon="akar-icons:water"></i></span>
+                  <span className={styles.tagname}>Water</span>                   
+                </button>
+                </div>
+
           </div>
+          <div className={`row`}>
+                <div className={`col-6`}>
+                <button type="button" className={styles.Modaltagbtn} data-toggle="modal" data-target="#exampleModalCenter">
+                 <span className="iconify-wrapper"><i className="iconify" data-icon="akar-icons:water"></i></span>
+                  <span className={styles.tagname}>Water</span>                   
+                </button>
+                </div>
+                <div className={`col-6`}>
+                <button type="button" className={styles.Modaltagbtn} data-toggle="modal" data-target="#exampleModalCenter">
+                 <span className="iconify-wrapper"><i className="iconify" data-icon="akar-icons:water"></i></span>
+                  <span className={styles.tagname}>Water</span>                   
+                </button>
+                </div>
+
+          </div>
+          <div className={`row`}>
+                <div className={`col-6`}>
+                <button type="button" className={styles.Modaltagbtn} data-toggle="modal" data-target="#exampleModalCenter">
+                 <span className="iconify-wrapper"><i className="iconify" data-icon="akar-icons:water"></i></span>
+                  <span className={styles.tagname}>Water</span>                   
+                </button>
+                </div>
+                <div className={`col-6`}>
+                <button type="button" className={styles.Modaltagbtn} data-toggle="modal" data-target="#exampleModalCenter">
+                 <span className="iconify-wrapper"><i className="iconify" data-icon="akar-icons:water"></i></span>
+                  <span className={styles.tagname}>Water</span>                   
+                </button>
+                </div>
+
+          </div>
+          <div className={`row`}>
+                <div className={`col-6`}>
+                <button type="button" className={styles.Modaltagbtn} data-toggle="modal" data-target="#exampleModalCenter">
+                 <span className="iconify-wrapper"><i className="iconify" data-icon="akar-icons:water"></i></span>
+                  <span className={styles.tagname}>Water</span>                   
+                </button>
+                </div>
+                <div className={`col-6`}>
+                <button type="button" className={styles.Modaltagbtn} data-toggle="modal" data-target="#exampleModalCenter">
+                 <span className="iconify-wrapper"><i className="iconify" data-icon="akar-icons:water"></i></span>
+                  <span className={styles.tagname}>Water</span>                   
+                </button>
+                </div>
+
+          </div>
+          <div className={`row`}>
+                <div className={`col-6`}>
+                <button type="button" className={styles.Modaltagbtn} data-toggle="modal" data-target="#exampleModalCenter">
+                 <span className="iconify-wrapper"><i className="iconify" data-icon="akar-icons:water"></i></span>
+                  <span className={styles.tagname}>Water</span>                   
+                </button>
+                </div>
+                <div className={`col-6`}>
+                <button type="button" className={styles.Modaltagbtn} data-toggle="modal" data-target="#exampleModalCenter">
+                 <span className="iconify-wrapper"><i className="iconify" data-icon="akar-icons:water"></i></span>
+                  <span className={styles.tagname}>Water</span>                   
+                </button>
+                </div>
+
+          </div>
+      </div>
+      <div className="modal-footer">
+        
+        <button type="button" className="btn btn-success btn-lg btn-block" data-dismiss="modal">Done</button>
+      </div>
+    </div>
+  </div>
+</div>                                                                                                                                                                                                    
+          </div>  
+
 
           <p className={styles.title}>Description</p>
           <textarea
             name="Description"
             className={styles.description}
-            placeholder="Any Extra information ex.You will find them near xyz shop or xyz area"
-          ></textarea>
+            placeholder="You will find them near xyz shop or xyz area"
+          /> 
 
           <div className="row">
             <button className={`btn btn-primary ${styles.postbtn}`}>
