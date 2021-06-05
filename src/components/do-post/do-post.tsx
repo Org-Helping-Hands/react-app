@@ -12,22 +12,36 @@ type tags = {
 };
 export class DoPost extends React.Component {
   state = {
+    isEduStateOn:false,
+    isMedicalHelpOn: false,
     tags: [
       {
         name: "Food",
-        selected: false,
+        selected: true,
         tagicon: "emojione-monotone:pot-of-food",
       },
-      { name: "Shelter", selected: false, tagicon: "ant-design:home-outlined" },
-      { name: "water", selected: false, tagicon: "akar-icons:water" },
+      { name: "Shelter", selected: true, tagicon: "ant-design:home-outlined" },
+      { name: "water", selected: true, tagicon: "akar-icons:water" },
     ],
-    modal: false,
+     value:''
   };
+  
 
-  toggleModal(status: boolean) {
-    this.setState({ ...this.state, modal: status });
+  // toggleModal(status: boolean) {
+  //   this.setState({ ...this.state, modal: status });
+  // }
+
+  onTagSelect(){
+  
+    if (this.state.isMedicalHelpOn === true){
+      alert("medical help slected")
+    }
+
   }
-
+  tagRemove(){
+  alert("tag removed")
+  }
+  
   onTagClick(index: number) {
     let updatedTags = this.state.tags.map((ele, i) => {
       if (i == index) {
@@ -42,6 +56,7 @@ export class DoPost extends React.Component {
     });
   }
   render() {
+    
     return (
       <>
         <div className={styles.arrow}>
@@ -109,7 +124,7 @@ export class DoPost extends React.Component {
                       <i className="iconify" data-icon={ele.tagicon}></i>
                     </span>
                     <span className={styles.tagname}>{ele.name}</span>
-                    <span className="iconify-wrapper">
+                    <span className="iconify-wrapper" onClick={()=>this.tagRemove()}>
                       <i className="iconify" data-icon="akar-icons:cross"></i>
                     </span>
                   </button>
@@ -118,82 +133,59 @@ export class DoPost extends React.Component {
 
               <button
                 type="button"
-                className={styles.Addtagbtn}
-                onClick={() => this.toggleModal(true)}
-              >
+                className={styles.Addtagbtn} data-toggle="modal" data-target="#exampleModalCenter">
                 <span className="iconify-wrapper">
                   <i className="iconify" data-icon="akar-icons:plus"></i>
                 </span>
                 <span className={styles.tagname}>Add Tags</span>
               </button>
             </div>
-            <Modal show={this.state.modal}>
-              <div className="modal-content">
-                <div className="modal-header">
-                  <h5 className="modal-title" id="exampleModalLongTitle">
-                    Select more Tags
-                  </h5>
-                  <button
-                    type="button"
-                    className="close"
-                    onClick={() => this.toggleModal(false)}
-                  >
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div className="modal-body">
-                  <div className={`row`}>
-                    <div className={`col-6`}>
-                      <button
-                        type="button"
-                        className={styles.Modaltagbtn}
-                        data-toggle="modal"
-                        data-target="#exampleModalCenter"
-                      >
-                        <span className="iconify-wrapper">
-                          <i
-                            className="iconify"
-                            data-icon="akar-icons:water"
-                          ></i>
-                        </span>
-                        <span className={styles.tagname}>Water</span>
-                      </button>
-                    </div>
-                    <div className={`col-6`}>
-                      <button
-                        type="button"
-                        className={styles.Modaltagbtn}
-                        data-toggle="modal"
-                        data-target="#exampleModalCenter"
-                      >
-                        <span className="iconify-wrapper">
-                          <i
-                            className="iconify"
-                            data-icon="akar-icons:water"
-                          ></i>
-                        </span>
-                        <span className={styles.tagname}>Water</span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div className="modal-footer">
-                  <button
-                    type="button"
-                    className="btn btn-success btn-lg btn-block"
-                    data-dismiss="modal"
-                  >
-                    Done
-                  </button>
-                </div>
+           
+            <div className="modal fade" id="exampleModalCenter" tabIndex={-1} role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div className="modal-dialog modal-dialog-centered" role="document">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div className="modal-body">
+         <div className="row">
+              <div className="col-6">
+              <button
+                type="button"
+                className={this.state.isEduStateOn === true ? "bg-dark text-white btn" : " btn bg-white text-dark"}
+                onClick={() => this.setState({isEduStateOn: !this.state.isEduStateOn})}>
+                <span className="iconify-wrapper">
+                  <i className="iconify" data-icon="akar-icons:plus"></i>
+                </span>
+                <span className={styles.tagname}>Educational Help</span>
+              </button>
               </div>
-            </Modal>
-          </div>
-
-          <div
-            className="modal-dialog modal-dialog-centered"
-            role="document"
-          ></div>
+              <div className="col-6">
+              <button
+                type="button"
+                className={this.state.isMedicalHelpOn === true ? "bg-dark text-white btn" : " btn bg-white text-dark"}
+                onClick={() => this.setState({isMedicalHelpOn: !this.state.isMedicalHelpOn})}>
+                <span className="iconify-wrapper">
+                  <i className="iconify" data-icon="akar-icons:plus"></i> 
+                </span>
+                <span className={styles.tagname}>water</span>
+              </button>
+              </div>
+         </div>
+       
+      </div>
+      <div className="modal-footer">
+        <button type="button" className="btn btn-success btn-block" data-dismiss="modal" onClick={() => this.onTagSelect()}>Done</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+              
+         
 
           <p className={styles.title}>Description</p>
           <textarea
@@ -208,6 +200,7 @@ export class DoPost extends React.Component {
             </button>
           </div>
         </div>
+    </div>
       </>
     );
   }
