@@ -78,7 +78,7 @@ export function DoPost() {
                     data-inline="false"
                   ></span>
                   <span>
-                    <input type="file" id="myfile" name="myfile"></input>
+                    <input type="file" id="myfile" name="myfile" accept="image/*" multiple></input>
                   </span>
                 </label>
               </div>
