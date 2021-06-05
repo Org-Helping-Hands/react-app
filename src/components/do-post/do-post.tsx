@@ -14,8 +14,14 @@ type TTag = {
 
 export function DoPost() {
   const [tags] = useState<TTag[]>([
-    { name: "Water", icon: "" },
-    { name: "Food", icon: "" },
+    { name: "Water", icon: "akar-icons:water" },
+    { name: "Food", icon: "emojione-monotone:pot-of-food" },
+    { name: "Shelter", icon: "ic-baseline-night-shelter" },
+    { name: "medical Help", icon: "mdi-hospital-box" },
+    { name: "Educational Help", icon: "carbon-education" },
+    { name: "financial Help", icon: "map:finance" },
+    { name: "cloths", icon: "map:clothing-store" },
+    { name: "Adoption", icon: "carbon:pedestrian-family" },
   ]);
   const [selectedTags, setSelectedTags] = useState<TTag[]>([]);
   const [selectedTagsInModal, setSelectedTagsInModal] = useState<TTag[]>([]);
@@ -49,14 +55,14 @@ export function DoPost() {
   }
   return (
     <>
-      <div className={styles.arrow}>
-        <img
+     
+        <img className="mt-3 ml-3"
           src="/assets/find-needy/arrow.jpg"
           alt=""
           height="31px"
           width="31px"
         />
-      </div>
+     
       <h1 className={`text-sm-center  ${styles.maintitle}`}>Request Help</h1>
       <div className={styles.reqpost}>
         <div>
@@ -107,7 +113,7 @@ export function DoPost() {
               <div className="col-6 col-sm-4 col-md-3">
                 <button type="button" className={styles.tagbtn}>
                   <span className="iconify-wrapper">
-                    <i className="iconify"></i>
+                    <i className="iconify" data-icon={ele.icon}></i>
                   </span>
                   <span className={styles.tagname}>{ele.name}</span>
                   <span
@@ -145,7 +151,7 @@ export function DoPost() {
               <div className="modal-content">
                 <div className="modal-header">
                   <h5 className="modal-title" id="exampleModalCenterTitle">
-                    Modal title
+                    Select more items
                   </h5>
                   <button
                     type="button"
@@ -169,7 +175,7 @@ export function DoPost() {
                             <span className="iconify-wrapper">
                               <i
                                 className="iconify"
-                                data-icon="akar-icons:plus"
+                                data-icon={ele.icon}
                               ></i>
                             </span>
                             <span className={styles.tagname}>{ele.name}</span>

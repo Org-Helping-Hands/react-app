@@ -5,9 +5,10 @@ body{
 
 
 
-    .arrow{
-        margin-top: 15px;
-    }
+.arrow{
+    margin-top: 15px;
+    margin-left: 15px;
+}
 
     label.filebutton {
        
@@ -122,9 +123,10 @@ margin-top: 10px;
 }
 .Modaltagbtn{
     margin-top: 15px;
-    width: 150px;
+    width: auto;
+    font-size: 15px;
     border: none;
-    font-size: 20px;
+   
      text-align:top;
      
  outline: none;    
@@ -134,30 +136,24 @@ margin-top: 10px;
 }
 .tagclicked{
     margin-top: 15px;
-    width: 150px;
+    font-size: 15px;
+    width: auto;
     border: none;
-    font-size: 20px;
+    
      text-align:top;   
  outline: none;    
  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.19);     
     background: rgb(170, 168, 168);
     color: white;
 }
-/* .Modaltagbtn:active{
-    background: rgb(170, 168, 168);
-    color: white;
-}
-.Modaltagbtn:focus{
-      background: rgb(170, 168, 168);
-    color: white;
-} */
+
 
 .Addtagbtn{
     margin-left: 15px;
     margin-top: 15px;
     width: 130px;
     border: none;
-    font-size: 20px;
+    
      text-align:top;
      
  outline: none;    
@@ -168,11 +164,11 @@ margin-top: 10px;
 
 .tagbtn{
     margin-top: 15px;
-    width: 130px;
+    width: auto;
     border: none;
     font-size: 20px;
      text-align:top;
-     
+     font-size: 15px;
  outline: none;    
  color: gray;
  background-color: transparent;
