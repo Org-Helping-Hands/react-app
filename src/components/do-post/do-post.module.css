@@ -4,9 +4,14 @@ body{
     };
 
 
+
+.arrow{
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
     label.filebutton {
-        width:120px;
-        height:40px;
+       
         overflow:hidden;
         position:relative;
         background-color:#ccc;
@@ -36,24 +41,51 @@ body{
         border: 0px;
         padding-left: 10px;
     }
-    .tag_Unclicked{
-        background-color:#C6C4C3;
-        border-radius: 30px;
-        margin: 5px;   
-        border: none;
-        }
-    .tag_clicked{
-            background-color: #9E5200;
-            color: #ffff;
+    .addressInput{
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        width: 95%;
     }
-    
-    .description{
-        border-radius: 7px; 
-        padding: 15px; 
-        background-color: #E6E6E6;
-         width: 100%;
+    .iconify{
+        color: gray;
+    }
+    .locationIcon{
+        color: gray;
+        width: 30px;
+        height: 30px;
+    }
+    .locactionBtn{
+        border: none;
+        background-color: transparent;
         
+    }
+    .locactionBtn button:active{
+        border: none;
+
+    }
+    .locactionBtn button:focus{
+        border: none;
+        
+    }
+  
+    .uploadText{
+        padding-top: 5px;
+        padding-left: 15px;
+    }
+    .description{
+        
+        padding: 15px; 
+        background-color:transparent;
+         width: 100%;
+         outline:none;
+         
+         height:50px;
+        border-top: none;
+        border-left: none;
+        border-right: none;
          margin-bottom: 30px;
+         border-color: black;
     }
     
     .navtitle{
@@ -76,28 +108,90 @@ body{
     font-weight: 500;
     font-family: "Inter-Medium", "Inter", sans-serif;
     font-size: 24px;
-    color: #c60649;
+    color: #289AE6;
+    margin-top: 20px;
     }
-    .upload_frame{
-        width: 70px;
-        height: 70px;
-        box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.25);
-        background-color: #ffffff;
-        overflow: visible;
-        border-radius: 11px;
-        margin: 5px;
-    }
-    .upload_image{
-    width: 50px;
-    height: 50px;
-    margin: 10px 10px;
-    }
-    .tags_selected{
-        width: 100%;
-        border-radius: 5px;
-        border: 1px solid black;
-        padding:15px 15px;
-    }
+ 
+.TagIcon{
+color: gray;
+height: 25px;
+width: 25px;
+margin-top: 10px;
+
+
+
+}
+.Modaltagbtn{
+    margin-top: 15px;
+    width: auto;
+    font-size: 15px;
+    border: none;
+   
+     text-align:top;
+     
+ outline: none;    
+ color: gray;
+ background-color: transparent;
+ box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.19);     
+}
+.tagclicked{
+    margin-top: 15px;
+    font-size: 15px;
+    width: auto;
+    border: none;
+    
+     text-align:top;   
+ outline: none;    
+ box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.19);     
+    background: rgb(170, 168, 168);
+    color: white;
+}
+
+
+.Addtagbtn{
+    margin-left: 15px;
+    margin-top: 15px;
+    width: 130px;
+    border: none;
+    
+     text-align:top;
+     
+ outline: none;    
+ color: gray;
+ background-color: transparent;
+ box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.19);   
+}
+
+.tagbtn{
+    margin-top: 15px;
+    width: auto;
+    border: none;
+    font-size: 20px;
+     text-align:top;
+     font-size: 15px;
+ outline: none;    
+ color: gray;
+ background-color: transparent;
+ box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.19);   
+}
+.addtag{
+    margin-top: 15px;
+    width: 150px;
+    border: none;
+    font-size: 20px;
+     text-align:top;
+     
+ outline: none;    
+ color: gray;
+ background-color: transparent;
+ box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.19);    
+}
+
+.tagname{
+    margin-left:5px;
+    margin-right: 10px;
+
+}
     .donebutton{ 
      width: auto;
      height: auto;
@@ -105,12 +199,19 @@ body{
     }
     
     .postbtn{
-        width: 100px;
-        margin: auto;
+        width: 100%;
+     position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
     
     
     }
-    
+    .uploadSign{
+        color: gray;
+        width: 35px;
+        height: 35px;
+    }
  
     .reqpost{
         margin-left: 2.5%;
@@ -162,20 +263,7 @@ body{
             margin-bottom: 5%;
             padding: 20px;
         }
-        .upload_frame{
-            width: 100px;
-            height: 100px;
-            box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.25);
-            background-color: #ffffff;
-            overflow: visible;
-            border-radius: 11px;
-            margin: 10px;
-        }
-        .upload_image{
-            width: 80px;
-            height: 80px;
-            margin: 10px 10px;
-            }
+       
     
             .postbtn{
                 margin: auto;
