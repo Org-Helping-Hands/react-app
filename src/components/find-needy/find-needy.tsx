@@ -5,61 +5,23 @@ import { useSpring, animated } from "@react-spring/web";
 import { useDrag } from "react-use-gesture";
 import { IPostMinimal } from "../../common/interfaces/post";
 import { fetchPost } from "../../common/api";
+import { MapBox } from "../mapbox/mapbox";
+import { getLocation } from "../../common/location";
 
-function getLocation() {
-  return new Promise<GeolocationCoordinates>((resolve, reject) => {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        resolve(position.coords);
-      },
-      (err) => reject(err)
-    );
-  });
-}
 var map: mapboxgl.Map;
 
 export function FindNeedy() {
-  async function initializeMap() {
-    let { latitude, longitude } = await getLocation();
-    mapboxgl.accessToken =
-      "pk.eyJ1Ijoib21tb3JlIiwiYSI6ImNrbnl2M2dwbTFrOXoycHBzN3RzdThvd20ifQ.wZeX_Xe1i3NsILKIEe7M4Q";
-    map = new mapboxgl.Map({
-      container: "rect",
-      style: "mapbox://styles/mapbox/streets-v11",
-      center: [longitude, latitude],
-      zoom: 12,
-    });
-    addMarkers();
-
-    new mapboxgl.Marker({ color: "#90D98D" })
-      .setLngLat([longitude, latitude])
-      .addTo(map);
-  }
-  const [posts, setPosts] = useState<IPostMinimal[]>([
-    {
-      id: "ere",
-      postedBy: { name: "om" },
-      neededItems: [
-        {
-          no: 1,
-          itemName: "Food",
-        },
-        {
-          no: 2,
-          itemName: "Water",
-        },
-      ],
-      latitude: "18.155182",
-      longitude: "73.299062",
-    },
-  ]);
-
-  function addMarkers() {
-    posts.forEach((e) => {
-      new mapboxgl.Marker()
-        .setLngLat([parseFloat(e.longitude), parseFloat(e.latitude)])
-        .addTo(map);
-    });
+  const [posts, setPosts] = useState<IPostMinimal[]>([]);
+  const [markers, setMarkers] = useState<mapboxgl.Marker[]>([]);
+  function createMarkers(posts: IPostMinimal[]) {
+    setMarkers(
+      posts.map((e) => {
+        return new mapboxgl.Marker().setLngLat([
+          parseFloat(e.longitude),
+          parseFloat(e.latitude),
+        ]);
+      })
+    );
   }
   const [{ x, y }, api] = useSpring(() => ({ x: 0, y: 10 }));
 
@@ -72,16 +34,29 @@ export function FindNeedy() {
     },
     { bounds: { left: 0, right: 0, bottom: 10, top: -500 } }
   );
-  useEffect(()=> {
-    getLocation().then(({ latitude , longitude}) =>{
-     return  fetchPost( latitude , longitude);
-     }).then(({data})=>setPosts(data)   );
-  
-    initializeMap();
-  });
+  useEffect(() => {
+    getLocation()
+      .then(({ latitude, longitude }) => {
+        return fetchPost(latitude, longitude);
+      })
+      .then(({ data }) => {
+        setPosts(data);
+        createMarkers(data);
+      });
+  }, []);
   return (
     <>
-      <div className={styles.arrow}>
+      <div
+        className={styles.arrow}
+        onClick={() => {
+          posts.map((e) => {
+            return new mapboxgl.Marker().setLngLat([
+              parseFloat(e.longitude),
+              parseFloat(e.latitude),
+            ]);
+          });
+        }}
+      >
         <img
           src="/assets/find-needy/arrow.jpg"
           alt=""
@@ -93,7 +68,7 @@ export function FindNeedy() {
         <h1>Needy people near you</h1>
       </div>
 
-      <div id="rect" className={styles.rect}></div>
+      <MapBox markers={markers} className={styles.rect}></MapBox>
       <animated.div style={{ x, y, position: "relative", zIndex: 4 }}>
         <div className={styles.postersList}>
           <div className={styles.horizontalLine} {...bind()}></div>
