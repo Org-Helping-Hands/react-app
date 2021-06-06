@@ -1,8 +1,8 @@
 import axios from "axios";
 import { getPositionOfLineAndCharacter } from "typescript";
 import { getPhoneNumber, getToken, getUserId } from "./user";
-const baseURL =axios.create({
-  baseURL: process.env.REACT_APP_NODEJS_API 
+const baseURL = axios.create({
+  baseURL: process.env.REACT_APP_NODEJS_API,
 });
 interface IAuthReqBody {
   userId: string;
@@ -21,19 +21,38 @@ interface userDataResponse {
 
   emailId: string;
 }
- export function fetchPost(latitude:number,longitude:number){
-   return baseURL.post("/post/fetch",{
-  latitude,longitude
-  },{
-   headers:getAuthReqHeader()
-  })
+export function fetchPost(latitude: number, longitude: number) {
+  return baseURL.post(
+    "/post/fetch",
+    {
+      latitude,
+      longitude,
+    },
+    {
+      headers: getAuthReqHeader(),
+    }
+  );
 }
-  export function dopost( latitude: number,longitude: number,description:String, images:String,neededItems:String){
-  baseURL.post("/post/create",{
-    latitude,longitude,description,images,neededItems
-  },{
-    headers:getAuthReqHeader()
-  })
+export function dopost(
+  latitude: number,
+  longitude: number,
+  description: String,
+  images: File[],
+  neededItems: String[]
+) {
+  let formData = new FormData();
+
+  formData.append("latitude", latitude.toString());
+  formData.append("longitude", longitude.toString());
+  formData.append("description", description.toString());
+  images.forEach((image) => {
+    formData.append("images", image);
+  });
+  formData.append("neededItems", JSON.stringify(neededItems));
+
+  baseURL.post("/post/create", formData, {
+    headers: getAuthReqHeader(),
+  });
 }
 
 var getAuthReqHeader = () => {

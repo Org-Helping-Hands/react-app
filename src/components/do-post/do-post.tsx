@@ -2,6 +2,8 @@ import React, { ChangeEventHandler, useState } from "react";
 import styles from "./do-post.module.css";
 import axios from "axios";
 import { Button, Modal } from "react-bootstrap";
+import { MapBox } from "../mapbox/mapbox";
+import { dopost } from "../../common/api";
 
 const baseUrl = axios.create({
   baseURL: "process.env.REACT_APP_NODEJS_API",
@@ -12,17 +14,17 @@ type TTag = {
   icon: string;
 };
 
-
-
-
-
+type Coords = {
+  latitude: number;
+  longitude: number;
+};
 
 export function DoPost() {
-  const [images,setImages] =useState<File[]>(
-    [
-
-    ]
-    ) ;
+  const [images, setImages] = useState<File[]>([]);
+  const [address, setAddress] = useState<string>();
+  const [coords, setCoords] = useState<Coords>();
+  const [selectedTags, setSelectedTags] = useState<TTag[]>([]);
+  const [description, setDescription] = useState<string>("");
   const [tags] = useState<TTag[]>([
     { name: "Water", icon: "akar-icons:water" },
     { name: "Food", icon: "emojione-monotone:pot-of-food" },
@@ -33,19 +35,18 @@ export function DoPost() {
     { name: "cloths", icon: "map:clothing-store" },
     { name: "Adoption", icon: "carbon:pedestrian-family" },
   ]);
-  const [selectedTags, setSelectedTags] = useState<TTag[]>([]);
   const [selectedTagsInModal, setSelectedTagsInModal] = useState<TTag[]>([]);
-  
- function handleFileChange( data:any){
-  
-    let file=data.target.files as FileList
-    
-     let files =[]
-    for( let i=0;i<file.length;i++){
-        files.push(file[i])
+  const [showMap, setShopMap] = useState<boolean>(false);
+
+  function handleFileChange(data: any) {
+    let file = data.target.files as FileList;
+
+    let files = [];
+    for (let i = 0; i < file.length; i++) {
+      files.push(file[i]);
     }
-    setImages(files)
- }
+    setImages(files);
+  }
 
   function toggleTagInModal(name: TTag) {
     let tagExist = selectedTagsInModal.includes(name);
@@ -75,16 +76,30 @@ export function DoPost() {
       return styles.Modaltagbtn;
     }
   }
+
+  function handlePostClick() {
+    if (coords) {
+      let neededItems = selectedTags.map((e) => e.name);
+      dopost(
+        coords?.latitude,
+        coords?.longitude,
+        description,
+        images,
+        neededItems
+      );
+    }
+  }
+
   return (
     <>
-     
-        <img className="mt-3 ml-3"
-          src="/assets/find-needy/arrow.jpg"
-          alt=""
-          height="31px"
-          width="31px"
-        />
-     
+      <img
+        className="mt-3 ml-3"
+        src="/assets/find-needy/arrow.jpg"
+        alt=""
+        height="31px"
+        width="31px"
+      />
+
       <h1 className={`text-sm-center  ${styles.maintitle}`}>Request Help</h1>
       <div className={styles.reqpost}>
         <div>
@@ -100,7 +115,14 @@ export function DoPost() {
                     data-inline="false"
                   ></span>
                   <span>
-                    <input type="file" id="myfile" name="myfile" accept="image/*" multiple onChange={handleFileChange}></input>
+                    <input
+                      type="file"
+                      id="myfile"
+                      name="myfile"
+                      accept="image/*"
+                      multiple
+                      onChange={handleFileChange}
+                    ></input>
                   </span>
                 </label>
               </div>
@@ -110,16 +132,19 @@ export function DoPost() {
                 </p>
               </div>
             </div>
-            
-          <div className="row">
-            {images.map((ele, index) =>(
+
+            <div className="row">
+              {images.map((ele, index) => (
                 <div className={` col-4 col-sm-3`}>
-                    <img src={URL.createObjectURL(ele)} className={styles.selectedImages} height="80px" width="80px" alt="" />
-                    
-                    
-                    
+                  <img
+                    src={URL.createObjectURL(ele)}
+                    className={styles.selectedImages}
+                    height="80px"
+                    width="80px"
+                    alt=""
+                  />
                 </div>
-                ))}
+              ))}
             </div>
           </div>
         </div>
@@ -132,11 +157,22 @@ export function DoPost() {
             placeholder="Enter Address"
             aria-label="Enter address"
             aria-describedby="button-addon2"
+            value={address}
           />
-          <span className="iconify-wrapper">
+          <span
+            className="iconify-wrapper"
+            onClick={() => setShopMap(!showMap)}
+          >
             <i className="iconify" data-icon="bx:bxs-map"></i>
           </span>
         </div>
+        {showMap && (
+          <MapBox
+            onMapClick={(latitude, longitude) => {
+              setCoords({ latitude, longitude });
+            }}
+          ></MapBox>
+        )}
 
         <p className={styles.title}>select need tags</p>
         <div className={styles.tags_selected}>
@@ -206,10 +242,7 @@ export function DoPost() {
                             onClick={() => toggleTagInModal(ele)}
                           >
                             <span className="iconify-wrapper">
-                              <i
-                                className="iconify"
-                                data-icon={ele.icon}
-                              ></i>
+                              <i className="iconify" data-icon={ele.icon}></i>
                             </span>
                             <span className={styles.tagname}>{ele.name}</span>
                           </button>
@@ -240,7 +273,10 @@ export function DoPost() {
           />
 
           <div className="row">
-            <button className={`btn btn-primary ${styles.postbtn}`}>
+            <button
+              className={`btn btn-primary ${styles.postbtn}`}
+              onClick={handlePostClick}
+            >
               Post
             </button>
           </div>
@@ -249,4 +285,3 @@ export function DoPost() {
     </>
   );
 }
-
