@@ -3,11 +3,13 @@ import { useEffect, useRef, useState } from "react";
 import { getLocation } from "../../common/location";
 type Props = {
   markers?: mapboxgl.Marker[];
+  onMapClick?: (latitude: number, longitude: number) => void;
 };
 
 export const MapBox = (props: Props) => {
   const mapContainer = useRef(null);
   const map = useRef(null) as any;
+  var marker: mapboxgl.Marker;
 
   async function initializeMap() {
     let { latitude, longitude } = await getLocation();
@@ -19,6 +21,13 @@ export const MapBox = (props: Props) => {
         style: "mapbox://styles/mapbox/streets-v11",
         center: [longitude, latitude],
         zoom: 12,
+      });
+      (map.current as mapboxgl.Map).on("click", function (e) {
+        props.onMapClick && props.onMapClick(e.lngLat.lat, e.lngLat.lng);
+        marker?.remove();
+        marker = new mapboxgl.Marker()
+          .setLngLat([e.lngLat.lng, e.lngLat.lat])
+          .addTo(map.current);
       });
     }
     if (map.current) {
