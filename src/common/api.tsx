@@ -55,6 +55,15 @@ export function dopost(
   });
 }
 
+export function DetailedPost(postId:number){
+ baseURL.post("/post/fetch-details",
+ {
+   postId
+ },
+ { 
+   headers:getAuthReqHeader()
+ });
+}
 var getAuthReqHeader = () => {
   return {
     token: getToken() ?? "",

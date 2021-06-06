@@ -1,51 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./detailed-post.module.css";
 
-export class DetailedPost extends React.Component{
+  // state = {
+  //    Urls:[
+  //      {URL:"assets/detailed-post/poor1.jpg"},
+  //      {URL:"assets/detailed-post/poor2.jpg"},
+  //      {URL:"assets/detailed-post/poor3.jpg"},
+  //    ],
+  // };
+ type File ={
+   URL: string;
+ }
+ type Post={
+   Name:string;
+   Images:string[];
+   Description:string; 
+ }
+ export function DetailedPost() {
 
-  state = {
-     Urls:[
-       {URL:"assets/detailed-post/poor1.jpg"},
-       {URL:"assets/detailed-post/poor2.jpg"},
-       {URL:"assets/detailed-post/poor3.jpg"},
-     ],
-  };
- 
-render() {
+     const [name, setName] = useState<string>('');
+     const [time, setime] = useState<string>('');
+     const [images, setImages] =useState<File[]>([]);
+    const [description,setDescription]= useState<string>('')
+
     return (
       <>
-          <div> 
-          <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a className={`navbar-brand ${styles.navtitle}`} href="#">
-              Helping Hands
-            </a>
-            <button
-              className={"navbar-toggler"}
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarNavAltMarkup"
-              aria-controls="navbarNavAltMarkup"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className={"navbar-toggler-icon"}></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-              <div className={`navbar-nav ml-auto ${styles.navitems}`}>
-                <a className="nav-item nav-link" href="#">
-                  Settings
-                </a>
-                <a className="nav-item nav-link" href="#">
-                  About-Us
-                </a>
-                <a className="nav-item nav-link" href="#">
-                  Contact-Us
-                </a>
-              </div>
-            </div>
-          </nav>
-        </div>
+          
 
       <h1 className={styles.mainTitle}> Needy people near you</h1>
 <div className={styles.detail_post}>
@@ -82,7 +63,7 @@ render() {
         </ol>
         <div className="carousel-inner">
           {
-            this.state.Urls.map((ele , i)=>(
+            images.map((ele , i)=>(
 
               <div className={`carousel-item ${i==0 ?'active': '' }`}>
               <img className={`d-block w-100 ${styles.help_img}`} src={ele.URL} alt="First slide"/>
@@ -117,4 +98,4 @@ render() {
 </>
     );
   }
-}
+
