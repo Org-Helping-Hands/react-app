@@ -36,6 +36,7 @@ export function DoPost() {
     }
   }
 
+
   function handleModalDoneButton() {
     setSelectedTags(selectedTagsInModal);
   }
@@ -53,6 +54,7 @@ export function DoPost() {
       return styles.Modaltagbtn;
     }
   }
+
   return (
     <>
      
@@ -207,7 +209,7 @@ export function DoPost() {
           />
 
           <div className="row">
-            <button className={`btn btn-primary ${styles.postbtn}`}>
+            <button className={`btn btn-primary ${styles.postbtn}`} >
               Post
             </button>
           </div>

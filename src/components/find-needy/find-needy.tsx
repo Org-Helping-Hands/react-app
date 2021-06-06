@@ -4,6 +4,7 @@ import styles from "./findNeedy.module.css";
 import { useSpring, animated } from "@react-spring/web";
 import { useDrag } from "react-use-gesture";
 import { IPostMinimal } from "../../common/interfaces/post";
+import { fetchPost } from "../../common/api";
 
 function getLocation() {
   return new Promise<GeolocationCoordinates>((resolve, reject) => {
@@ -71,7 +72,11 @@ export function FindNeedy() {
     },
     { bounds: { left: 0, right: 0, bottom: 10, top: -500 } }
   );
-  useEffect(() => {
+  useEffect(()=> {
+    getLocation().then(({ latitude , longitude}) =>{
+     return  fetchPost( latitude , longitude);
+     }).then(({data})=>setPosts(data)   );
+  
     initializeMap();
   });
   return (
