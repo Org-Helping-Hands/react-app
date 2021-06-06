@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ChangeEventHandler, useState } from "react";
 import styles from "./do-post.module.css";
 import axios from "axios";
 import { Button, Modal } from "react-bootstrap";
@@ -12,7 +12,17 @@ type TTag = {
   icon: string;
 };
 
+
+
+
+
+
 export function DoPost() {
+  const [images,setImages] =useState<File[]>(
+    [
+
+    ]
+    ) ;
   const [tags] = useState<TTag[]>([
     { name: "Water", icon: "akar-icons:water" },
     { name: "Food", icon: "emojione-monotone:pot-of-food" },
@@ -25,6 +35,18 @@ export function DoPost() {
   ]);
   const [selectedTags, setSelectedTags] = useState<TTag[]>([]);
   const [selectedTagsInModal, setSelectedTagsInModal] = useState<TTag[]>([]);
+  
+ function handleFileChange( data:any){
+  
+    let file=data.target.files as FileList
+    
+     let files =[]
+    for( let i=0;i<file.length;i++){
+        files.push(file[i])
+    }
+    setImages(files)
+ }
+
   function toggleTagInModal(name: TTag) {
     let tagExist = selectedTagsInModal.includes(name);
 
@@ -35,7 +57,6 @@ export function DoPost() {
       setSelectedTagsInModal([...selectedTagsInModal, name]);
     }
   }
-
 
   function handleModalDoneButton() {
     setSelectedTags(selectedTagsInModal);
@@ -54,7 +75,6 @@ export function DoPost() {
       return styles.Modaltagbtn;
     }
   }
-
   return (
     <>
      
@@ -80,7 +100,7 @@ export function DoPost() {
                     data-inline="false"
                   ></span>
                   <span>
-                    <input type="file" id="myfile" name="myfile" accept="image/*" multiple></input>
+                    <input type="file" id="myfile" name="myfile" accept="image/*" multiple onChange={handleFileChange}></input>
                   </span>
                 </label>
               </div>
@@ -90,6 +110,17 @@ export function DoPost() {
                 </p>
               </div>
             </div>
+            
+          <div className="row">
+            {images.map((ele, index) =>(
+                <div className={` col-4 col-sm-3`}>
+                    <img src={URL.createObjectURL(ele)} className={styles.selectedImages} height="80px" width="80px" alt="" />
+                    
+                    
+                    
+                </div>
+                ))}
+            </div>
           </div>
         </div>
 
@@ -97,7 +128,7 @@ export function DoPost() {
         <div className="input-group mb-3">
           <input
             type="text"
-            className={`${styles.addressInput}`}
+            className={`${styles.addressInput} `}
             placeholder="Enter Address"
             aria-label="Enter address"
             aria-describedby="button-addon2"
@@ -209,7 +240,7 @@ export function DoPost() {
           />
 
           <div className="row">
-            <button className={`btn btn-primary ${styles.postbtn}`} >
+            <button className={`btn btn-primary ${styles.postbtn}`}>
               Post
             </button>
           </div>
@@ -218,46 +249,4 @@ export function DoPost() {
     </>
   );
 }
-// export class DoPost extends React.Component {
-//   state = {
-//     isEduStateOn: false,
-//     isMedicalHelpOn: false,
-//     tags: [
-//       {
-//         name: "Food",
-//         selected: true,
-//         tagicon: "emojione-monotone:pot-of-food",
-//       },
-//       { name: "Shelter", selected: true, tagicon: "ant-design:home-outlined" },
-//       { name: "water", selected: true, tagicon: "akar-icons:water" },
-//     ],
-//     value: "",
-//   };
 
-//   // toggleModal(status: boolean) {
-//   //   this.setState({ ...this.state, modal: status });
-//   // }
-
-//   onTagSelect() {
-//     if (this.state.isMedicalHelpOn === true) {
-//       alert("medical help slected");
-//     }
-//   }
-//   tagRemove() {
-//     alert("tag removed");
-//   }
-
-//   onTagClick(index: number) {
-//     let updatedTags = this.state.tags.map((ele, i) => {
-//       if (i == index) {
-//         return {
-//           ...ele,
-//           selected: !ele.selected,
-//         };
-//       } else return ele;
-//     });
-//     this.setState({
-//       tags: updatedTags,
-//     });
-//   }
-// }
