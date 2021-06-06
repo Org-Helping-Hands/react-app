@@ -46,17 +46,7 @@ export function FindNeedy() {
   }, []);
   return (
     <>
-      <div
-        className={styles.arrow}
-        onClick={() => {
-          posts.map((e) => {
-            return new mapboxgl.Marker().setLngLat([
-              parseFloat(e.longitude),
-              parseFloat(e.latitude),
-            ]);
-          });
-        }}
-      >
+      <div className={styles.arrow}>
         <img
           src="/assets/find-needy/arrow.jpg"
           alt=""
