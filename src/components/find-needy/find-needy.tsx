@@ -58,7 +58,7 @@ export function FindNeedy() {
         <h1>Needy people near you</h1>
       </div>
 
-      <MapBox markers={markers} className={styles.rect}></MapBox>
+      <MapBox markers={markers}></MapBox>
       <animated.div style={{ x, y, position: "relative", zIndex: 4 }}>
         <div className={styles.postersList}>
           <div className={styles.horizontalLine} {...bind()}></div>

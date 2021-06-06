@@ -15,14 +15,7 @@
   color: #533e3e;
   margin-left: 17px;
 }
-.rect {
-  width: 95%;
-  height: 370px;
-  margin-left: 9px;
-  background-color: rgb(247, 229, 243);
-  border-radius: 17px;
-  z-index: 1;
-}
+
 .postersList {
   position: relative;
   padding-top: 5px;

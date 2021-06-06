@@ -1,10 +1,8 @@
 import mapboxgl, { Marker } from "mapbox-gl";
 import { useEffect, useRef, useState } from "react";
-import { IPostMinimal } from "../../common/interfaces/post";
 import { getLocation } from "../../common/location";
 type Props = {
   markers?: mapboxgl.Marker[];
-  className: string | undefined;
 };
 
 export const MapBox = (props: Props) => {
@@ -36,5 +34,5 @@ export const MapBox = (props: Props) => {
   useEffect(() => {
     initializeMap();
   });
-  return <div id="rect" ref={mapContainer} className={props.className}></div>;
+  return <div id="rect" ref={mapContainer} className="map-box"></div>;
 };
