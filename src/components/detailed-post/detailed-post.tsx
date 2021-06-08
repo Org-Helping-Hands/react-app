@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./detailed-post.module.css";
-
+import {fetchDetailedPost, fetchImageDetailedPost} from"../../common/api";
   // state = {
   //    Urls:[
   //      {URL:"assets/detailed-post/poor1.jpg"},
@@ -20,10 +20,24 @@ import styles from "./detailed-post.module.css";
  export function DetailedPost() {
 
      const [name, setName] = useState<string>('');
-     const [time, setime] = useState<string>('');
+     const [time, setTime] = useState<string>('');
      const [images, setImages] =useState<File[]>([]);
     const [description,setDescription]= useState<string>('')
 
+   fetchDetailedPost(3).then(({data})=>
+   {
+    setName(data.postedBy.name);
+     setTime('5 min walk')
+     setDescription(data.description)
+     
+   }
+   );
+   fetchImageDetailedPost(1).then(({data})=>
+   {
+     console.log("image fetched")
+    console.log(data)
+   }
+   );
     return (
       <>
           
@@ -41,16 +55,16 @@ import styles from "./detailed-post.module.css";
            </div>
            <div className="col-9 col-sm-10  col-md-11 ">
                <h3 className={styles.username}>
-                   Posted by Siddhesh surve
+                   Posted by {name}
                </h3>
-               <p className={styles.username}>2 minutues walk</p>
+               <p className={styles.username}>{time}</p>
 
            </div>
             </div>
          </div>
          <div className={styles.post_description_box}>
          <div className="row ">
-                <h4 className={styles.post_description}>Need food and water and shelter will also help. Also it will be niceif you donate your old clothes.</h4>
+                <h4 className={styles.post_description}>{description}</h4>
             </div>
          </div>
         </div>

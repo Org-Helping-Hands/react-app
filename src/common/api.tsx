@@ -21,6 +21,31 @@ interface userDataResponse {
 
   emailId: string;
 }
+interface postDetailResponse {
+
+  id: number;
+
+
+  neededItems: {name:string}[];
+
+
+  latitude: string;
+
+
+  longitude: string;
+
+
+  description: string;
+
+
+  latestOperation: string;
+
+
+  operationPerformedBy: userDataResponse ;
+
+  postedBy:userDataResponse;
+
+}
 export function fetchPost(latitude: number, longitude: number) {
   return baseURL.post(
     "/post/fetch",
@@ -55,15 +80,26 @@ export function dopost(
   });
 }
 
-export function DetailedPost(postId:number){
- baseURL.post("/post/fetch-details",
+export function fetchDetailedPost(postId:number){
+return baseURL.post<postDetailResponse>("/post/fetch-details",
  {
    postId
  },
  { 
    headers:getAuthReqHeader()
  });
+
 }
+export function fetchImageDetailedPost(postId:number){
+  return baseURL.post("/post/fetch-images",
+  {
+    postId
+  },{
+    headers:getAuthReqHeader()
+  })
+}
+
+
 var getAuthReqHeader = () => {
   return {
     token: getToken() ?? "",
