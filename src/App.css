@@ -1,0 +1,8 @@
+.map-box {
+  width: 95%;
+  height: 370px;
+  margin-left: 9px;
+  background-color: rgb(247, 229, 243);
+  border-radius: 17px;
+  z-index: 1;
+}
