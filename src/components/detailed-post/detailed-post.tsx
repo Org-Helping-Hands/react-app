@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, RouteProps } from "react-router-dom";
 import styles from "./detailed-post.module.css";
 import { fetchDetailedPost, fetchImageDetailedPost } from "../../common/api";
+import { MapBox } from "../mapbox/mapbox";
 // state = {
 //    Urls:[
 //      {URL:"assets/detailed-post/poor1.jpg"},
@@ -122,7 +123,10 @@ export function DetailedPost(props: RouteProps) {
           </div>
         </div>
 
-        <div className={styles.mapbox}></div>
+        {/* <div className={styles.mapbox}></div> */}
+
+        <MapBox/>   
+      
 
         <div className={`text-right ${styles.buttons}`}>
           <button type="button" className={styles.share_btn}>
