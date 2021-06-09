@@ -16,7 +16,7 @@ import { FindNeedy } from "./components/find-needy/find-needy";
 import { DetailedPost } from "./components/detailed-post/detailed-post";
 import { help } from "./components/help/help";
 import { Contribution } from "./components/contribution-page/contribution"
-
+import { hbox } from "./components/hbox/hbox";
 
 function App() {
   return (
@@ -33,6 +33,7 @@ function App() {
         <Route path="/detailed-post" component={DetailedPost} />
         <Route path="/help" component={help} />
         <Route path="/contribution" component={Contribution} />
+        <Route path="/hbox" component={hbox} />
 
       </Switch>
     </Router>
