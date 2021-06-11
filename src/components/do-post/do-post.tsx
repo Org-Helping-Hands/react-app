@@ -21,10 +21,11 @@ type Coords = {
 
 export function DoPost() {
   const [images, setImages] = useState<File[]>([]);
-  const [address, setAddress] = useState<string>();
+
+  const [address, setAddress] = useState<string>('');
   const [coords, setCoords] = useState<Coords>();
   const [selectedTags, setSelectedTags] = useState<TTag[]>([]);
-  const [description, setDescription] = useState<string>("");
+  const [description, setDescription] = useState<string>('');
   const [tags] = useState<TTag[]>([
     { name: "Water", icon: "akar-icons:water" },
     { name: "Food", icon: "emojione-monotone:pot-of-food" },
@@ -75,6 +76,7 @@ export function DoPost() {
     } else {
       return styles.Modaltagbtn;
     }
+
   }
 
   function handlePostClick() {
@@ -158,6 +160,7 @@ export function DoPost() {
             aria-label="Enter address"
             aria-describedby="button-addon2"
             value={address}
+            onChange={(e)=>setAddress(e.target.value)}
           />
           <span
             className="iconify-wrapper"
@@ -269,9 +272,12 @@ export function DoPost() {
           <textarea
             name="Description"
             className={styles.description}
+
+            value={description}
+            onChange={ (e)=>setDescription(e.target.value) }
             placeholder="You will find them near xyz shop or xyz area"
           />
-
+          
           <div className="row">
             <button
               className={`btn btn-primary ${styles.postbtn}`}

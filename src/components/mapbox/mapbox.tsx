@@ -30,6 +30,7 @@ export const MapBox = (props: Props) => {
             .setLngLat([e.lngLat.lng, e.lngLat.lat])
             .addTo(map.current);
         }
+
       });
     }
     if (map.current) {

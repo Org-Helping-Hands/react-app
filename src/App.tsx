@@ -15,7 +15,9 @@ import { DoPost } from "./components/do-post/do-post";
 import { FindNeedy } from "./components/find-needy/find-needy";
 import { DetailedPost } from "./components/detailed-post/detailed-post";
 import { help } from "./components/help/help";
-import { Contribution} from "./components/contribution-page/contribution"
+import { Contribution } from "./components/contribution-page/contribution"
+
+
 function App() {
   return (
     <Router>
@@ -30,7 +32,8 @@ function App() {
         <Route path="/do-post" component={DoPost} />
         <Route path="/detailed-post" component={DetailedPost} />
         <Route path="/help" component={help} />
-        <Route path="/contribution" component={Contribution}/>
+        <Route path="/contribution" component={Contribution} />
+
       </Switch>
     </Router>
   );
