@@ -108,3 +108,21 @@ export function getUserData() {
     { headers: getAuthReqHeader() }
   );
 }
+
+export function requestUpdateEmailId(emailId:String){
+   return baseURL.post("/user/request-email-update",{
+     emailId
+   },
+   {
+     headers: getAuthReqHeader()
+   })
+}
+
+export function verifyUpdateEmailId(emailId:String, otp:string){
+  return baseURL.post("/user/verify-update-email",{
+    emailId,
+    otp
+  },{
+    headers: getAuthReqHeader()
+  })
+}
