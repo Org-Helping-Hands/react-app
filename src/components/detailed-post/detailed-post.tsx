@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, RouteProps } from "react-router-dom";
+import { Link, RouteProps, useHistory } from "react-router-dom";
 import styles from "./detailed-post.module.css";
 import {
   fetchDetailedPost,
@@ -29,6 +29,7 @@ export function DetailedPost(props: RouteProps) {
   const [images, setImages] = useState<string[]>([]);
   const [description, setDescription] = useState<string>("");
   const [marker, setMarker] = useState<mapboxgl.Marker>();
+  const history = useHistory();
 
   function createMarker(post: postDetailResponse) {
     setMarker(
@@ -60,6 +61,7 @@ export function DetailedPost(props: RouteProps) {
         alt=""
         height="31px"
         width="31px"
+        onClick={() => history.goBack()}
       />
       <h1 className={styles.mainTitle}> Needy people near you</h1>
       <div className={styles.detail_post}>
