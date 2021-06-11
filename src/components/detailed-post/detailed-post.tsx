@@ -55,6 +55,7 @@ export function DetailedPost(props: RouteProps) {
   }, []);
   return (
     <>
+
       <img
         className="mt-3 ml-3"
         src="/assets/find-needy/arrow.jpg"
@@ -113,6 +114,13 @@ export function DetailedPost(props: RouteProps) {
         <MapBox markers={marker ? [marker] : []} />
 
         <div className={`text-right ${styles.buttons}`}>
+        <button type="button" className={styles.share_btn}>
+            <img
+              src="assets/detailed-post/inbox.png"
+              height="35px"
+              width="35px"
+            ></img>
+          </button>
           <button type="button" className={styles.share_btn}>
             <img
               src="assets/detailed-post/shareIcon.png"
@@ -120,13 +128,14 @@ export function DetailedPost(props: RouteProps) {
               width="30px"
             ></img>
           </button>
-          <button
+          
+        </div>
+        <button
             type="button"
             className={`btn btn-success ${styles.help_btn}`}
           >
             help
           </button>
-        </div>
       </div>
     </>
   );
