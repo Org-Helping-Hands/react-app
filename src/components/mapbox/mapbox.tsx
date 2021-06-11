@@ -23,11 +23,14 @@ export const MapBox = (props: Props) => {
         zoom: 12,
       });
       (map.current as mapboxgl.Map).on("click", function (e) {
-        props.onMapClick && props.onMapClick(e.lngLat.lat, e.lngLat.lng);
-        marker?.remove();
-        marker = new mapboxgl.Marker()
-          .setLngLat([e.lngLat.lng, e.lngLat.lat])
-          .addTo(map.current);
+        if (props.onMapClick) {
+          props.onMapClick(e.lngLat.lat, e.lngLat.lng);
+          marker?.remove();
+          marker = new mapboxgl.Marker()
+            .setLngLat([e.lngLat.lng, e.lngLat.lat])
+            .addTo(map.current);
+        }
+
       });
     }
     if (map.current) {

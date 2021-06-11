@@ -21,6 +21,7 @@ type Coords = {
 
 export function DoPost() {
   const [images, setImages] = useState<File[]>([]);
+
   const [address, setAddress] = useState<string>('');
   const [coords, setCoords] = useState<Coords>();
   const [selectedTags, setSelectedTags] = useState<TTag[]>([]);
@@ -47,7 +48,6 @@ export function DoPost() {
     }
     setImages(files);
   }
-
 
   function toggleTagInModal(name: TTag) {
     let tagExist = selectedTagsInModal.includes(name);
@@ -76,6 +76,7 @@ export function DoPost() {
     } else {
       return styles.Modaltagbtn;
     }
+
   }
 
   function handlePostClick() {
@@ -271,6 +272,7 @@ export function DoPost() {
           <textarea
             name="Description"
             className={styles.description}
+
             value={description}
             onChange={ (e)=>setDescription(e.target.value) }
             placeholder="You will find them near xyz shop or xyz area"
