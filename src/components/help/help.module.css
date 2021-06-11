@@ -29,6 +29,14 @@
     box-shadow: 2px 3px 10px 2px rgb(158, 156, 156); 
     
 }
+.tag{
+    margin: 5% 0% 0% 3%;
+    
+    size: 15px;
+    height: 40px;
+    width: 40px;
+    color: rgb(116, 116, 116);
+}
 
 .bottom{
     font-family: Arial;
@@ -75,4 +83,5 @@
     .bottom{
         text-align: start;
     }
+    
 }
