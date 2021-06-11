@@ -26,7 +26,6 @@ type Post = {
 
 export function DetailedPost(props: RouteProps) {
   const [name, setName] = useState<string>("");
-  const [time, setTime] = useState<string>("");
   const [images, setImages] = useState<string[]>([]);
   const [description, setDescription] = useState<string>("");
   const [marker, setMarker] = useState<mapboxgl.Marker>();
@@ -45,7 +44,6 @@ export function DetailedPost(props: RouteProps) {
     if (id) {
       fetchDetailedPost(id).then(({ data }) => {
         setName(data.postedBy.name);
-        setTime("5 min walk");
         setDescription(data.description);
         createMarker(data);
       });
@@ -76,7 +74,6 @@ export function DetailedPost(props: RouteProps) {
               </div>
               <div className="col-9 col-sm-10  col-md-11 ">
                 <h3 className={styles.username}>Posted by {name}</h3>
-                <p className={styles.username}>{time}</p>
               </div>
             </div>
           </div>
@@ -94,7 +91,10 @@ export function DetailedPost(props: RouteProps) {
           >
             <div className="carousel-inner">
               {images.map((ele, i) => (
-                <div className={`carousel-item ${i == 0 ? "active" : ""}`}>
+                <div
+                  className={`carousel-item ${i == 0 ? "active" : ""}`}
+                  key={i}
+                >
                   <img
                     className={`d-block w-100 ${styles.help_img}`}
                     src={`data:image/jpg;base64,${ele}`}
