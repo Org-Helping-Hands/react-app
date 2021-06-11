@@ -110,19 +110,19 @@ export function getUserData() {
 }
 
 export function requestUpdateEmailId(emailId:String){
-   return baseURL.post("/user/request-email-update",{
-     emailId
-   },
-   {
-     headers: getAuthReqHeader()
-   })
+  return baseURL.post("/user/request-update-email",{
+    emailId
+  },
+  {
+    headers: getAuthReqHeader()
+  })
 }
 
 export function verifyUpdateEmailId(emailId:String, otp:string){
-  return baseURL.post("/user/verify-update-email",{
-    emailId,
-    otp
-  },{
-    headers: getAuthReqHeader()
-  })
+ return baseURL.post("/user/verify-update-email",{
+   emailId,
+   otp
+ },{
+   headers: getAuthReqHeader()
+ })
 }
