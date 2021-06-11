@@ -2,7 +2,6 @@ import React, { ChangeEventHandler, useState } from "react";
 import styles from "./do-post.module.css";
 import axios from "axios";
 import {  useHistory } from "react-router-dom";
-import { Button, Modal } from "react-bootstrap";
 import { MapBox } from "../mapbox/mapbox";
 import { dopost } from "../../common/api";
 
