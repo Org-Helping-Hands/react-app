@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import styles from "./home.module.css";
 import { Link } from "react-router-dom";
 import { getUserData } from "../../common/api";
+
 export function Home() {
   const [name,setname] =useState<string>('');
   const [totalPostCompletedByOthers,settotalPostCompletedByOthers] = useState<number>();
