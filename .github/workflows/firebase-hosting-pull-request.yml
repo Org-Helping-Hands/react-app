@@ -2,10 +2,10 @@
 # https://github.com/firebase/firebase-tools
 
 name: Deploy to Firebase Hosting on every push of other branch than master
-"on":
-  push:
-    branches:
-      - '!master'
+"on": push
+
+
+
 jobs:
   build_and_preview:
     if: "${{ github.event.pull_request.head.repo.full_name == github.repository }}"
