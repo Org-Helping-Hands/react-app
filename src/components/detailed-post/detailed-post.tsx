@@ -41,6 +41,13 @@ export function DetailedPost(props: RouteProps) {
   }, []);
   return (
     <>
+     <img
+        className="mt-3 ml-3"
+        src="/assets/find-needy/arrow.jpg"
+        alt=""
+        height="31px"
+        width="31px"
+      />
       <h1 className={styles.mainTitle}> Needy people near you</h1>
       <div className={styles.detail_post}>
         <div className={styles.post_info}>
@@ -70,21 +77,7 @@ export function DetailedPost(props: RouteProps) {
             className="carousel slide"
             data-ride="carousel"
           >
-            <ol className="carousel-indicators">
-              <li
-                data-target="#carouselExampleIndicators"
-                data-slide-to="0"
-                className="active"
-              ></li>
-              <li
-                data-target="#carouselExampleIndicators"
-                data-slide-to="1"
-              ></li>
-              <li
-                data-target="#carouselExampleIndicators"
-                data-slide-to="2"
-              ></li>
-            </ol>
+           
             <div className="carousel-inner">
               {images.map((ele, i) => (
                 <div className={`carousel-item ${i == 0 ? "active" : ""}`}>
@@ -96,30 +89,7 @@ export function DetailedPost(props: RouteProps) {
                 </div>
               ))}
             </div>
-            <a
-              className="carousel-control-prev"
-              href="#carouselExampleIndicators"
-              role="button"
-              data-slide="prev"
-            >
-              <span
-                className="carousel-control-prev-icon"
-                aria-hidden="true"
-              ></span>
-              <span className="sr-only">Previous</span>
-            </a>
-            <a
-              className="carousel-control-next"
-              href="#carouselExampleIndicators"
-              role="button"
-              data-slide="next"
-            >
-              <span
-                className="carousel-control-next-icon"
-                aria-hidden="true"
-              ></span>
-              <span className="sr-only">Next</span>
-            </a>
+            
           </div>
         </div>
 
