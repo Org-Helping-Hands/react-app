@@ -21,7 +21,7 @@ interface userDataResponse {
 
   emailId: string;
 }
-interface postDetailResponse {
+export interface postDetailResponse {
   id: number;
 
   neededItems: { name: string }[];

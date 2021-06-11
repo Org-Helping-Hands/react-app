@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link, RouteProps } from "react-router-dom";
 import styles from "./detailed-post.module.css";
-import { fetchDetailedPost, fetchImageDetailedPost } from "../../common/api";
+import {
+  fetchDetailedPost,
+  fetchImageDetailedPost,
+  postDetailResponse,
+} from "../../common/api";
 import { MapBox } from "../mapbox/mapbox";
+import mapboxgl from "mapbox-gl";
 // state = {
 //    Urls:[
 //      {URL:"assets/detailed-post/poor1.jpg"},
@@ -24,15 +29,25 @@ export function DetailedPost(props: RouteProps) {
   const [time, setTime] = useState<string>("");
   const [images, setImages] = useState<string[]>([]);
   const [description, setDescription] = useState<string>("");
+  const [marker, setMarker] = useState<mapboxgl.Marker>();
+
+  function createMarker(post: postDetailResponse) {
+    setMarker(
+      new mapboxgl.Marker().setLngLat([
+        parseFloat(post.longitude),
+        parseFloat(post.latitude),
+      ])
+    );
+  }
 
   useEffect(() => {
     let id = new URLSearchParams(props.location?.search).get("id");
-
     if (id) {
       fetchDetailedPost(id).then(({ data }) => {
         setName(data.postedBy.name);
         setTime("5 min walk");
         setDescription(data.description);
+        createMarker(data);
       });
       fetchImageDetailedPost(id).then(({ data }) => {
         setImages(data);
@@ -41,7 +56,7 @@ export function DetailedPost(props: RouteProps) {
   }, []);
   return (
     <>
-     <img
+      <img
         className="mt-3 ml-3"
         src="/assets/find-needy/arrow.jpg"
         alt=""
@@ -77,7 +92,6 @@ export function DetailedPost(props: RouteProps) {
             className="carousel slide"
             data-ride="carousel"
           >
-           
             <div className="carousel-inner">
               {images.map((ele, i) => (
                 <div className={`carousel-item ${i == 0 ? "active" : ""}`}>
@@ -89,14 +103,12 @@ export function DetailedPost(props: RouteProps) {
                 </div>
               ))}
             </div>
-            
           </div>
         </div>
 
         {/* <div className={styles.mapbox}></div> */}
 
-        <MapBox/>   
-      
+        <MapBox markers={marker ? [marker] : []} />
 
         <div className={`text-right ${styles.buttons}`}>
           <button type="button" className={styles.share_btn}>
