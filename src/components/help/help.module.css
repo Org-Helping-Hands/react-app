@@ -32,38 +32,39 @@
 
 .bottom{
     font-family: Arial;
-    margin: 5% 0px 8% 5%;
-    font-size: 175%;
+    margin: 5% 5% 8% 5%;
+    font-size: 135%;
+    color: rgb(130, 29, 155);
 }
 
-
-.btn{
-    background-color: green ;
+.hicons{
+    margin: 8% 3% 6% 59%;
+    height: 40px;
+    width: 40px;
+    color: gray;
     
-    color: white;
-    font-family: Arial;
-    font-size: 130%;
-    padding: 3% 2% 3% 2%;
     
-    border: none;
-    border-radius: 10px;
-}
-.btn2{
-    background-color:red;
-    color: white;
-    font-family: Arial;
-    font-size: 130%;
-    padding: 3% 2% 3% 2%;
-    margin-left: 1%;
-    border: none;
-    border-radius: 10px;
-}
-.buttons{
-    margin:auto;
-    align-items: center;
-    text-align: center;
+    /* border: black; */
+    /* border-width: 2px; */
+    /* border-style: solid; */
+    /* border-radius: 100px; */
+    /* padding: 5px; */
 }
 
+.shicons{
+    margin: -12% 8% 6% 2%;
+    background-color: green;
+    size: 15px;
+    height: 60px;
+    width: 60px;
+    color: rgb(255, 255, 255);
+    box-shadow:5px 5px 5px gray;
+    
+    border-style: solid;
+    border-radius: 100px;
+    padding: 0px;
+    
+}
 
 
 
