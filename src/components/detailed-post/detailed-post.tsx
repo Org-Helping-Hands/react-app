@@ -109,7 +109,7 @@ export function DetailedPost(props: RouteProps) {
           </div>
         </div>
 
-        {/* <div className={styles.mapbox}></div> */}
+       
 
         <MapBox markers={marker ? [marker] : []} />
 

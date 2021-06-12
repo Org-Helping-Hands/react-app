@@ -1,34 +1,25 @@
-import React from "react";
+import React, {useState} from "react";
 import styles from "./home.module.css";
 import { Link } from "react-router-dom";
 import { getUserData } from "../../common/api";
-export class Home extends React.Component {
-  state = {
-    name: "",
-    emailId: "",
-    totalHelps: 0,
-    totalPosts: 0,
-    totalPostCompletedByOthers: 0,
-  };
-  componentDidMount() {
+
+export function Home() {
+  const [name,setname] =useState<string>('');
+  const [totalPostCompletedByOthers,settotalPostCompletedByOthers] = useState<number>();
+  const [totalPosts,settotalPost] =useState<number>();
+  const [totalHelps,settotalHelps] =useState<number>();
+  const [emailId,setemailId] =useState<string>('');
+  
+  
     getUserData().then(({ data }) => {
-      let {
-        name,
-        emailId,
-        totalHelps,
-        totalPosts,
-        totalPostCompletedByOthers,
-      } = data;
-      this.setState({
-        name,
-        emailId,
-        totalHelps,
-        totalPosts,
-        totalPostCompletedByOthers,
-      });
+      setname(data.name);
+      setemailId(data.emailId);
+      settotalHelps(data.totalHelps);
+      settotalPostCompletedByOthers(data.totalPostCompletedByOthers);
+      settotalPost(data.totalPosts)
+      
     });
-  }
-    render() {
+  
       return (
         <>
         <div className={styles.head1}>
@@ -81,29 +72,73 @@ export class Home extends React.Component {
      <div className={styles.container2}>
         <div className={styles.line1}>
             <div className={styles.name}>
-            <p className={styles.cont2text}>{this.state.name}</p>
-              <p className={styles.cont2text2}>
-                {this.state.totalPostCompletedByOthers}/{this.state.totalPosts}{" "}
-                posts {this.state.totalHelps} helps
+            <p className={styles.cont2text}>{name}</p>
+             <Link to="/contribution">
+             <p className={styles.cont2text2}>
+                {totalPostCompletedByOthers}/{totalPosts}{" "}
+                posts {totalHelps} helps
               </p>
+             </Link>
               </div>
+              </div>
+              
               <div className={styles.nameImg}>
                 <p><img src="assets/home/user.png" alt="" height="50px" width="50px" /></p>
               </div>
-        </div>
-        <div className={styles.line2}>
+       
+        <div className={styles.line2}   data-toggle="modal"
+              data-target="#exampleModalCenter">
             <div className={styles.email}>
 
             <p className={styles.cont2text}>Email</p>
-              <p className={styles.cont2text2}>{this.state.emailId}</p>
+              <p className={styles.cont2text2}>{emailId}</p>
               </div>
+              </div>
+              
+              </div>
+              
               <div className={styles.emailImg}>
               <div className={styles.para5}>
               <p><img src="assets/home/email.png" alt="" height="50px" width="50px" /></p>
     </div>
                 
               </div>
-        </div>
+              <div
+            className="modal fade"
+            id="exampleModalCenter"
+            tabIndex={-1}
+            role="dialog"
+            aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true"
+          >
+            <div className="modal-dialog modal-dialog-centered" role="document">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title" id="exampleModalCenterTitle">
+                    Update E-mail
+                  </h5>
+                  <button
+                    type="button"
+                    className="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div className="modal-body">
+                  <div className="container">
+                    <input type="text" className="form form-control" placeholder="Enter Email-id" />
+                  </div>
+                </div>
+                <div className="modal-footer">
+                  <button className="btn btn-block btn-success"> Update</button>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        
         <div className={styles.line3}>
             <div className={styles.noti}>
               <p className={styles.cont2text}>Notification</p>
@@ -123,8 +158,8 @@ export class Home extends React.Component {
              
             </div>
           </div>
-        </div>
+        
       </>
     );
   }
-}
+
