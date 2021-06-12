@@ -57,6 +57,13 @@ export function Home() {
     </Link>
     </div>
     
+    <div className={styles.frame}>
+    <div className={styles.text}>
+        <p className={styles.textOne}>You are currently helping post which was</p>
+        <p className={styles.textTwo}>posted by siddhesh surve</p>
+      </div>
+    </div>
+
     <div className={styles.head2}>
       <h2>Account</h2>
     </div>

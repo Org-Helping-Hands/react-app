@@ -21,7 +21,7 @@ interface userDataResponse {
 
   emailId: string;
 }
-interface postDetailResponse {
+export interface postDetailResponse {
   id: number;
 
   neededItems: { name: string }[];
@@ -71,7 +71,17 @@ export function dopost(
     headers: getAuthReqHeader(),
   });
 }
+export function UpdateStatus(postId:String, latestOperation:string){
 
+return baseURL.post("/post/update-status",{
+   postId,
+   latestOperation
+},
+{
+  headers: getAuthReqHeader(),
+});
+
+}
 export function fetchDetailedPost(postId: string) {
   return baseURL.post<postDetailResponse>(
     "/post/fetch-details",
