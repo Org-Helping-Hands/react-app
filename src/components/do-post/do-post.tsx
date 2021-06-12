@@ -2,7 +2,7 @@ import React, { ChangeEventHandler, useState } from "react";
 import styles from "./do-post.module.css";
 import axios from "axios";
 
-import {  useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { MapBox } from "../mapbox/mapbox";
 import { dopost } from "../../common/api";
 
@@ -36,7 +36,7 @@ export function DoPost() {
     { name: "cloths", icon: "map:clothing-store" },
     { name: "Adoption", icon: "carbon:pedestrian-family" },
   ]);
-   const history=useHistory();
+  const history = useHistory();
   const [selectedTagsInModal, setSelectedTagsInModal] = useState<TTag[]>([]);
   const [showMap, setShopMap] = useState<boolean>(false);
 
@@ -138,7 +138,7 @@ export function DoPost() {
 
             <div className="row">
               {images.map((ele, index) => (
-                <div className={` col-4 col-sm-3`}>
+                <div key={index} className={` col-4 col-sm-3`}>
                   <img
                     src={URL.createObjectURL(ele)}
                     className={styles.selectedImages}
@@ -183,7 +183,7 @@ export function DoPost() {
           <p className={styles.notice}></p>
           <div className="row">
             {selectedTags.map((ele, index) => (
-              <div className="col-6 col-sm-4 col-md-3">
+              <div key={index} className="col-6 col-sm-4 col-md-3">
                 <button type="button" className={styles.tagbtn}>
                   <span className="iconify-wrapper">
                     <i className="iconify" data-icon={ele.icon}></i>
@@ -237,9 +237,9 @@ export function DoPost() {
                 </div>
                 <div className="modal-body">
                   <div className="row">
-                    {tags.map((ele) => {
+                    {tags.map((ele, i) => {
                       return (
-                        <div className="col-6">
+                        <div key={i} className="col-6">
                           <button
                             type="button"
                             className={getModalTagClass(ele)}
