@@ -54,6 +54,8 @@ export class Signin extends React.Component {
         if (_auth.currentUser) {
           _auth.currentUser.getIdToken(true).then((idToken) => {
             let url = process.env.REACT_APP_NODEJS_API + "/user/signin";
+            console.log(idToken);
+
             axios
               .post(url, { idToken, name: this.state.name })
               .then(async ({ data }) => {

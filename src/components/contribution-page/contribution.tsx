@@ -1,10 +1,11 @@
 import { group } from "node:console";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link,useHistory } from "react-router-dom";
 import styles from "./contribution.module.css";
 
-export class Contribution extends React.Component{
-    render() {
+
+export function Contribution() {
+    const history = useHistory();
         return (
           <>
               <div className={styles.arrow}>
@@ -13,6 +14,7 @@ export class Contribution extends React.Component{
             alt=""
             height="31px"
             width="31px"
+            onClick={() => history.goBack()}
           />
         </div>
             <h3 className={styles.title}>Your Contribution</h3>
@@ -108,4 +110,4 @@ export class Contribution extends React.Component{
           </>
           )
         }
-    }
+    

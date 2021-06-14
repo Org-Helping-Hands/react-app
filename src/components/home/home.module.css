@@ -2,6 +2,7 @@
     padding: 5px 0px 0px 0px;
 }
 .container2{
+    margin-top: 1%;
     margin-left: 15px;
 }
 .head1{
@@ -51,7 +52,49 @@ border-radius: 12px;
     font-family: "Inter-Medium", "Inter", sans-serif;
     color: #000000;
     margin-left: 25px;
-    margin-top: 50px;
+    margin-top: 10%;
+}
+.frame{
+    margin-top: 80px;
+    width: 90%;
+    height: 80px;
+    margin: 0 auto 0 auto;
+    box-shadow: 0px 1px 37px 0px #0099FF;
+    background-color: #6bc4ff;
+    overflow: visible;
+    border-radius: 14px;
+}
+
+.text{
+    
+    padding: 3%;
+    width: 99%; /* 314px */
+    height: 38px; /* 38px */
+    overflow: visible;
+    font-size: 16px;
+    /* line-height: 1.2; */
+    font-weight: 500;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #ffffff;
+}
+.textOne{
+    padding-left: 3%;
+    font-size: 16px;
+    letter-spacing: 0px;
+    text-align: left;
+    font-weight: 500;
+    font-family: "Inter-Medium", "Inter", sans-serif;
+    color: #ffffff;
+}
+.textTwo{
+    padding-left: 3%;
+    font-size: 16px;
+    text-align: left;
+    letter-spacing: 0px;
+    line-height: 0;
+    font-weight: 500;
+    font-family: "Inter-Medium", "Inter", sans-serif;
+    color: #ffffff;
 }
 .name{
     /* background-color: rgb(212, 129, 129); */

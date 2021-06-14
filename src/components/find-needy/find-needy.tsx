@@ -7,6 +7,7 @@ import { IPostMinimal } from "../../common/interfaces/post";
 import { fetchPost } from "../../common/api";
 import { MapBox } from "../mapbox/mapbox";
 import { getLocation } from "../../common/location";
+import { Link,useHistory } from "react-router-dom";
 
 var map: mapboxgl.Map;
 
@@ -24,7 +25,7 @@ export function FindNeedy() {
     );
   }
   const [{ x, y }, api] = useSpring(() => ({ x: 0, y: 10 }));
-
+ const history =useHistory()
   // Set the drag hook and define component movement based on gesture data
   const bind = useDrag(
     ({ direction, movement: [mx, my] }) => {
@@ -52,6 +53,7 @@ export function FindNeedy() {
           alt=""
           height="31px"
           width="31px"
+          onClick={() => history.goBack()}
         />
       </div>
       <div className={styles.head1}>
@@ -63,35 +65,37 @@ export function FindNeedy() {
         <div className={styles.postersList}>
           <div className={styles.horizontalLine} {...bind()}></div>
           {posts.map((post, i) => (
-            <div className={styles.line1} key={post.id}>
-              <div className={styles.name}>
-                <div className={styles.para1}>
-                  <p className={styles.cont2text1}>
-                    Posted by {post.postedBy.name}
-                  </p>
+            <Link to={`/detailed-post?id=${post.id}`}>
+              <div className={styles.line1} key={post.id}>
+                <div className={styles.name}>
+                  <div className={styles.para1}>
+                    <p className={styles.cont2text1}>
+                      Posted by {post.postedBy.name}
+                    </p>
+                  </div>
+                  <div className={styles.para2}>
+                    <p className={styles.cont2text2}>
+                      {post.neededItems.map((e, i) => {
+                        let output = "";
+                        if (i > 0) output = ", ";
+                        output += e.itemName;
+                        return output;
+                      })}
+                    </p>
+                  </div>
                 </div>
-                <div className={styles.para2}>
-                  <p className={styles.cont2text2}>
-                    {post.neededItems.map((e, i) => {
-                      let output = "";
-                      if (i > 0) output = ", ";
-                      output += e.itemName;
-                      return output;
-                    })}
+                <div className={styles.nameImg1}>
+                  <p className={styles.userImg1}>
+                    <img
+                      src="/assets/find-needy/user.png"
+                      alt=""
+                      height="46px"
+                      width="46px"
+                    />
                   </p>
                 </div>
               </div>
-              <div className={styles.nameImg1}>
-                <p className={styles.userImg1}>
-                  <img
-                    src="/assets/find-needy/user.png"
-                    alt=""
-                    height="46px"
-                    width="46px"
-                  />
-                </p>
-              </div>
-            </div>
+            </Link>
           ))}
         </div>
       </animated.div>

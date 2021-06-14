@@ -17,6 +17,7 @@ import { DetailedPost } from "./components/detailed-post/detailed-post";
 import { FollowPost } from "./components/help/help";
 import { Contribution } from "./components/contribution-page/contribution";
 import { hbox } from "./components/hbox/hbox";
+import { Thankyou } from "./components/thankyou/thankyou";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         <Route path="/follow-post" component={FollowPost} />
         <Route path="/contribution" component={Contribution} />
         <Route path="/hbox" component={hbox} />
+        <Route path="/thankyou" component={Thankyou} />
       </Switch>
     </Router>
   );
