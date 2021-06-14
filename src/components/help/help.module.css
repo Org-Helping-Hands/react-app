@@ -1,6 +1,4 @@
-*{
-    align-items: left;
-}
+
 
 .arrow{
     align-items: start;
@@ -46,7 +44,7 @@
 }
 
 .hicons{
-    margin: 8% 3% 6% 59%;
+    margin: 8% 0% 6% 65%;
     height: 40px;
     width: 40px;
     color: gray;
@@ -60,7 +58,7 @@
 }
 
 .shicons{
-    margin: -12% 8% 6% 2%;
+    margin: -12% 5% 7% 3%;
     background-color: green;
     size: 15px;
     height: 60px;
