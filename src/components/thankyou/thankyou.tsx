@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styles from "./thankyou.module.css"
 export class Thankyou extends React.Component {
 
@@ -9,13 +10,17 @@ export class Thankyou extends React.Component {
                 <p>Hi Siddhesh, Thanks for your</p>
                 <p>contribution to Helping hands</p> 
             </div>
-            <div className={styles.img}>
+            {/* <div className={styles.img}>
       
-            </div>
-            <div className={styles.head1}><h2>Thank You</h2></div>
+            </div> */}
+            <div className={styles.head1}><p>Thank You</p></div>
             <div className={styles.text2}>
                 <p>Change the world by being yourself,</p>
-                <p> <a className={styles.anchor} href="#">Keep Helping...</a></p>
+                <p>
+                     <Link to={"/find-needy"}>
+                    <a className={styles.anchor} href="#"><u>Keep Helping...</u></a>
+                    </Link>
+                    </p>
             </div>
             <div className={styles.text3}> 
                 <p>If you have much, give of your wealth, if you have little, give of your heart.</p>

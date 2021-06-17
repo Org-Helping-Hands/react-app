@@ -17,13 +17,14 @@ export function Home() {
 
   useEffect(() => {
     getUserData().then(({ data }) => {
+      console.log(data)
       setname(data.name);
       setemailId(data.emailId);
       settotalHelps(data.totalHelps);
       settotalPostCompletedByOthers(data.totalPostCompletedByOthers);
       settotalPost(data.totalPosts);
       setCurrentPostHelpingUserName(data.currentHelpingPost?.postedBy.name);
-      setCurrentPostHelpingId(data.currentHelpingPost.id);
+      setCurrentPostHelpingId(data.currentHelpingPost?.id);
     });
   }, []);
 
