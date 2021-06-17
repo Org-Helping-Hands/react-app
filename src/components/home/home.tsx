@@ -179,6 +179,7 @@ export function Home() {
                   type="text"
                   className="form form-control"
                   placeholder="Enter Email-id"
+               
                   onChange={(e) => setUpdatesEmail(e.target.value)}
                 />
                 <button className="btn btn-success mt-2" onClick={onOtpClick}>

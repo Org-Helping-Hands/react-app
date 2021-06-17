@@ -147,20 +147,7 @@ export function DetailedPost(props: RouteProps) {
         <MapBox markers={marker ? [marker] : []} />
 
         <div className={`text-right ${styles.buttons}`}>
-          <button type="button" className={styles.share_btn}>
-            <img
-              src="assets/detailed-post/inbox.png"
-              height="35px"
-              width="35px"
-            ></img>
-          </button>
-          <button type="button" className={styles.share_btn}>
-            <img
-              src="assets/detailed-post/shareIcon.png"
-              height="30px"
-              width="30px"
-            ></img>
-          </button>
+         
         </div>
         
           <button
