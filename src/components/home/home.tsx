@@ -28,8 +28,13 @@ export function Home() {
   }
   function updateEmail() {
     verifyUpdateEmailId(updatedEmail, OTP).then((_) =>
-      setemailId(updatedEmail)
-    );
+     { setemailId(updatedEmail)
+      setEmailNotice(" You EmailId is successfuly Updated");
+       console.log(_)
+    }
+    
+  
+    ).catch(err => setEmailNotice(" Check OTP you have entered"));
   }
 
   useEffect(() => {
