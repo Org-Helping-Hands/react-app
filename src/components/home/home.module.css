@@ -16,9 +16,17 @@
     color: #000000;
     text-align: center;
 }
-.emailNotice{
-    color: gray;
-    font-size: 1.2rem;
+.blue{
+    border-radius: 10px;
+    background-color: #6bc4ff;
+    margin: 5% 5% 5% 5%;
+    box-shadow: 0px 1px 37px 0px #0099FF;
+    
+}
+.para{
+    font-size: 125%;
+    color: white;
+    padding: 4% 3% 4% 3%;
 }
 .right{
     /* background-color: skyblue; */
