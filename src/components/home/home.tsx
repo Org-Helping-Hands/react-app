@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./home.module.css";
 import { Link } from "react-router-dom";
 import { getUserData } from "../../common/api";
+import { useEffect } from "react";
 
 export function Home() {
   const [name, setname] = useState<string>("");
@@ -10,16 +11,19 @@ export function Home() {
   const [totalPosts, settotalPost] = useState<number>();
   const [totalHelps, settotalHelps] = useState<number>();
   const [emailId, setemailId] = useState<string>("");
+  const [currentPostHelpingUserName, setCurrentPostHelpingUserName] =
+    useState("");
 
-  getUserData().then(({ data }) => {
-    console.log(data);
-
-    setname(data.name);
-    setemailId(data.emailId);
-    settotalHelps(data.totalHelps);
-    settotalPostCompletedByOthers(data.totalPostCompletedByOthers);
-    settotalPost(data.totalPosts);
-  });
+  useEffect(() => {
+    getUserData().then(({ data }) => {
+      setname(data.name);
+      setemailId(data.emailId);
+      settotalHelps(data.totalHelps);
+      settotalPostCompletedByOthers(data.totalPostCompletedByOthers);
+      settotalPost(data.totalPosts);
+      setCurrentPostHelpingUserName(data.currentHelpingPost?.postedBy.name);
+    });
+  }, []);
 
   return (
     <>
@@ -62,15 +66,18 @@ export function Home() {
           </div>
         </Link>
       </div>
-
-      <div className={styles.frame}>
-        <div className={styles.text}>
-          <p className={styles.textOne}>
-            You are currently helping post which was
-          </p>
-          <p className={styles.textTwo}>posted by siddhesh surve</p>
+      {currentPostHelpingUserName && (
+        <div className={styles.frame}>
+          <div className={styles.text}>
+            <p className={styles.textOne}>
+              You are currently helping post which was
+            </p>
+            <p className={styles.textTwo}>
+              posted by {currentPostHelpingUserName}
+            </p>
+          </div>
         </div>
-      </div>
+      )}
 
       <div className={styles.head2}>
         <h2>Account</h2>

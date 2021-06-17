@@ -5,10 +5,9 @@ const baseURL = axios.create({
   baseURL: process.env.REACT_APP_NODEJS_API,
 });
 export type TLatestOperation = "Completed" | "Started" | "Idle";
-interface updateStatus{
+interface updateStatus {
   postId: string;
   latestOperation: TLatestOperation;
-  
 }
 interface IAuthReqBody {
   userId: string;
@@ -26,6 +25,8 @@ interface userDataResponse {
   totalPostCompletedByOthers: number;
 
   emailId: string;
+
+  currentHelpingPost: postDetailResponse;
 }
 export interface postDetailResponse {
   id: number;
@@ -77,16 +78,20 @@ export function dopost(
     headers: getAuthReqHeader(),
   });
 }
-export function updateStatus(postId:String, latestOperation:TLatestOperation){
-
-return baseURL.post("/post/update-status",{
-   postId,
-   latestOperation
-},
-{
-  headers: getAuthReqHeader(),
-});
-
+export function updateStatus(
+  postId: String,
+  latestOperation: TLatestOperation
+) {
+  return baseURL.post(
+    "/post/update-status",
+    {
+      postId,
+      latestOperation,
+    },
+    {
+      headers: getAuthReqHeader(),
+    }
+  );
 }
 export function fetchDetailedPost(postId: string) {
   return baseURL.post<postDetailResponse>(
@@ -124,4 +129,3 @@ export function getUserData() {
     { headers: getAuthReqHeader() }
   );
 }
-
