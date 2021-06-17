@@ -2,22 +2,33 @@ import React, { useEffect, useState } from "react";
 import styles from "./help.module.css";
 import { MapBox } from "../mapbox/mapbox";
 import mapboxgl from "mapbox-gl";
+import { fetchDetailedPost, postDetailResponse, updateStatus } from "../../common/api";
 
 export function FollowPost() {
-  const [locationCoords, setLocationCoords] = useState({
-    latitude: 18.1462483,
-    longitude: 73.289954,
-  });
-
   const [marker, setMarker] = useState<mapboxgl.Marker>();
 
-  function createMarker(latitude: number, longitude: number) {
-    setMarker(new mapboxgl.Marker().setLngLat([longitude, latitude]));
+  function createMarker(post: postDetailResponse) {
+    setMarker(
+      new mapboxgl.Marker().setLngLat([
+        parseFloat(post.longitude),
+        parseFloat(post.latitude),
+      ])
+    );
   }
-
+   function onTickClick(){
+    updateStatus("1","Completed");
+   
+   }
+ function onCrossClick(){
+    updateStatus("1", "Idle")
+    console.log("help denied")
+     }
   useEffect(() => {
-    createMarker(18.1462483, 73.289954);
-  }, []);
+    fetchDetailedPost("1").then(({ data }) => {
+      createMarker(data);
+    });
+  });
+
   return (
     <>
       <div>
@@ -43,13 +54,13 @@ export function FollowPost() {
           if you donate your old clothes
         </p>
 
-        <span className={`iconify-wrapper `}>
+        <span className={`iconify-wrapper `} onClick={onCrossClick}>
           <i
             className={`iconify ${styles.hicons}`}
             data-icon="akar-icons:cross"
           ></i>
         </span>
-        <span className={`iconify-wrapper `}>
+        <span className={`iconify-wrapper `} onClick={onTickClick}>
           <i
             className={`iconify ${styles.shicons}`}
             data-icon="akar-icons:check"

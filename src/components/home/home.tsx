@@ -12,6 +12,8 @@ export function Home() {
   const [emailId, setemailId] = useState<string>("");
 
   getUserData().then(({ data }) => {
+    console.log(data);
+
     setname(data.name);
     setemailId(data.emailId);
     settotalHelps(data.totalHelps);
