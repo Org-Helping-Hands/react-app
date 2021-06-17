@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import styles from "./home.module.css";
 import { Link } from "react-router-dom";
-import { getUserData,requestUpdateEmailId,verifyUpdateEmailId } from "../../common/api";
+import {
+  getUserData,
+  requestUpdateEmailId,
+  verifyUpdateEmailId,
+} from "../../common/api";
 import { useEffect } from "react";
 
 export function Home() {
-  const [OTP,setOTP]= useState<string>(" ")
-  const[updatedEmail, setUpdatesEmail] = useState<string>("");
-  const [emailNotice,setEmailNotice]=useState<string>("");
+  const [OTP, setOTP] = useState<string>(" ");
+  const [updatedEmail, setUpdatesEmail] = useState<string>("");
+  const [emailNotice, setEmailNotice] = useState<string>("");
   const [name, setname] = useState<string>("");
   const [totalPostCompletedByOthers, settotalPostCompletedByOthers] =
     useState<number>();
@@ -18,14 +22,15 @@ export function Home() {
     useState("");
   const [currentPostHelpingId, setCurrentPostHelpingId] = useState<number>();
 
-
-  function onOtpClick(){
-    requestUpdateEmailId(updatedEmail)
+  function onOtpClick() {
+    requestUpdateEmailId(updatedEmail);
     setEmailNotice("Verication code is sent on your entered email-Id ");
   }
- function updateEmail(){
-  verifyUpdateEmailId(updatedEmail,OTP)
- }
+  function updateEmail() {
+    verifyUpdateEmailId(updatedEmail, OTP).then((_) =>
+      setemailId(updatedEmail)
+    );
+  }
 
   useEffect(() => {
     getUserData().then(({ data }) => {
@@ -38,7 +43,6 @@ export function Home() {
       setCurrentPostHelpingId(data.currentHelpingPost?.id);
     });
   });
-
 
   return (
     <>
@@ -172,22 +176,28 @@ export function Home() {
                   type="text"
                   className="form form-control"
                   placeholder="Enter Email-id"
-                  onChange={(e)=> setUpdatesEmail(e.target.value)}
+                  onChange={(e) => setUpdatesEmail(e.target.value)}
                 />
-                <button className="btn btn-success mt-2" onClick={onOtpClick}>Get OTP</button>
+                <button className="btn btn-success mt-2" onClick={onOtpClick}>
+                  Get OTP
+                </button>
                 <input
                   type="text"
                   className="form form-control mt-2"
                   placeholder="Enter OTP"
-                  onChange={(e)=>setOTP(e.target.value)}
+                  onChange={(e) => setOTP(e.target.value)}
                 />
-                <p className={styles.emailNotice}>
-                  {emailNotice}
-                </p>
+                <p className={styles.emailNotice}>{emailNotice}</p>
               </div>
             </div>
             <div className="modal-footer">
-              <button className="btn btn-block btn-success" onClick={updateEmail}> Update</button>
+              <button
+                className="btn btn-block btn-success"
+                onClick={updateEmail}
+              >
+                {" "}
+                Update
+              </button>
             </div>
           </div>
         </div>
