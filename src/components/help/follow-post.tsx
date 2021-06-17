@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "./FollowPost.module.css";
+import styles from "./follow-post.module.css";
 import { MapBox } from "../mapbox/mapbox";
 import mapboxgl from "mapbox-gl";
 import {
