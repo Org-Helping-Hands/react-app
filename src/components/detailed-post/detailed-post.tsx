@@ -43,7 +43,7 @@ export function DetailedPost(props: RouteProps) {
   }
 
   function onHelpClick() {
-    updateStatus(postId, "Started").then( _=> history.push("/find-needy"))
+    updateStatus(postId, "Started").then( _=> history.push("/follow-post?id="+postId));
   }
 
   useEffect(() => {
@@ -162,7 +162,7 @@ export function DetailedPost(props: RouteProps) {
             ></img>
           </button>
         </div>
-        <Link to="/follow-post">
+        
           <button
             type="button"
             className={`btn btn-success ${styles.help_btn}`}
@@ -170,7 +170,7 @@ export function DetailedPost(props: RouteProps) {
           >
             help
           </button>
-        </Link>
+        
       </div>
     </>
   );

@@ -74,7 +74,7 @@ export function dopost(
   });
   formData.append("neededItems", JSON.stringify(neededItems));
 
-  baseURL.post("/post/create", formData, {
+ return baseURL.post("/post/create", formData, {
     headers: getAuthReqHeader(),
   });
 }

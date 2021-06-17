@@ -5,6 +5,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { MapBox } from "../mapbox/mapbox";
 import { dopost } from "../../common/api";
+import { ThemeConsumer } from "react-bootstrap/esm/ThemeProvider";
 
 const baseUrl = axios.create({
   baseURL: "process.env.REACT_APP_NODEJS_API",
@@ -37,6 +38,7 @@ export function DoPost() {
     { name: "Adoption", icon: "carbon:pedestrian-family" },
   ]);
   const history = useHistory();
+
   const [selectedTagsInModal, setSelectedTagsInModal] = useState<TTag[]>([]);
   const [showMap, setShopMap] = useState<boolean>(false);
 
@@ -88,7 +90,7 @@ export function DoPost() {
         description,
         images,
         neededItems
-      );
+      ).then( _=> history.push("/thankyou"));
     }
   }
 

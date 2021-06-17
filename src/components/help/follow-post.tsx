@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./follow-post.module.css";
 import { MapBox } from "../mapbox/mapbox";
 import mapboxgl from "mapbox-gl";
+import { useHistory } from "react-router-dom";
 import {
   fetchDetailedPost,
   fetchImageDetailedPost,
@@ -24,12 +25,15 @@ export function FollowPost(props: RouteProps) {
       ])
     );
   }
+  const history = useHistory();
   function onTickClick() {
-    updateStatus("1", "Completed");
+    updateStatus(postId, "Completed").then(_ => {history.push("/thankyou") 
+    console.log("vadapav")});
+    
   }
   function onCrossClick() {
-    updateStatus("1", "Idle");
-    console.log("help denied");
+    updateStatus(postId, "Idle").then(_ => history.push("/home"));
+    
   }
   useEffect(() => {
     let id = new URLSearchParams(props.location?.search).get("id");
