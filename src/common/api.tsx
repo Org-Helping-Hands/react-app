@@ -131,7 +131,7 @@ export function getUserData() {
 }
 
 export function requestUpdateEmailId(emailId:String){
-  return baseURL.post("/user/request-update-email",{
+  return baseURL.post("/user/request-email-update",{
     emailId
   },
   {
