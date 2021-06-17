@@ -27,8 +27,7 @@ export function FollowPost(props: RouteProps) {
   }
   const history = useHistory();
   function onTickClick() {
-    updateStatus(postId, "Completed").then(_ => {history.push("/thankyou") 
-    console.log("vadapav")});
+    updateStatus(postId, "Completed").then(_ =>history.push("/thankyou") );
     
   }
   function onCrossClick() {

@@ -39,7 +39,7 @@ export function Home() {
 
   useEffect(() => {
     getUserData().then(({ data }) => {
-      console.log(data)
+      
       setname(data.name);
       setemailId(data.emailId);
       settotalHelps(data.totalHelps);
@@ -209,7 +209,7 @@ export function Home() {
         </div>
       </div>
 
-      <div className={styles.line3}>
+      {/* <div className={styles.line3}>
         <div className={styles.noti}>
           <p className={styles.cont2text}>Notification</p>
           <p className={styles.cont2text2}>Notifications are on</p>
@@ -226,7 +226,7 @@ export function Home() {
             </p>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }
