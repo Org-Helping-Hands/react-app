@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Link, RouteProps } from "react-router-dom";
+import { Link, RouteProps, useHistory } from "react-router-dom";
 import styles from "./detailed-post.module.css";
-import { fetchDetailedPost, fetchImageDetailedPost } from "../../common/api";
+import {
+  fetchDetailedPost,
+  fetchImageDetailedPost,
+  postDetailResponse,
+  updateStatus,
+} from "../../common/api";
 import { MapBox } from "../mapbox/mapbox";
+import mapboxgl from "mapbox-gl";
 // state = {
 //    Urls:[
 //      {URL:"assets/detailed-post/poor1.jpg"},
@@ -21,18 +27,34 @@ type Post = {
 
 export function DetailedPost(props: RouteProps) {
   const [name, setName] = useState<string>("");
-  const [time, setTime] = useState<string>("");
   const [images, setImages] = useState<string[]>([]);
   const [description, setDescription] = useState<string>("");
+  const [marker, setMarker] = useState<mapboxgl.Marker>();
+  const [postId, setPostId] = useState("");
+  const history = useHistory();
+
+  function createMarker(post: postDetailResponse) {
+    setMarker(
+      new mapboxgl.Marker().setLngLat([
+        parseFloat(post.longitude),
+        parseFloat(post.latitude),
+      ])
+    );
+  }
+
+  function onHelpClick() {
+    updateStatus(postId, "Started");
+  }
 
   useEffect(() => {
     let id = new URLSearchParams(props.location?.search).get("id");
-
     if (id) {
+      setPostId(id);
+
       fetchDetailedPost(id).then(({ data }) => {
         setName(data.postedBy.name);
-        setTime("5 min walk");
         setDescription(data.description);
+        createMarker(data);
       });
       fetchImageDetailedPost(id).then(({ data }) => {
         setImages(data);
@@ -41,12 +63,13 @@ export function DetailedPost(props: RouteProps) {
   }, []);
   return (
     <>
-    <img
+      <img
         className="mt-3 ml-3"
         src="/assets/find-needy/arrow.jpg"
         alt=""
         height="31px"
         width="31px"
+        onClick={() => history.goBack()}
       />
       <h1 className={styles.mainTitle}> Needy people near you</h1>
       <div className={styles.detail_post}>
@@ -61,7 +84,6 @@ export function DetailedPost(props: RouteProps) {
               </div>
               <div className="col-9 col-sm-10  col-md-11 ">
                 <h3 className={styles.username}>Posted by {name}</h3>
-                <p className={styles.username}>{time}</p>
               </div>
             </div>
           </div>
@@ -77,10 +99,12 @@ export function DetailedPost(props: RouteProps) {
             className="carousel slide"
             data-ride="carousel"
           >
-           
             <div className="carousel-inner">
               {images.map((ele, i) => (
-                <div className={`carousel-item ${i == 0 ? "active" : ""}`}>
+                <div
+                  className={`carousel-item ${i == 0 ? "active" : ""}`}
+                  key={i}
+                >
                   <img
                     className={`d-block w-100 ${styles.help_img}`}
                     src={`data:image/jpg;base64,${ele}`}
@@ -89,17 +113,13 @@ export function DetailedPost(props: RouteProps) {
                 </div>
               ))}
             </div>
-            
           </div>
         </div>
 
-       
-
-        <MapBox/>   
-      
+        <MapBox markers={marker ? [marker] : []} />
 
         <div className={`text-right ${styles.buttons}`}>
-        <button type="button" className={styles.share_btn}>
+          <button type="button" className={styles.share_btn}>
             <img
               src="assets/detailed-post/inbox.png"
               height="35px"
@@ -113,14 +133,16 @@ export function DetailedPost(props: RouteProps) {
               width="30px"
             ></img>
           </button>
-          
         </div>
-        <button
+        <Link to="/follow-post">
+          <button
             type="button"
             className={`btn btn-success ${styles.help_btn}`}
+            onClick={onHelpClick}
           >
             help
           </button>
+        </Link>
       </div>
     </>
   );

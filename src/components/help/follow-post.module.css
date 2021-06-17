@@ -1,0 +1,85 @@
+
+
+.arrow{
+    align-items: start;
+    width: 30px;
+    background-color: yellowgreen;
+    margin: 4% 90% 4% 4%;
+    margin-bottom: 5%;
+    
+}
+
+.top{
+    font-family: "Inter-Medium", "Inter", sans-serif;
+    margin: 0px 0px 8% 5%;
+    font-size: 200%;
+}
+
+.div {
+    width: 89%;
+    background-color:rgb(188, 232, 248);
+    height: 400px;
+    border: 1px solid black;
+    border-radius: 10px ;
+    border:none;
+    margin-left: 5.5%;
+    padding: 10%;
+    box-shadow: 2px 3px 10px 2px rgb(158, 156, 156); 
+    
+}
+.tag{
+    margin: 5% 0% 0% 3%;
+    
+    size: 15px;
+    height: 40px;
+    width: 40px;
+    color: rgb(116, 116, 116);
+}
+
+.bottom{
+    font-family: Arial;
+    margin: 5% 5% 8% 5%;
+    font-size: 135%;
+    color: rgb(130, 29, 155);
+}
+
+.hicons{
+    margin: 8% 0% 6% 65%;
+    height: 40px;
+    width: 40px;
+    color: gray;
+    
+    
+    /* border: black; */
+    /* border-width: 2px; */
+    /* border-style: solid; */
+    /* border-radius: 100px; */
+    /* padding: 5px; */
+}
+
+.shicons{
+    margin: -12% 5% 7% 3%;
+    background-color: green;
+    size: 15px;
+    height: 60px;
+    width: 60px;
+    color: rgb(255, 255, 255);
+    box-shadow:5px 5px 5px gray;
+    
+    border-style: solid;
+    border-radius: 100px;
+    padding: 0px;
+    
+}
+
+
+
+@media screen and (max-width:600px){
+    .top{
+        text-align: start  ;
+    }
+    .bottom{
+        text-align: start;
+    }
+    
+}

@@ -4,6 +4,11 @@ import { getPhoneNumber, getToken, getUserId } from "./user";
 const baseURL = axios.create({
   baseURL: process.env.REACT_APP_NODEJS_API,
 });
+export type TLatestOperation = "Completed" | "Started" | "Idle";
+interface updateStatus {
+  postId: string;
+  latestOperation: TLatestOperation;
+}
 interface IAuthReqBody {
   userId: string;
   phoneNumber: string;
@@ -20,8 +25,10 @@ interface userDataResponse {
   totalPostCompletedByOthers: number;
 
   emailId: string;
+
+  currentHelpingPost: postDetailResponse;
 }
-interface postDetailResponse {
+export interface postDetailResponse {
   id: number;
 
   neededItems: { name: string }[];
@@ -71,7 +78,21 @@ export function dopost(
     headers: getAuthReqHeader(),
   });
 }
-
+export function updateStatus(
+  postId: String,
+  latestOperation: TLatestOperation
+) {
+  return baseURL.post(
+    "/post/update-status",
+    {
+      postId,
+      latestOperation,
+    },
+    {
+      headers: getAuthReqHeader(),
+    }
+  );
+}
 export function fetchDetailedPost(postId: string) {
   return baseURL.post<postDetailResponse>(
     "/post/fetch-details",

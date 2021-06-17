@@ -2,6 +2,7 @@ import React, { ChangeEventHandler, useState } from "react";
 import styles from "./do-post.module.css";
 import axios from "axios";
 
+import { useHistory } from "react-router-dom";
 import { MapBox } from "../mapbox/mapbox";
 import { dopost } from "../../common/api";
 
@@ -21,10 +22,10 @@ type Coords = {
 
 export function DoPost() {
   const [images, setImages] = useState<File[]>([]);
-  const [address, setAddress] = useState<string>('');
+  const [address, setAddress] = useState<string>("");
   const [coords, setCoords] = useState<Coords>();
   const [selectedTags, setSelectedTags] = useState<TTag[]>([]);
-  const [description, setDescription] = useState<string>('');
+  const [description, setDescription] = useState<string>("");
   const [tags] = useState<TTag[]>([
     { name: "Water", icon: "akar-icons:water" },
     { name: "Food", icon: "emojione-monotone:pot-of-food" },
@@ -35,6 +36,7 @@ export function DoPost() {
     { name: "cloths", icon: "map:clothing-store" },
     { name: "Adoption", icon: "carbon:pedestrian-family" },
   ]);
+  const history = useHistory();
   const [selectedTagsInModal, setSelectedTagsInModal] = useState<TTag[]>([]);
   const [showMap, setShopMap] = useState<boolean>(false);
 
@@ -47,7 +49,6 @@ export function DoPost() {
     }
     setImages(files);
   }
-
 
   function toggleTagInModal(name: TTag) {
     let tagExist = selectedTagsInModal.includes(name);
@@ -99,6 +100,7 @@ export function DoPost() {
         alt=""
         height="31px"
         width="31px"
+        onClick={() => history.goBack()}
       />
 
       <h1 className={`text-sm-center  ${styles.maintitle}`}>Request Help</h1>
@@ -136,7 +138,7 @@ export function DoPost() {
 
             <div className="row">
               {images.map((ele, index) => (
-                <div className={` col-4 col-sm-3`}>
+                <div key={index} className={` col-4 col-sm-3`}>
                   <img
                     src={URL.createObjectURL(ele)}
                     className={styles.selectedImages}
@@ -151,23 +153,9 @@ export function DoPost() {
         </div>
 
         <p className={styles.title}>select location</p>
-        <div className="input-group mb-3">
-          <input
-            type="text"
-            className={`${styles.addressInput} `}
-            placeholder="Enter Address"
-            aria-label="Enter address"
-            aria-describedby="button-addon2"
-            value={address}
-            onChange={(e)=>setAddress(e.target.value)}
-          />
-          <span
-            className="iconify-wrapper"
-            onClick={() => setShopMap(!showMap)}
-          >
-            <i className="iconify" data-icon="bx:bxs-map"></i>
-          </span>
-        </div>
+        <button className="btn mb-2" onClick={() => setShopMap(!showMap)}>
+          Show map
+        </button>
         {showMap && (
           <MapBox
             onMapClick={(latitude, longitude) => {
@@ -181,7 +169,7 @@ export function DoPost() {
           <p className={styles.notice}></p>
           <div className="row">
             {selectedTags.map((ele, index) => (
-              <div className="col-6 col-sm-4 col-md-3">
+              <div key={index} className="col-6 col-sm-4 col-md-3">
                 <button type="button" className={styles.tagbtn}>
                   <span className="iconify-wrapper">
                     <i className="iconify" data-icon={ele.icon}></i>
@@ -235,9 +223,9 @@ export function DoPost() {
                 </div>
                 <div className="modal-body">
                   <div className="row">
-                    {tags.map((ele) => {
+                    {tags.map((ele, i) => {
                       return (
-                        <div className="col-6">
+                        <div key={i} className="col-6">
                           <button
                             type="button"
                             className={getModalTagClass(ele)}
@@ -272,10 +260,10 @@ export function DoPost() {
             name="Description"
             className={styles.description}
             value={description}
-            onChange={ (e)=>setDescription(e.target.value) }
+            onChange={(e) => setDescription(e.target.value)}
             placeholder="You will find them near xyz shop or xyz area"
           />
-          
+
           <div className="row">
             <button
               className={`btn btn-primary ${styles.postbtn}`}

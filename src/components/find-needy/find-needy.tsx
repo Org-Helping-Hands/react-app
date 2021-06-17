@@ -7,7 +7,7 @@ import { IPostMinimal } from "../../common/interfaces/post";
 import { fetchPost } from "../../common/api";
 import { MapBox } from "../mapbox/mapbox";
 import { getLocation } from "../../common/location";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 var map: mapboxgl.Map;
 
@@ -25,7 +25,7 @@ export function FindNeedy() {
     );
   }
   const [{ x, y }, api] = useSpring(() => ({ x: 0, y: 10 }));
-
+  const history = useHistory();
   // Set the drag hook and define component movement based on gesture data
   const bind = useDrag(
     ({ direction, movement: [mx, my] }) => {
@@ -53,6 +53,7 @@ export function FindNeedy() {
           alt=""
           height="31px"
           width="31px"
+          onClick={() => history.goBack()}
         />
       </div>
       <div className={styles.head1}>
@@ -64,7 +65,7 @@ export function FindNeedy() {
         <div className={styles.postersList}>
           <div className={styles.horizontalLine} {...bind()}></div>
           {posts.map((post, i) => (
-            <Link to={`/detailed-post?id=${post.id}`}>
+            <Link key={i} to={`/detailed-post?id=${post.id}`}>
               <div className={styles.line1} key={post.id}>
                 <div className={styles.name}>
                   <div className={styles.para1}>
