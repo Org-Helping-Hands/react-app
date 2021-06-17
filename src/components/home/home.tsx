@@ -67,16 +67,18 @@ export function Home() {
         </Link>
       </div>
       {currentPostHelpingUserName && (
-        <div className={styles.frame}>
-          <div className={styles.text}>
-            <p className={styles.textOne}>
-              You are currently helping post which was
-            </p>
-            <p className={styles.textTwo}>
-              posted by {currentPostHelpingUserName}
-            </p>
+        <Link to="/follow-post">
+          <div className={styles.frame}>
+            <div className={styles.text}>
+              <p className={styles.textOne}>
+                You are currently helping post which was
+              </p>
+              <p className={styles.textTwo}>
+                posted by {currentPostHelpingUserName}
+              </p>
+            </div>
           </div>
-        </div>
+        </Link>
       )}
 
       <div className={styles.head2}>

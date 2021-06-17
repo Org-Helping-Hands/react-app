@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
-import styles from "./help.module.css";
+import styles from "./FollowPost.module.css";
 import { MapBox } from "../mapbox/mapbox";
 import mapboxgl from "mapbox-gl";
-import { fetchDetailedPost, postDetailResponse, updateStatus } from "../../common/api";
+import {
+  fetchDetailedPost,
+  postDetailResponse,
+  updateStatus,
+} from "../../common/api";
 
 export function FollowPost() {
   const [marker, setMarker] = useState<mapboxgl.Marker>();
@@ -15,14 +19,13 @@ export function FollowPost() {
       ])
     );
   }
-   function onTickClick(){
-    updateStatus("1","Completed");
-   
-   }
- function onCrossClick(){
-    updateStatus("1", "Idle")
-    console.log("help denied")
-     }
+  function onTickClick() {
+    updateStatus("1", "Completed");
+  }
+  function onCrossClick() {
+    updateStatus("1", "Idle");
+    console.log("help denied");
+  }
   useEffect(() => {
     fetchDetailedPost("1").then(({ data }) => {
       createMarker(data);
