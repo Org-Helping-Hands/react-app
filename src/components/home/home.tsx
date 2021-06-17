@@ -207,24 +207,7 @@ export function Home() {
         </div>
       </div>
 
-      {/* <div className={styles.line3}>
-        <div className={styles.noti}>
-          <p className={styles.cont2text}>Notification</p>
-          <p className={styles.cont2text2}>Notifications are on</p>
-        </div>
-        <div className={styles.notiImg}>
-          <div className={styles.para4}>
-            <p>
-              <img
-                src="assets/home/notification.png"
-                alt=""
-                height="50px"
-                width="50px"
-              />
-            </p>
-          </div>
-        </div>
-      </div> */}
+      
     </>
   );
 }
