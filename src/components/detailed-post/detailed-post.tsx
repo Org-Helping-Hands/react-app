@@ -30,6 +30,7 @@ export function DetailedPost(props: RouteProps) {
   const [images, setImages] = useState<string[]>([]);
   const [description, setDescription] = useState<string>("");
   const [marker, setMarker] = useState<mapboxgl.Marker>();
+  const [postId, setPostId] = useState("");
   const history = useHistory();
 
   function createMarker(post: postDetailResponse) {
@@ -40,17 +41,16 @@ export function DetailedPost(props: RouteProps) {
       ])
     );
   }
-let postId=''
 
- function onHelpClick(){
-   updateStatus( postId,"Started")
-   
- }
+  function onHelpClick() {
+    updateStatus(postId, "Started");
+  }
 
   useEffect(() => {
-     let id = new URLSearchParams(props.location?.search).get("id");
+    let id = new URLSearchParams(props.location?.search).get("id");
     if (id) {
-      postId=id;
+      setPostId(id);
+
       fetchDetailedPost(id).then(({ data }) => {
         setName(data.postedBy.name);
         setDescription(data.description);
@@ -63,7 +63,6 @@ let postId=''
   }, []);
   return (
     <>
-
       <img
         className="mt-3 ml-3"
         src="/assets/find-needy/arrow.jpg"
@@ -117,12 +116,10 @@ let postId=''
           </div>
         </div>
 
-       
-
         <MapBox markers={marker ? [marker] : []} />
 
         <div className={`text-right ${styles.buttons}`}>
-        <button type="button" className={styles.share_btn}>
+          <button type="button" className={styles.share_btn}>
             <img
               src="assets/detailed-post/inbox.png"
               height="35px"
@@ -136,14 +133,12 @@ let postId=''
               width="30px"
             ></img>
           </button>
-          
         </div>
-        <Link to="/follow-post"
-        >
-        <button
+        <Link to="/follow-post">
+          <button
             type="button"
-            className={`btn btn-success ${styles.help_btn}`} 
-            onClick={onHelpClick} 
+            className={`btn btn-success ${styles.help_btn}`}
+            onClick={onHelpClick}
           >
             help
           </button>
