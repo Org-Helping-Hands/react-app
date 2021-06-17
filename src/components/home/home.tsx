@@ -13,6 +13,7 @@ export function Home() {
   const [emailId, setemailId] = useState<string>("");
   const [currentPostHelpingUserName, setCurrentPostHelpingUserName] =
     useState("");
+  const [currentPostHelpingId, setCurrentPostHelpingId] = useState<number>();
 
   useEffect(() => {
     getUserData().then(({ data }) => {
@@ -22,6 +23,7 @@ export function Home() {
       settotalPostCompletedByOthers(data.totalPostCompletedByOthers);
       settotalPost(data.totalPosts);
       setCurrentPostHelpingUserName(data.currentHelpingPost?.postedBy.name);
+      setCurrentPostHelpingId(data.currentHelpingPost.id);
     });
   }, []);
 
@@ -67,7 +69,7 @@ export function Home() {
         </Link>
       </div>
       {currentPostHelpingUserName && (
-        <Link to="/follow-post">
+        <Link to={"/follow-post?id=" + currentPostHelpingId}>
           <div className={styles.frame}>
             <div className={styles.text}>
               <p className={styles.textOne}>

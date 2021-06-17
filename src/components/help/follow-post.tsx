@@ -4,12 +4,17 @@ import { MapBox } from "../mapbox/mapbox";
 import mapboxgl from "mapbox-gl";
 import {
   fetchDetailedPost,
+  fetchImageDetailedPost,
   postDetailResponse,
   updateStatus,
 } from "../../common/api";
+import { RouteProps } from "react-router-dom";
 
-export function FollowPost() {
+export function FollowPost(props: RouteProps) {
   const [marker, setMarker] = useState<mapboxgl.Marker>();
+  const [description, setDescription] = useState("");
+  const [postId, setPostId] = useState("");
+  const [images, setImages] = useState<string[]>([]);
 
   function createMarker(post: postDetailResponse) {
     setMarker(
@@ -27,9 +32,18 @@ export function FollowPost() {
     console.log("help denied");
   }
   useEffect(() => {
-    fetchDetailedPost("1").then(({ data }) => {
-      createMarker(data);
-    });
+    let id = new URLSearchParams(props.location?.search).get("id");
+    if (id) {
+      setPostId(id);
+
+      fetchDetailedPost(id).then(({ data }) => {
+        setDescription(data.description);
+        createMarker(data);
+      });
+      fetchImageDetailedPost(id).then(({ data }) => {
+        setImages(data);
+      });
+    } else new Error("No id found please select post from find needy page");
   });
 
   return (
@@ -52,10 +66,7 @@ export function FollowPost() {
             data-icon="mdi-hospital-box"
           ></i>
         </span>
-        <p className={styles.bottom}>
-          Needy food and water and shelter will also help. Also it will be nice
-          if you donate your old clothes
-        </p>
+        <p className={styles.bottom}>{description}</p>
 
         <span className={`iconify-wrapper `} onClick={onCrossClick}>
           <i
