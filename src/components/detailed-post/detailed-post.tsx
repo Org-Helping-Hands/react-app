@@ -5,6 +5,7 @@ import {
   fetchDetailedPost,
   fetchImageDetailedPost,
   postDetailResponse,
+  updateStatus,
 } from "../../common/api";
 import { MapBox } from "../mapbox/mapbox";
 import mapboxgl from "mapbox-gl";
@@ -39,10 +40,17 @@ export function DetailedPost(props: RouteProps) {
       ])
     );
   }
+let postId=''
+
+ function onHelpClick(){
+   updateStatus( postId,"Started")
+   
+ }
 
   useEffect(() => {
-    let id = new URLSearchParams(props.location?.search).get("id");
+     let id = new URLSearchParams(props.location?.search).get("id");
     if (id) {
+      postId=id;
       fetchDetailedPost(id).then(({ data }) => {
         setName(data.postedBy.name);
         setDescription(data.description);
@@ -130,12 +138,16 @@ export function DetailedPost(props: RouteProps) {
           </button>
           
         </div>
+        <Link to="/follow-post"
+        >
         <button
             type="button"
-            className={`btn btn-success ${styles.help_btn}`}
+            className={`btn btn-success ${styles.help_btn}`} 
+            onClick={onHelpClick} 
           >
             help
           </button>
+        </Link>
       </div>
     </>
   );

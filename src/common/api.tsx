@@ -4,6 +4,11 @@ import { getPhoneNumber, getToken, getUserId } from "./user";
 const baseURL = axios.create({
   baseURL: process.env.REACT_APP_NODEJS_API,
 });
+export type TLatestOperation = "Completed" | "Started" | "Idle";
+interface updateStatus {
+  postId: string;
+  latestOperation: TLatestOperation;
+}
 interface IAuthReqBody {
   userId: string;
   phoneNumber: string;
@@ -73,7 +78,10 @@ export function dopost(
     headers: getAuthReqHeader(),
   });
 }
-export function UpdateStatus(postId: String, latestOperation: string) {
+export function updateStatus(
+  postId: String,
+  latestOperation: TLatestOperation
+) {
   return baseURL.post(
     "/post/update-status",
     {
