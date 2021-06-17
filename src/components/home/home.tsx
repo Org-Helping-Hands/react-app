@@ -114,12 +114,9 @@ export function Home() {
         <div className={styles.line1}>
           <div className={styles.name}>
             <p className={styles.cont2text}>{name}</p>
-            <Link to="/contribution">
-              <p className={styles.cont2text2}>
-                {totalPostCompletedByOthers}/{totalPosts} posts {totalHelps}{" "}
-                helps
-              </p>
-            </Link>
+           
+              
+           
           </div>
         </div>
 
