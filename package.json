@@ -17,7 +17,6 @@
     "@types/react-router-dom": "^5.1.7",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
-    "customize-cra": "^1.0.0",
     "firebase": "^8.4.1",
     "mapbox-gl": "^2.2.0",
     "react": "^17.0.2",
@@ -31,9 +30,9 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
-    "test": "react-app-rewired test",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -54,7 +53,6 @@
     ]
   },
   "devDependencies": {
-    "@types/mapbox-gl": "^2.1.1",
-    "react-app-rewired": "^2.1.8"
+    "@types/mapbox-gl": "^2.1.1"
   }
 }
