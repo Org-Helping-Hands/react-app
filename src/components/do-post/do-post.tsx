@@ -153,23 +153,9 @@ export function DoPost() {
         </div>
 
         <p className={styles.title}>select location</p>
-        <div className="input-group mb-3">
-          <input
-            type="text"
-            className={`${styles.addressInput} `}
-            placeholder="Enter Address"
-            aria-label="Enter address"
-            aria-describedby="button-addon2"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-          />
-          <span
-            className="iconify-wrapper"
-            onClick={() => setShopMap(!showMap)}
-          >
-            <i className="iconify" data-icon="bx:bxs-map"></i>
-          </span>
-        </div>
+        <button className="btn mb-2" onClick={() => setShopMap(!showMap)}>
+          Show map
+        </button>
         {showMap && (
           <MapBox
             onMapClick={(latitude, longitude) => {
