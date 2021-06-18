@@ -15,8 +15,23 @@ export function FollowPost(props: RouteProps) {
   const [marker, setMarker] = useState<mapboxgl.Marker>();
   const [description, setDescription] = useState("");
   const [postId, setPostId] = useState("");
+  const [tags, setTags] = useState<string[]>();
   const [images, setImages] = useState<string[]>([]);
+  const [iconTags] = useState([
+    { name: "Water", icon: "akar-icons:water" },
+    { name: "Food", icon: "emojione-monotone:pot-of-food" },
+    { name: "Shelter", icon: "ic-baseline-night-shelter" },
+    { name: "medical Help", icon: "mdi-hospital-box" },
+    { name: "Educational Help", icon: "carbon-education" },
+    { name: "financial Help", icon: "map:finance" },
+    { name: "cloths", icon: "map:clothing-store" },
+    { name: "Adoption", icon: "carbon:pedestrian-family" },
+  ]);
 
+  function getIconName(name: string) {
+    const findIcon = iconTags.find((e) => e.name == name);
+    return findIcon?.icon;
+  }
   function createMarker(post: postDetailResponse) {
     setMarker(
       new mapboxgl.Marker().setLngLat([
@@ -27,12 +42,10 @@ export function FollowPost(props: RouteProps) {
   }
   const history = useHistory();
   function onTickClick() {
-    updateStatus(postId, "Completed").then(_ => history.push("/thankyou"));
-
+    updateStatus(postId, "Completed").then((_) => history.push("/thankyou"));
   }
   function onCrossClick() {
-    updateStatus(postId, "Idle").then(_ => history.push("/home"));
-
+    updateStatus(postId, "Idle").then((_) => history.push("/home"));
   }
   useEffect(() => {
     let id = new URLSearchParams(props.location?.search).get("id");
@@ -41,34 +54,42 @@ export function FollowPost(props: RouteProps) {
 
       fetchDetailedPost(id).then(({ data }) => {
         setDescription(data.description);
+        setTags(
+          data.neededItems.map((e) => {
+            return e.itemName;
+          })
+        );
+
         createMarker(data);
       });
       fetchImageDetailedPost(id).then(({ data }) => {
         setImages(data);
       });
     } else new Error("No id found please select post from find needy page");
-  });
+  }, []);
 
   return (
     <>
       <div>
-        <img className={styles.arrow} src="/assets/find-needy/arrow.jpg" onClick={() => history.goBack()}/>
+        <img
+          className={styles.arrow}
+          src="/assets/find-needy/arrow.jpg"
+          onClick={() => history.goBack()}
+        />
         <p className={styles.top}>Needy people near you</p>
         <MapBox markers={marker ? [marker] : []}></MapBox>
-        {/* <span>
-          <i
-            className={`iconify ${styles.tag}`}
-            data-icon="akar-icons:water"
-          ></i>
-          <i
-            className={`iconify ${styles.tag}`}
-            data-icon="emojione-monotone:pot-of-food"
-          ></i>
-          <i
-            className={`iconify ${styles.tag}`}
-            data-icon="mdi-hospital-box"
-          ></i>
-        </span> */}
+        <span>
+          {tags?.map((e, i) => {
+            return (
+              <i
+                key={i}
+                className={`iconify ${styles.tag}`}
+                data-icon={getIconName(e)}
+              ></i>
+            );
+          })}
+        </span>
+
         <p className={styles.bottom}>{description}</p>
 
         <span className={`iconify-wrapper `} onClick={onCrossClick}>

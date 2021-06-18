@@ -31,7 +31,7 @@ interface userDataResponse {
 export interface postDetailResponse {
   id: number;
 
-  neededItems: { name: string }[];
+  neededItems: { itemName: string }[];
 
   latitude: string;
 
@@ -74,7 +74,7 @@ export function dopost(
   });
   formData.append("neededItems", JSON.stringify(neededItems));
 
- return baseURL.post("/post/create", formData, {
+  return baseURL.post("/post/create", formData, {
     headers: getAuthReqHeader(),
   });
 }
@@ -130,20 +130,27 @@ export function getUserData() {
   );
 }
 
-export function requestUpdateEmailId(emailId:String){
-  return baseURL.post("/user/request-email-update",{
-    emailId
-  },
-  {
-    headers: getAuthReqHeader()
-  })
+export function requestUpdateEmailId(emailId: String) {
+  return baseURL.post(
+    "/user/request-email-update",
+    {
+      emailId,
+    },
+    {
+      headers: getAuthReqHeader(),
+    }
+  );
 }
 
-export function verifyUpdateEmailId(emailId:String, otp:string){
- return baseURL.post("/user/verify-update-email",{
-   emailId,
-   otp
- },{
-   headers: getAuthReqHeader()
- })
+export function verifyUpdateEmailId(emailId: String, otp: string) {
+  return baseURL.post(
+    "/user/verify-update-email",
+    {
+      emailId,
+      otp,
+    },
+    {
+      headers: getAuthReqHeader(),
+    }
+  );
 }
