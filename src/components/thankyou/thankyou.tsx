@@ -17,7 +17,7 @@ export class Thankyou extends React.Component {
             <div className={styles.text2}>
                 <p>Change the world by being yourself,</p>
                 <p>
-                     <Link to={"/find-needy"}>
+                     <Link to={"/home"}>
                     <a className={styles.anchor} href="#"><u>Keep Helping...</u></a>
                     </Link>
                     </p>
