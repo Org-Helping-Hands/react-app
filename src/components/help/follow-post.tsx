@@ -27,12 +27,12 @@ export function FollowPost(props: RouteProps) {
   }
   const history = useHistory();
   function onTickClick() {
-    updateStatus(postId, "Completed").then(_ =>history.push("/thankyou") );
-    
+    updateStatus(postId, "Completed").then(_ => history.push("/thankyou"));
+
   }
   function onCrossClick() {
     updateStatus(postId, "Idle").then(_ => history.push("/home"));
-    
+
   }
   useEffect(() => {
     let id = new URLSearchParams(props.location?.search).get("id");
@@ -55,7 +55,7 @@ export function FollowPost(props: RouteProps) {
         <img className={styles.arrow} src="/assets/find-needy/arrow.jpg" />
         <p className={styles.top}>Needy people near you</p>
         <MapBox markers={marker ? [marker] : []}></MapBox>
-        <span>
+        {/* <span>
           <i
             className={`iconify ${styles.tag}`}
             data-icon="akar-icons:water"
@@ -68,7 +68,7 @@ export function FollowPost(props: RouteProps) {
             className={`iconify ${styles.tag}`}
             data-icon="mdi-hospital-box"
           ></i>
-        </span>
+        </span> */}
         <p className={styles.bottom}>{description}</p>
 
         <span className={`iconify-wrapper `} onClick={onCrossClick}>
