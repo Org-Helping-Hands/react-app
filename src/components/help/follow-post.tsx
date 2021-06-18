@@ -52,7 +52,7 @@ export function FollowPost(props: RouteProps) {
   return (
     <>
       <div>
-        <img className={styles.arrow} src="/assets/find-needy/arrow.jpg" />
+        <img className={styles.arrow} src="/assets/find-needy/arrow.jpg" onClick={() => history.goBack()}/>
         <p className={styles.top}>Needy people near you</p>
         <MapBox markers={marker ? [marker] : []}></MapBox>
         <span>
