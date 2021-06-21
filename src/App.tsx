@@ -23,7 +23,7 @@ import { useEffect } from "react";
 import { fromEvent } from "rxjs";
 
 function App() {
-  let [width, setWidth] = useState(300);
+  let [width, setWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     fromEvent(window, "resize").subscribe((_) => {
