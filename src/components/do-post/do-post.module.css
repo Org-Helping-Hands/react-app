@@ -11,6 +11,7 @@ label.filebutton {
   overflow: hidden;
   position: relative;
   background-color: #ccc;
+  width: 94vw !important;
 }
 
 label span input {
@@ -248,4 +249,8 @@ label span input {
   .postbtn {
     margin: auto;
   }
+}
+
+.input_file {
+  width: 90%;
 }

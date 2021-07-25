@@ -90,7 +90,7 @@ export function DoPost() {
         description,
         images,
         neededItems
-      ).then( _=> history.push("/thankyou"));
+      ).then((_) => history.push("/thankyou"));
     }
   }
 
@@ -127,14 +127,15 @@ export function DoPost() {
                       accept="image/*"
                       multiple
                       onChange={handleFileChange}
+                      className={styles.input_file}
                     ></input>
+                    <div className="col-11">
+                      <p className={styles.uploadText}>
+                        click here to capture or upload image
+                      </p>
+                    </div>
                   </span>
                 </label>
-              </div>
-              <div className="col-11">
-                <p className={styles.uploadText}>
-                  click here to capture or upload image
-                </p>
               </div>
             </div>
 
