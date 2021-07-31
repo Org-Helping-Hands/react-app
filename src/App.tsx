@@ -31,7 +31,7 @@ function App() {
     });
   }, []);
   function isDesktop() {
-    return width > 471;
+    return width > 768;           // smallest desktop width is above 768 pixels 
   }
   function getElements() {
     if (isDesktop()) {
