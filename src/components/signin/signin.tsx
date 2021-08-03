@@ -3,6 +3,7 @@ import styles from "./signin.module.css";
 import { auth } from "../../Services/Firebase";
 import { setPhoneNumber, setToken, setUserId } from "../../common/user";
 import axios from "axios";
+import { signIn, toggleSpinner } from "../../common/api";
 export class Signin extends React.Component {
   state = {
     otpSend: false,
@@ -26,9 +27,12 @@ export class Signin extends React.Component {
   onSendotp = () => {
     const phoneNumber = this.state.phoneNumber;
     const appVerifier = (window as any).recaptchaVerifier;
+    toggleSpinner.next(true);
+
     auth()
       .signInWithPhoneNumber(phoneNumber, appVerifier)
       .then((confirmationResult) => {
+        toggleSpinner.next(false);
         // SMS sent. Prompt user to type the code from the message, then sign the
         // user in with confirmationResult.confirm(code).
         this.confirmationResult = confirmationResult;
@@ -38,6 +42,8 @@ export class Signin extends React.Component {
       .catch((error) => {
         // Error; SMS not sent
         // ...
+        toggleSpinner.next(false);
+
         console.log(error);
       });
   };
@@ -47,30 +53,27 @@ export class Signin extends React.Component {
       this.confirmationResult.verificationId,
       this.state.otp
     );
+    toggleSpinner.next(true);
     auth()
       .signInWithCredential(credential)
       .then(() => {
+        toggleSpinner.next(false);
         let _auth = auth();
         if (_auth.currentUser) {
           _auth.currentUser.getIdToken(true).then((idToken) => {
-            let url = process.env.REACT_APP_NODEJS_API + "/user/signin";
-           
+            signIn(idToken, this.state.name).then(async ({ data }) => {
+              if (_auth.currentUser) {
+                setUserId(_auth.currentUser.uid);
+              } else {
+                new Error("Failed to get userId, please try again later");
+              }
 
-            axios
-              .post(url, { idToken, name: this.state.name })
-              .then(async ({ data }) => {
-                if (_auth.currentUser) {
-                  setUserId(_auth.currentUser.uid);
-                } else {
-                  new Error("Failed to get userId, please try again later");
-                }
+              setToken(data.newToken);
+              setPhoneNumber(this.state.phoneNumber);
 
-                setToken(data.newToken);
-                setPhoneNumber(this.state.phoneNumber);
-
-                // TODO: Not use any
-                (this.props as any).history.push("/home");
-              });
+              // TODO: Not use any
+              (this.props as any).history.push("/home");
+            });
           });
         }
       });

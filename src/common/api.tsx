@@ -1,9 +1,31 @@
 import axios from "axios";
+import { Subject } from "rxjs";
 import { getPositionOfLineAndCharacter } from "typescript";
 import { getPhoneNumber, getToken, getUserId } from "./user";
 const baseURL = axios.create({
   baseURL: process.env.REACT_APP_NODEJS_API,
 });
+
+export const toggleSpinner = new Subject<boolean>();
+baseURL.interceptors.request.use(
+  (config) => {
+    toggleSpinner.next(true);
+    return config;
+  },
+  (_) => {
+    toggleSpinner.next(false);
+  }
+);
+
+baseURL.interceptors.response.use(
+  (res) => {
+    toggleSpinner.next(false);
+    return res;
+  },
+  (_) => {
+    toggleSpinner.next(false);
+  }
+);
 export type TLatestOperation = "Completed" | "Started" | "Idle";
 interface updateStatus {
   postId: string;
@@ -153,4 +175,8 @@ export function verifyUpdateEmailId(emailId: String, otp: string) {
       headers: getAuthReqHeader(),
     }
   );
+}
+
+export function signIn(idToken: string, name: string) {
+  return baseURL.post("/user/signin", { idToken, name });
 }

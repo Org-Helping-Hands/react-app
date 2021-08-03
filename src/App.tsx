@@ -21,13 +21,19 @@ import { Thankyou } from "./components/thankyou/thankyou";
 import { useState } from "react";
 import { useEffect } from "react";
 import { fromEvent } from "rxjs";
+import { toggleSpinner } from "./common/api";
+import Loader from "react-loader-spinner";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 function App() {
   let [width, setWidth] = useState(window.innerWidth);
-
+  let [toShowLoader, setToShowLoader] = useState(false);
   useEffect(() => {
     fromEvent(window, "resize").subscribe((_) => {
       setWidth(window.innerWidth);
+    });
+    toggleSpinner.subscribe((value) => {
+      setToShowLoader(value);
     });
   }, []);
   function isDesktop() {
@@ -42,23 +48,50 @@ function App() {
       );
     } else {
       return (
-        <Router>
-          <Switch>
-            <Route exact path="/">
-              <Redirect to="/home" />
-            </Route>
-            <Route path="/landing" component={Landing} />
-            <GuardedRoute path="/home" component={Home} />
-            <Route path="/signin" component={Signin} />
-            <Route path="/find-needy" component={FindNeedy} />
-            <Route path="/do-post" component={DoPost} />
-            <Route path="/detailed-post" component={DetailedPost} />
-            <Route path="/follow-post" component={FollowPost} />
-            <Route path="/contribution" component={Contribution} />
-            <Route path="/hbox" component={hbox} />
-            <Route path="/thankyou" component={Thankyou} />
-          </Switch>
-        </Router>
+        <>
+          <div
+            style={{
+              height: "100vh",
+              width: "100vw",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              position: "fixed",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%,-50%)",
+              backdropFilter: toShowLoader ? "blur(14px)" : undefined,
+              background: "transparent",
+              pointerEvents: "none",
+              transition: "0.3s",
+            }}
+          >
+            <Loader
+              type="Rings"
+              color="#7d7c7c94"
+              height={200}
+              width={200}
+              visible={toShowLoader}
+            />
+          </div>
+          <Router>
+            <Switch>
+              <Route exact path="/">
+                <Redirect to="/home" />
+              </Route>
+              <Route path="/landing" component={Landing} />
+              <GuardedRoute path="/home" component={Home} />
+              <Route path="/signin" component={Signin} />
+              <Route path="/find-needy" component={FindNeedy} />
+              <Route path="/do-post" component={DoPost} />
+              <Route path="/detailed-post" component={DetailedPost} />
+              <Route path="/follow-post" component={FollowPost} />
+              <Route path="/contribution" component={Contribution} />
+              <Route path="/hbox" component={hbox} />
+              <Route path="/thankyou" component={Thankyou} />
+            </Switch>
+          </Router>
+        </>
       );
     }
   }
