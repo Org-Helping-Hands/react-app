@@ -13,7 +13,7 @@
   color: white;
   font-size: 42px;
   margin-left: 10%;
-  margin-top:5%;
+  margin-top: 5%;
 }
 
 .form1 {
@@ -21,21 +21,21 @@
   font-family: Arial, Helvetica, sans-serif;
   border: none;
 }
-::placeholder{
-  color:black
+::placeholder {
+  color: black;
 }
 .form1 input {
   margin-bottom: 10%;
   font-size: 25px;
   color: black;
   padding: 5px;
-  width:94%;
+  width: 94%;
   border-color: black;
   border-top: none;
   border-left: none;
   border-right: none;
   border-width: 2px;
-  outline-color: gray ;
+  outline-color: gray;
 }
 
 ::placeholder1 {
@@ -54,24 +54,27 @@
   /* margin-top: 6%; */
 }
 
+.next1:disabled {
+  background-color: rgb(126, 194, 126);
+}
+
 .makeSure1 {
+  align-items: center;
+  margin-top: 100px;
+  font-size: 25px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: gray;
+}
+
+@media screen and (min-width: 500px) {
+  .next1 {
     align-items: center;
-    margin-top: 100px;
-    font-size: 25px;
-    font-family: Arial, Helvetica, sans-serif;
-    color: gray;
+    margin-left: 39%;
+  }
 }
 
-@media screen and (min-width:500px)
-{
-    .next1{
-        align-items: center;
-        margin-left: 39%;
-        
-    }
-}
-
-input[type=text]:focus, select:focus {
+input[type="text"]:focus,
+select:focus {
   transition: 700ms;
   border-radius: 5px;
   outline: none;
@@ -79,7 +82,8 @@ input[type=text]:focus, select:focus {
   box-shadow: 2px 2px 3px 3px rgb(69, 69, 70);
 }
 
-.next1:focus, select:focus {
+.next1:focus,
+select:focus {
   transition: 200ms;
   outline: none;
   background-color: rgb(3, 133, 3);

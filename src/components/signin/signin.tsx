@@ -3,7 +3,7 @@ import styles from "./signin.module.css";
 import { auth } from "../../Services/Firebase";
 import { setPhoneNumber, setToken, setUserId } from "../../common/user";
 import axios from "axios";
-import { signIn, toggleSpinner } from "../../common/api";
+import { handleHttpError, signIn, toggleSpinner } from "../../common/api";
 export class Signin extends React.Component {
   state = {
     otpSend: false,
@@ -43,8 +43,7 @@ export class Signin extends React.Component {
         // Error; SMS not sent
         // ...
         toggleSpinner.next(false);
-
-        console.log(error);
+        handleHttpError(error);
       });
   };
 
@@ -118,7 +117,13 @@ export class Signin extends React.Component {
             />
           )}
           {!this.state.otpSend && (
-            <button className={styles.next1} onClick={this.onSendotp}>
+            <button
+              className={styles.next1}
+              onClick={this.onSendotp}
+              disabled={
+                !(this.state.name && this.state.phoneNumber.length == 13)
+              }
+            >
               Get OTP
             </button>
           )}
