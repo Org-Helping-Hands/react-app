@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 import { Subject } from "rxjs";
 import { getPositionOfLineAndCharacter } from "typescript";
 import { getPhoneNumber, getToken, getUserId } from "./user";
@@ -6,14 +7,28 @@ const baseURL = axios.create({
   baseURL: process.env.REACT_APP_NODEJS_API,
 });
 
+export const handleHttpError = (err: any) => {
+  toast.warn(err.message ?? "Error occured please try again later", {
+    position: "bottom-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+};
 export const toggleSpinner = new Subject<boolean>();
 baseURL.interceptors.request.use(
   (config) => {
     toggleSpinner.next(true);
     return config;
   },
-  (_) => {
+  (err) => {
+    console.log("error");
+    handleHttpError(err);
     toggleSpinner.next(false);
+    return Promise.reject(err);
   }
 );
 
@@ -22,8 +37,12 @@ baseURL.interceptors.response.use(
     toggleSpinner.next(false);
     return res;
   },
-  (_) => {
+  (err) => {
+    console.log(err);
+
+    handleHttpError(err);
     toggleSpinner.next(false);
+    return Promise.reject(err);
   }
 );
 export type TLatestOperation = "Completed" | "Started" | "Idle";
@@ -145,8 +164,8 @@ var getAuthReqHeader = () => {
 };
 
 export function getUserData() {
-  return axios.post<userDataResponse>(
-    `${process.env.REACT_APP_NODEJS_API}/user/get-data`,
+  return baseURL.post<userDataResponse>(
+    "/user/get-data",
     {},
     { headers: getAuthReqHeader() }
   );

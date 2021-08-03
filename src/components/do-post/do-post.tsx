@@ -7,10 +7,6 @@ import { MapBox } from "../mapbox/mapbox";
 import { dopost } from "../../common/api";
 import { ThemeConsumer } from "react-bootstrap/esm/ThemeProvider";
 
-const baseUrl = axios.create({
-  baseURL: "process.env.REACT_APP_NODEJS_API",
-});
-
 type TTag = {
   name: string;
   icon: string;

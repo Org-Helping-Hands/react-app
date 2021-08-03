@@ -23,7 +23,9 @@ import { useEffect } from "react";
 import { fromEvent } from "rxjs";
 import { toggleSpinner } from "./common/api";
 import Loader from "react-loader-spinner";
+import { ToastContainer } from "react-toastify";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import "react-toastify/dist/ReactToastify.min.css";
 
 function App() {
   let [width, setWidth] = useState(window.innerWidth);
@@ -37,7 +39,7 @@ function App() {
     });
   }, []);
   function isDesktop() {
-    return width > 768;           // smallest desktop width is above 768 pixels 
+    return width > 768; // smallest desktop width is above 768 pixels
   }
   function getElements() {
     if (isDesktop()) {
@@ -49,6 +51,7 @@ function App() {
     } else {
       return (
         <>
+          <ToastContainer />
           <div
             style={{
               height: "100vh",
