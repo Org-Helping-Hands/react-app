@@ -48,7 +48,7 @@ export function Home() {
       setCurrentPostHelpingUserName(data.currentHelpingPost?.postedBy.name);
       setCurrentPostHelpingId(data.currentHelpingPost?.id);
     });
-  });
+  },[]);
 
   return (
     <>
