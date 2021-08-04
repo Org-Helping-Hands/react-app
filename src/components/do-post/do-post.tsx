@@ -1,11 +1,9 @@
-import React, { ChangeEventHandler, useState } from "react";
+import { useState } from "react";
 import styles from "./do-post.module.css";
-import axios from "axios";
 
 import { useHistory } from "react-router-dom";
 import { MapBox } from "../mapbox/mapbox";
 import { dopost } from "../../common/api";
-import { ThemeConsumer } from "react-bootstrap/esm/ThemeProvider";
 
 type TTag = {
   name: string;

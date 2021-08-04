@@ -1,6 +1,5 @@
-import { group } from "node:console";
 import React from "react";
-import { Link,useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import styles from "./contribution.module.css";
 
 
@@ -31,7 +30,7 @@ export function Contribution() {
 
 <div className={` row ${styles.postBox}`}>
 <div className="col-3 col-sm-2 col-md-1" >
-<img className={styles.profile_pic} height="60px" width="60px"  src="assets/detailed-post/profile-pic.png"></img>  
+<img className={styles.profile_pic} height="60px" width="60px"  src="assets/detailed-post/profile-pic.png" alt="profile pick"></img>  
 </div>
 <div className="col-9 col-sm-10  col-md-11 ">
  <h3 className={styles.name}>
@@ -43,7 +42,7 @@ export function Contribution() {
 </div>
 <div className={`- row ${styles.postBox}`}>
 <div className="col-3 col-sm-2 col-md-1" >
-<img className={styles.profile_pic} height="60px" width="60px"  src="assets/detailed-post/profile-pic.png"></img>  
+<img className={styles.profile_pic} height="60px" width="60px"  src="assets/detailed-post/profile-pic.png" alt="profile pick"></img>  
 </div>
 <div className="col-9 col-sm-10  col-md-11 ">
  <h3 className={styles.name}>
@@ -55,7 +54,7 @@ export function Contribution() {
 </div>
 <div className={` row ${styles.postBox}`}>
 <div className="col-3 col-sm-2 col-md-1" >
-<img className={styles.profile_pic} height="60px" width="60px"  src="assets/detailed-post/profile-pic.png"></img>  
+<img className={styles.profile_pic} height="60px" width="60px"  src="assets/detailed-post/profile-pic.png" alt="profile pick"></img>  
 </div>
 <div className="col-9 col-sm-10  col-md-11 ">
  <h3 className={styles.name}>
@@ -67,7 +66,7 @@ export function Contribution() {
 </div>
 <div className={` row ${styles.postBox}`}>
 <div className="col-3 col-sm-2 col-md-1" >
-<img className={styles.profile_pic} height="60px" width="60px"  src="assets/detailed-post/profile-pic.png"></img>  
+<img className={styles.profile_pic} height="60px" width="60px"  src="assets/detailed-post/profile-pic.png" alt="profile pick"></img>  
 </div>
 <div className="col-9 col-sm-10  col-md-11 ">
  <h3 className={styles.name}>

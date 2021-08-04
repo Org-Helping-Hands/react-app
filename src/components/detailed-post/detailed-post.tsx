@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, RouteProps, useHistory } from "react-router-dom";
+import {  RouteProps, useHistory } from "react-router-dom";
 import styles from "./detailed-post.module.css";
 import {
   fetchDetailedPost,
@@ -9,21 +9,6 @@ import {
 } from "../../common/api";
 import { MapBox } from "../mapbox/mapbox";
 import mapboxgl from "mapbox-gl";
-// state = {
-//    Urls:[
-//      {URL:"assets/detailed-post/poor1.jpg"},
-//      {URL:"assets/detailed-post/poor2.jpg"},
-//      {URL:"assets/detailed-post/poor3.jpg"},
-//    ],
-// };
-type File = {
-  URL: string;
-};
-type Post = {
-  Name: string;
-  Images: string[];
-  Description: string;
-};
 
 export function DetailedPost(props: RouteProps) {
   const [name, setName] = useState<string>("");
@@ -80,6 +65,7 @@ export function DetailedPost(props: RouteProps) {
                 <img
                   className={styles.profile_pic}
                   src="assets/detailed-post/profile-pic.png"
+                  alt="profile pic"
                 ></img>
               </div>
               <div className="col-9 col-sm-10  col-md-11 ">

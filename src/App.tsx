@@ -9,7 +9,6 @@ import {
 } from "react-router-dom";
 import { Home } from "./components/home/home";
 import { Signin } from "./components/signin/signin";
-import { getToken } from "./common/user";
 import GuardedRoute from "./components/guardedRoute";
 import { DoPost } from "./components/do-post/do-post";
 import { FindNeedy } from "./components/find-needy/find-needy";

@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./signin.module.css";
 import { auth } from "../../Services/Firebase";
 import { setPhoneNumber, setToken, setUserId } from "../../common/user";
-import axios from "axios";
 import { handleHttpError, signIn, toggleSpinner } from "../../common/api";
 export class Signin extends React.Component {
   state = {
@@ -128,7 +127,7 @@ export class Signin extends React.Component {
               className={styles.next1}
               onClick={this.onSendotp}
               disabled={
-                !(this.state.name && this.state.phoneNumber.length == 13)
+                !(this.state.name && this.state.phoneNumber.length === 13)
               }
             >
               {this.state.otpSend?"Resend otp":"Get OTP"}
