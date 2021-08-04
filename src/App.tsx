@@ -67,6 +67,7 @@ function App() {
               background: "transparent",
               pointerEvents: "none",
               transition: "0.3s",
+              zIndex: 10,
             }}
           >
             <Loader
