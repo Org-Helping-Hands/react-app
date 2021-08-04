@@ -75,6 +75,9 @@ export class Signin extends React.Component {
             });
           });
         }
+      }).catch(e=>{
+        handleHttpError(e)
+        toggleSpinner.next(false)
       });
   };
 
@@ -116,23 +119,29 @@ export class Signin extends React.Component {
               }}
             />
           )}
-          {!this.state.otpSend && (
-            <button
+          <div style={
+            {
+              display:"flex"
+            }
+          }>
+          <button
               className={styles.next1}
               onClick={this.onSendotp}
               disabled={
                 !(this.state.name && this.state.phoneNumber.length == 13)
               }
             >
-              Get OTP
+              {this.state.otpSend?"Resend otp":"Get OTP"}
             </button>
-          )}
 
           {this.state.otpSend && (
-            <button className={styles.next1} onClick={this.onConfirmOtp}>
+            <button className={`${styles.next1} ${styles["margin-left"]}`} onClick={this.onConfirmOtp}>
               Comfirm
             </button>
           )}
+          </div>
+           
+
           <p className={styles.makeSure1}>
             Make sure you are in proper network coverage
           </p>
