@@ -1,8 +1,7 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Subject } from "rxjs";
-import { getPositionOfLineAndCharacter } from "typescript";
-import { getPhoneNumber, getToken, getUserId } from "./user";
+import { getToken } from "./user";
 const baseURL = axios.create({
   baseURL: process.env.REACT_APP_NODEJS_API,
 });
@@ -46,15 +45,6 @@ baseURL.interceptors.response.use(
   }
 );
 export type TLatestOperation = "Completed" | "Started" | "Idle";
-interface updateStatus {
-  postId: string;
-  latestOperation: TLatestOperation;
-}
-interface IAuthReqBody {
-  userId: string;
-  phoneNumber: string;
-  token: string;
-}
 
 interface userDataResponse {
   name: string;

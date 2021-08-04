@@ -29,7 +29,7 @@ export function FollowPost(props: RouteProps) {
   ]);
 
   function getIconName(name: string) {
-    const findIcon = iconTags.find((e) => e.name == name);
+    const findIcon = iconTags.find((e) => e.name === name);
     return findIcon?.icon;
   }
   function createMarker(post: postDetailResponse) {

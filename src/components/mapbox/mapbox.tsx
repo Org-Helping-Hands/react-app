@@ -1,5 +1,5 @@
-import mapboxgl, { Marker } from "mapbox-gl";
-import { useEffect, useRef, useState } from "react";
+import mapboxgl from "mapbox-gl";
+import { useEffect, useRef } from "react";
 import { getLocation } from "../../common/location";
 type Props = {
   markers?: mapboxgl.Marker[];

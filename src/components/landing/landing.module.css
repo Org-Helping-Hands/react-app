@@ -71,7 +71,6 @@
   margin-right: -100%;
   margin-left: -20vh;
 
-  /* margin-left: calc(100vw / 2 - 120vw); */
   margin-top: calc(100vh / 1.2 - var(--size));
 }
 .world-needs-your-help p {
