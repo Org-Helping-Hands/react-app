@@ -16,6 +16,14 @@
   "rules": {
     "quotes": [2, "single"],
     "no-duplicate-imports": 2,
-    "semi": [2, "always"]
+    "semi": [2, "always"],
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error"],
+    //temporarly rules
+    "no-unused-vars": ["off"],
+    "no-new": ["off"],
+    "node/handle-callback-err": "off"
+
+
   }
 }

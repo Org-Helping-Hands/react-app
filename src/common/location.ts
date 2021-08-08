@@ -1,4 +1,8 @@
-export function getLocation() {
+export function getLocation () {
+  interface GeolocationCoordinates {
+    longitude: number;
+    latitude: number;
+  }
   return new Promise<GeolocationCoordinates>((resolve, reject) => {
     navigator.geolocation.getCurrentPosition(
       (position) => {

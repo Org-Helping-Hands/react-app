@@ -1,6 +1,6 @@
-import mapboxgl, { Marker } from "mapbox-gl";
-import { useEffect, useRef, useState } from "react";
-import { getLocation } from "../../common/location";
+import mapboxgl, { Marker } from 'mapbox-gl';
+import React, { useEffect, useRef, useState } from 'react';
+import { getLocation } from '../../common/location';
 type Props = {
   markers?: mapboxgl.Marker[];
   onMapClick?: (latitude: number, longitude: number) => void;
@@ -9,32 +9,29 @@ type Props = {
 export const MapBox = (props: Props) => {
   const mapContainer = useRef(null);
   const map = useRef(null) as any;
-  var marker: mapboxgl.Marker;
+  let marker: mapboxgl.Marker;
 
-  async function initializeMap() {
-    let { latitude, longitude } = await getLocation();
+  async function initializeMap () {
+    const { latitude, longitude } = await getLocation();
     mapboxgl.accessToken =
-      "pk.eyJ1Ijoib21tb3JlIiwiYSI6ImNrbnl2M2dwbTFrOXoycHBzN3RzdThvd20ifQ.wZeX_Xe1i3NsILKIEe7M4Q";
+      'pk.eyJ1Ijoib21tb3JlIiwiYSI6ImNrbnl2M2dwbTFrOXoycHBzN3RzdThvd20ifQ.wZeX_Xe1i3NsILKIEe7M4Q';
     if (!map.current) {
       map.current = new mapboxgl.Map({
         container: mapContainer.current as any,
-        style: "mapbox://styles/mapbox/streets-v11",
+        style: 'mapbox://styles/mapbox/streets-v11',
         center: [longitude, latitude],
-        zoom: 12,
+        zoom: 12
       });
-      (map.current as mapboxgl.Map).on("click", function (e) {
+      (map.current as mapboxgl.Map).on('click', function (e) {
         if (props.onMapClick) {
           props.onMapClick(e.lngLat.lat, e.lngLat.lng);
           marker?.remove();
-          marker = new mapboxgl.Marker()
-            .setLngLat([e.lngLat.lng, e.lngLat.lat])
-            .addTo(map.current);
+          marker = new mapboxgl.Marker().setLngLat([e.lngLat.lng, e.lngLat.lat]).addTo(map.current);
         }
-
       });
     }
     if (map.current) {
-      new mapboxgl.Marker({ color: "#90D98D", scale: 1.2 })
+      new mapboxgl.Marker({ color: '#90D98D', scale: 1.2 })
         .setLngLat([longitude, latitude])
         .addTo(map.current);
       props.markers &&
@@ -46,5 +43,5 @@ export const MapBox = (props: Props) => {
   useEffect(() => {
     initializeMap();
   });
-  return <div id="rect" ref={mapContainer} className="map-box"></div>;
+  return <div id='rect' ref={mapContainer} className='map-box'></div>;
 };

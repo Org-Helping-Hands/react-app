@@ -1,6 +1,6 @@
-import React from "react";
-import { Route, Redirect } from "react-router-dom";
-import { getToken } from "../../common/user";
+import React from 'react';
+import { Route, Redirect } from 'react-router-dom';
+import { getToken } from '../../common/user';
 
 interface IProps {
   component: any;
@@ -8,14 +8,12 @@ interface IProps {
 }
 
 const GuardedRoute = (data: Required<IProps>) => {
-  let { component, ...rest } = data;
-  let Component = component;
+  const { component, ...rest } = data;
+  const Component = component;
   return (
     <Route
       {...rest}
-      render={(props) =>
-        getToken() ? <Component {...props} /> : <Redirect to="/landing" />
-      }
+      render={(props) => (getToken() ? <Component {...props} /> : <Redirect to='/landing' />)}
     />
   );
 };

@@ -1,26 +1,25 @@
-import React from "react";
-import styles from "./signin.module.css";
-import { auth } from "../../Services/Firebase";
-import { setPhoneNumber, setToken, setUserId } from "../../common/user";
-import axios from "axios";
-import { handleHttpError, signIn, toggleSpinner } from "../../common/api";
+import React from 'react';
+import styles from './signin.module.css';
+import { auth } from '../../Services/Firebase';
+import { setPhoneNumber, setToken, setUserId } from '../../common/user';
+// import axios from 'axios';
+import { handleHttpError, signIn, toggleSpinner } from '../../common/api';
 export class Signin extends React.Component {
   state = {
     otpSend: false,
     verified: false,
-    phoneNumber: "+91",
-    otp: "",
-    name: "",
+    phoneNumber: '+91',
+    otp: '',
+    name: ''
   };
-  componentDidMount() {
-    (window as any).recaptchaVerifier = new auth.RecaptchaVerifier(
-      this.recaptcha,
-      {
-        size: "invisible",
-        callback: (response: any) => {},
-      }
-    );
+
+  componentDidMount () {
+    (window as any).recaptchaVerifier = new auth.RecaptchaVerifier(this.recaptcha, {
+      size: 'invisible',
+      callback: (response: any) => {}
+    });
   }
+
   recaptcha: any;
 
   confirmationResult: any;
@@ -48,7 +47,7 @@ export class Signin extends React.Component {
   };
 
   onConfirmOtp = () => {
-    let credential = auth.PhoneAuthProvider.credential(
+    const credential = auth.PhoneAuthProvider.credential(
       this.confirmationResult.verificationId,
       this.state.otp
     );
@@ -57,31 +56,33 @@ export class Signin extends React.Component {
       .signInWithCredential(credential)
       .then(() => {
         toggleSpinner.next(false);
-        let _auth = auth();
+        const _auth = auth();
         if (_auth.currentUser) {
           _auth.currentUser.getIdToken(true).then((idToken) => {
             signIn(idToken, this.state.name).then(async ({ data }) => {
               if (_auth.currentUser) {
                 setUserId(_auth.currentUser.uid);
               } else {
-                new Error("Failed to get userId, please try again later");
+                // new Error('Failed to get userId, please try again later');
               }
 
               setToken(data.newToken);
               setPhoneNumber(this.state.phoneNumber);
 
               // TODO: Not use any
-              (this.props as any).history.push("/home");
+              // eslint-disable-next-line react/prop-types
+              (this.props as any).history.push('/home');
             });
           });
         }
-      }).catch(e=>{
-        handleHttpError(e)
-        toggleSpinner.next(false)
+      })
+      .catch((e) => {
+        handleHttpError(e);
+        toggleSpinner.next(false);
       });
   };
 
-  render() {
+  render () {
     return (
       <>
         <div ref={(ref) => (this.recaptcha = ref)}></div>
@@ -91,18 +92,18 @@ export class Signin extends React.Component {
 
         <div className={styles.form1}>
           <input
-            type="text"
-            name="username"
-            placeholder="Name"
+            type='text'
+            name='username'
+            placeholder='Name'
             value={this.state.name}
             onChange={(event) => {
               this.setState({ ...this.state, name: event.target.value });
             }}
           />
           <input
-            type="text"
-            name="mobno"
-            placeholder="Phone number"
+            type='text'
+            name='mobno'
+            placeholder='Phone number'
             value={this.state.phoneNumber}
             onChange={(event) => {
               this.setState({ ...this.state, phoneNumber: event.target.value });
@@ -110,41 +111,36 @@ export class Signin extends React.Component {
           />
           {this.state.otpSend && (
             <input
-              className="form-control"
-              type="text"
-              placeholder="Enter otp"
+              className='form-control'
+              type='text'
+              placeholder='Enter otp'
               value={this.state.otp}
               onChange={(event) => {
                 this.setState({ ...this.state, otp: event.target.value });
               }}
             />
           )}
-          <div style={
-            {
-              display:"flex"
-            }
-          }>
-          <button
+          <div
+            style={{
+              display: 'flex'
+            }}>
+            <button
               className={styles.next1}
               onClick={this.onSendotp}
-              disabled={
-                !(this.state.name && this.state.phoneNumber.length == 13)
-              }
-            >
-              {this.state.otpSend?"Resend otp":"Get OTP"}
+              disabled={!(this.state.name && this.state.phoneNumber.length === 13)}>
+              {this.state.otpSend ? 'Resend otp' : 'Get OTP'}
             </button>
 
-          {this.state.otpSend && (
-            <button className={`${styles.next1} ${styles["margin-left"]}`} onClick={this.onConfirmOtp}>
-              Comfirm
-            </button>
-          )}
+            {this.state.otpSend && (
+              <button
+                className={`${styles.next1} ${styles['margin-left']}`}
+                onClick={this.onConfirmOtp}>
+                Comfirm
+              </button>
+            )}
           </div>
-           
 
-          <p className={styles.makeSure1}>
-            Make sure you are in proper network coverage
-          </p>
+          <p className={styles.makeSure1}>Make sure you are in proper network coverage</p>
         </div>
       </>
     );
